@@ -18,8 +18,16 @@ class User(db.Model, UserMixin):
     image = db.Column(db.String(255), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    # Follower relationships
     following = db.relationship("Follow", foreign_keys=[Follow.follower_id], back_populates='follower')
     followers = db.relationship("Follow", foreign_keys=[Follow.followee_id], back_populates='followee')
+
+    # Post relationship
+    my_posts = db.relationship("Post", back_populates= 'owner', cascade='all,delete')
+
+    # Like relationship
+    # Potential bonus feature (Liked Posts) !!!
+    liked_posts = db.relationship("Like", back_populates= 'user', cascade='all,delete')
 
     @property
     def password(self):
@@ -39,7 +47,8 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'image': self.image,
             'following': [following.to_dict_following() for following in self.following],
-            'followers': [follower.to_dict_follower() for follower in self.followers]
+            'followers': [follower.to_dict_follower() for follower in self.followers],
+            'posts': [post.to_dict_basic() for post in self.my_posts]
         }
 
     def to_dict_basic(self):
