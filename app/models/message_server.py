@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-# from .message_server_member import MessageServerMember
+from .message_server_member import MessageServerMember
 
 
 class MessageServer(db.Model):
@@ -17,6 +17,9 @@ class MessageServer(db.Model):
 
     # Message Relationship
     messages = db.relationship("Message", back_populates= 'message_server', cascade='all,delete')
+
+    # Message Server Member Relationship
+    members = db.relationship("MessageServerMember", foreign_keys=[MessageServerMember.message_server_id], back_populates= 'message_server')
 
     def to_dict(self):
         return {

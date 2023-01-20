@@ -5,7 +5,7 @@ from .posts import seed_posts, undo_posts
 from .likes import seed_likes, undo_likes
 from .message_servers import seed_message_servers, undo_message_servers
 from .messages import seed_messages, undo_messages
-# from .message_server_members import seed
+from .message_server_members import seed_message_server_members, undo_message_server_members
 
 from app.models.db import db, environment, SCHEMA
 
@@ -29,6 +29,7 @@ def seed():
     seed_likes()
     seed_message_servers()
     seed_messages()
+    seed_message_server_members()
 
     # Add other seed functions here
 
@@ -42,4 +43,5 @@ def undo():
     undo_likes()
     undo_messages()
     undo_message_servers()
+    undo_message_server_members()
     # Add other undo functions here

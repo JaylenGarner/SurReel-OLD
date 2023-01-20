@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .follow import Follow
+from .message_server_member import MessageServerMember
 from sqlalchemy.event import listens_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -34,7 +35,9 @@ class User(db.Model, UserMixin):
 
     # Message Server Relationship
     owned_message_servers = db.relationship("MessageServer", back_populates='owner', cascade='all,delete')
-    # joined_messages_servers = db.relationship("MessageServerMember", back_populates= 'user', cascade='all,delete')
+
+    # Message Server Member Relationship
+    joined_messages_servers = db.relationship("MessageServerMember", foreign_keys=[MessageServerMember.user_id], back_populates= 'user')
 
     @property
     def password(self):
@@ -57,7 +60,8 @@ class User(db.Model, UserMixin):
             'followers': [follower.to_dict_follower() for follower in self.followers],
             'posts': [post.to_dict_basic() for post in self.my_posts],
             'messages': [message.to_dict_basic() for message in self.messages],
-            'owner_message_servers': [message_server.to_dict_basic() for message_server in self.owned_message_servers]
+            'owned_message_servers': [message_server.to_dict_basic() for message_server in self.owned_message_servers],
+            'joined_message_servers': [message_server.to_dict_basic() for message_server in self.joined_messages_servers]
         }
 
     def to_dict_basic(self):
