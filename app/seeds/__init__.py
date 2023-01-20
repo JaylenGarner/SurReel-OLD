@@ -3,6 +3,9 @@ from .users import seed_users, undo_users
 from .follows import seed_follows, undo_follows
 from .posts import seed_posts, undo_posts
 from .likes import seed_likes, undo_likes
+from .message_servers import seed_message_servers, undo_message_servers
+from .messages import seed_messages, undo_messages
+# from .message_server_members import seed
 
 from app.models.db import db, environment, SCHEMA
 
@@ -24,6 +27,9 @@ def seed():
     seed_follows()
     seed_posts()
     seed_likes()
+    seed_message_servers()
+    seed_messages()
+
     # Add other seed functions here
 
 
@@ -34,4 +40,6 @@ def undo():
     undo_follows()
     undo_posts()
     undo_likes()
+    undo_messages()
+    undo_message_servers()
     # Add other undo functions here

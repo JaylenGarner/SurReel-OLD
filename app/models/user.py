@@ -29,6 +29,13 @@ class User(db.Model, UserMixin):
     # Potential bonus feature (Liked Posts) !!!
     liked_posts = db.relationship("Like", back_populates= 'user', cascade='all,delete')
 
+    # Message relationship
+    messages = db.relationship("Message", back_populates= 'user', cascade='all,delete')
+
+    # Message Server Relationship
+    owned_message_servers = db.relationship("MessageServer", back_populates='owner', cascade='all,delete')
+    # joined_messages_servers = db.relationship("MessageServerMember", back_populates= 'user', cascade='all,delete')
+
     @property
     def password(self):
         return self.hashed_password
@@ -48,7 +55,9 @@ class User(db.Model, UserMixin):
             'image': self.image,
             'following': [following.to_dict_following() for following in self.following],
             'followers': [follower.to_dict_follower() for follower in self.followers],
-            'posts': [post.to_dict_basic() for post in self.my_posts]
+            'posts': [post.to_dict_basic() for post in self.my_posts],
+            'messages': [message.to_dict_basic() for message in self.messages],
+            'owner_message_servers': [message_server.to_dict_basic() for message_server in self.owned_message_servers]
         }
 
     def to_dict_basic(self):
