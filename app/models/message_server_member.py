@@ -8,4 +8,4 @@
 # )
 
 # if environment == "production":
-#     followers.schema = SCHEMA
+#     message_server_members.schema = SCHEMA

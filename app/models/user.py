@@ -1,6 +1,9 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .follow import Follow
+from sqlalchemy.event import listens_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+
 
 
 class User(db.Model, UserMixin):
@@ -14,6 +17,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     image = db.Column(db.String(255), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    following = db.relationship("Follow", foreign_keys=[Follow.follower_id], back_populates='follower')
+    followers = db.relationship("Follow", foreign_keys=[Follow.followee_id], back_populates='followee')
 
     @property
     def password(self):
@@ -31,5 +37,14 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            'image': self.image,
+            'following': [following.to_dict_following() for following in self.following],
+            'followers': [follower.to_dict_follower() for follower in self.followers]
+        }
+
+    def to_dict_basic(self):
+        return {
+            'id': self.id,
+            'username': self.username,
             'image': self.image
         }
