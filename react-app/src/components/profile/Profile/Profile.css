@@ -1,0 +1,29 @@
+.profile-info-area {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-user-image {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+}
+
+.profile-user-username {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 12px;
+}
+
+.profile-border-container {
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+}
+
+.profile-border {
+    border-bottom: 1px solid;
+    width: 500px;
+}

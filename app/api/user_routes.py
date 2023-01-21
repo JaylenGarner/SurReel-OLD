@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, Post
 
 user_routes = Blueprint('users', __name__)
 
@@ -25,8 +25,16 @@ def user(id):
     return user.to_dict()
 
 
-# @user_routes.route('/<int:id>/followers')
-# @login_required
-# def followers(id):
+# Get posts that a user has created
+@user_routes.route('/<int:id>/posts')
+@login_required
+def get_my_posts(id):
 
-#     user = User.query.get(id)
+    res = {}
+    posts = Post.query.all()
+
+    for post in posts:
+        if post.owner_id == id:
+            res[f'{post.id}'] = post.to_dict()
+
+    return res

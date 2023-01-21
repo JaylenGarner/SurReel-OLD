@@ -5,19 +5,10 @@ from app.models import User, Post
 post_routes = Blueprint('posts', __name__)
 
 
-@post_routes.route('/')
+@post_routes.route('/<int:id>')
 @login_required
-def get_my_posts():
+def get_post(id):
 
-    res = {}
+    post = Post.query.get(id)
 
-    user = User.query.get(current_user.id)
-    posts = Post.query.all()
-
-    print(posts)
-
-    for post in posts:
-        if post.owner_id == user.id:
-            res[f'{post.id}'] = post.to_dict()
-
-    return res
+    return post.to_dict()

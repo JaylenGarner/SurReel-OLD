@@ -58,8 +58,8 @@ class User(db.Model, UserMixin):
             'image': self.image,
             'following': [following.to_dict_following() for following in self.following],
             'followers': [follower.to_dict_follower() for follower in self.followers],
-            'posts': [post.to_dict_basic() for post in self.my_posts],
-            'messages': [message.to_dict_basic() for message in self.messages],
+            # 'posts': [post.to_dict_basic() for post in self.my_posts],
+            # 'messages': [message.to_dict_basic() for message in self.messages],
             'owned_message_servers': [message_server.to_dict_basic() for message_server in self.owned_message_servers],
             'joined_message_servers': [message_server.to_dict_basic() for message_server in self.joined_messages_servers]
         }
