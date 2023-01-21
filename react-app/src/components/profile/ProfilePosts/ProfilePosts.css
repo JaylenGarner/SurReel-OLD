@@ -1,0 +1,20 @@
+.profile-posts-grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* grid-gap: 0px; */
+}
+
+
+.profile-post-container {
+    height: 282px;
+    width: 282px;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+
+.profile-post-media {
+    height: 282px;
+    width: 282px;
+    border-radius: 3px;
+}
