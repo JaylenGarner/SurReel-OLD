@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadProfilePostsThunk } from '../../../store/posts';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import './ProfilePosts.css';
 
 function ProfilePosts() {
@@ -24,7 +24,9 @@ function ProfilePosts() {
             {posts && posts.map((post) => {
               return (
               <div key={post.id} className='profile-post-container'>
+                <NavLink to={`/posts/${post.id}`}>
                 <img src={post.media} className='profile-post-media'></img>
+                </NavLink>
               </div>
               )
             })}
