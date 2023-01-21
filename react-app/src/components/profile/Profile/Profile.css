@@ -24,6 +24,6 @@
 }
 
 .profile-border {
-    border-bottom: 1px solid;
-    width: 500px;
+    border-bottom: 0.01px solid #363636;
+    width: 960px;
 }
