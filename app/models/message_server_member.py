@@ -25,3 +25,8 @@ class MessageServerMember(db.Model):
             "user_id": self.user_id,
             "message_server_id": self.message_server_id
         }
+
+    def to_dict_member(self):
+        return {
+            'member': self.user.to_dict_basic()
+        }

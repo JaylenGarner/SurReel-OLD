@@ -17,10 +17,17 @@ def seed_posts():
         caption='My cat Whiskers',
         media='https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
     )
+    cat_pic2 = Post(
+        owner_id = 3,
+        caption='My cat Whiskers too',
+        media='https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
+    )
+
 
     db.session.add(new_york)
     db.session.add(newport)
     db.session.add(cat_pic)
+    db.session.add(cat_pic2)
     db.session.commit()
 
 

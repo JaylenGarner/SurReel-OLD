@@ -24,7 +24,9 @@ class MessageServer(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'owner_id': self.owner_id
+            'owner_id': self.owner_id,
+            'members': [member.to_dict_member() for member in self.members],
+            'messages': [message.to_dict_basic() for message in self.messages]
         }
 
     def to_dict_basic(self):

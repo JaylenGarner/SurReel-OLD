@@ -25,8 +25,8 @@ def user(id):
     return user.to_dict()
 
 
-@user_routes.route('/<int:id>/followers')
-@login_required
-def followers(id):
+# @user_routes.route('/<int:id>/followers')
+# @login_required
+# def followers(id):
 
-    user = User.query.get(id)
+#     user = User.query.get(id)

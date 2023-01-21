@@ -14,10 +14,16 @@ def seed_follows():
         follower_id = 3,
         followee_id = 1
     )
+    follow4 = Follow(
+        follower_id = 2,
+        followee_id = 1
+    )
 
     db.session.add(follow1)
     db.session.add(follow2)
     db.session.add(follow3)
+    db.session.add(follow4)
+
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE or DELETE the follows table. SQLAlchemy doesn't

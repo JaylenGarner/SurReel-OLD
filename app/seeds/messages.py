@@ -20,7 +20,7 @@ def seed_messages():
         body='I kinda look like Kid Rock',
         media='https://images.unsplash.com/photo-1571933052606-a7fce275801f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fG9sZCUyMGNvd2JveXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
     )
-    message3 = Message(
+    message4 = Message(
         user_id = 1,
         message_server_id = 3,
         body='I kinda look like Kid Rock too',
@@ -31,6 +31,8 @@ def seed_messages():
     db.session.add(message1)
     db.session.add(message2)
     db.session.add(message3)
+    db.session.add(message4)
+
     db.session.commit()
 
 
