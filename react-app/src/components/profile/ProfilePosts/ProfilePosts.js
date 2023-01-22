@@ -7,7 +7,7 @@ import './ProfilePosts.css';
 function ProfilePosts() {
     const dispatch = useDispatch();
     // const user = useSelector((state) => state.session.user)
-    const posts = Object.values(useSelector((state) => state.posts))
+    const posts = useSelector((state) => state.posts)
     const { userId } = useParams()
 
 
@@ -21,7 +21,7 @@ function ProfilePosts() {
       return (
         <div className='user-profile-container'>
           <div className='profile-posts-grid-container'>
-            {posts && posts.map((post) => {
+            {posts &&  Object.values(posts).map((post) => {
               return (
               <div key={post.id} className='profile-post-container'>
                 <NavLink to={`/posts/${post.id}`}>
