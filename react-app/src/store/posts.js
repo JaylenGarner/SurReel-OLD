@@ -1,6 +1,7 @@
 const defaultState = {}
 
 const LOAD_PROFILE_POSTS = 'posts/LOAD_MY_POSTS';
+const LOAD_FEED_POSTS = 'posts/LOAD_FEED_POSTS'
 const LOAD_POST = 'posts/LOAD_POST';
 const EDIT_POST = 'posts/EDIT_POST';
 const DELETE_POST = 'posts/DELETE_POST'
@@ -18,6 +19,22 @@ export const loadProfilePostsThunk = (userId) => async (dispatch) => {
     if (res.ok) {
         const data = await res.json()
         dispatch(loadProfilePosts(data))
+      }
+}
+
+const loadFeedPosts = payload => {
+    return {
+        type: LOAD_FEED_POSTS,
+        payload
+    }
+}
+
+export const loadFeedPostsThunk = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/users/${userId}/feed`)
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(loadFeedPosts(data))
       }
 }
 
@@ -82,6 +99,8 @@ export default function reducer(state = defaultState, action) {
 
     switch (action.type) {
         case LOAD_PROFILE_POSTS:
+            return {...action.payload}
+        case LOAD_FEED_POSTS:
             return {...action.payload}
         case LOAD_POST:
             return {post: action.payload}

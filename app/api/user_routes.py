@@ -31,10 +31,31 @@ def user(id):
 def get_my_posts(id):
 
     res = {}
-    posts = Post.query.all()
+
+    user = User.query.get(id)
+    posts = user.to_dict_posts()['posts']
 
     for post in posts:
-        if post.owner_id == id:
-            res[f'{post.id}'] = post.to_dict()
+        res[f'{post["id"]}'] = post
+
+    return res
+
+
+# Get relevant posts for the feed (Your posts and the posts of those that you follow)
+@user_routes.route('/<int:id>/feed')
+@login_required
+def get_my_feed(id):
+
+    res = {}
+
+    user = User.query.get(id)
+    following = user.to_dict_follow()['following']
+
+    for followee in following:
+        followed_user = followee['followee']
+        followed_user_posts = followed_user['posts']
+
+        for post in followed_user_posts:
+            res[f'{post["id"]}'] = post
 
     return res

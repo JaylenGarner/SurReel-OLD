@@ -4,6 +4,7 @@ from app.models import db, User, Post
 
 post_routes = Blueprint('posts', __name__)
 
+
 # Get post by id
 @post_routes.route('/<int:id>')
 @login_required

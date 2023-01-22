@@ -16,10 +16,10 @@ class Follow(db.Model):
 
     def to_dict_following(self):
         return {
-            'followee': self.followee.to_dict_basic()
+            'followee': self.followee.to_dict_posts()
         }
 
     def to_dict_follower(self):
         return {
-            'follower': self.follower.to_dict_basic(),
+            'follower': self.follower.to_dict_posts(),
         }

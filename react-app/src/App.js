@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Profile from './components/profile/Profile/Profile';
 import PostPage from './PostPage/PostPage';
+import HomeFeed from './components/HomeFeed/HomeFeed';
 import { authenticate } from './store/session';
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
           <PostPage />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>Feed *Coming Soon*</h1>
+          <HomeFeed />
         </Route>
       </Switch>
     </BrowserRouter>

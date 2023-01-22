@@ -8,6 +8,7 @@ function ProfilePosts() {
     const dispatch = useDispatch();
     // const user = useSelector((state) => state.session.user)
     const posts = useSelector((state) => state.posts)
+    console.log(posts)
     const { userId } = useParams()
 
 
@@ -15,8 +16,8 @@ function ProfilePosts() {
        dispatch(loadProfilePostsThunk(userId));
     }, [dispatch]);
 
-    if (!posts) {
-      return null;
+    if (!Object.values(posts).length) {
+      return <h1>This user has not posted yet</h1>
     } else {
       return (
         <div className='user-profile-container'>

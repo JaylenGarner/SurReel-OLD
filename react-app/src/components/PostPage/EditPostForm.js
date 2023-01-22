@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { editPostThunk } from '../store/posts';
-import { loadPostThunk } from '../store/posts';
+import { editPostThunk } from '../../store/posts';
+import { loadPostThunk } from '../../store/posts';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import './EditPostForm.css'

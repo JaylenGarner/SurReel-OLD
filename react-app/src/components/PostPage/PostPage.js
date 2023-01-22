@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
-import { loadPostThunk } from '../store/posts';
-import { deletePostThunk } from '../store/posts';
+import { loadPostThunk } from '../../store/posts';
+import { deletePostThunk } from '../../store/posts';
 import Modal from 'react-modal'
 import EditPostForm from './EditPostForm';
 import './PostPage.css';
@@ -37,15 +37,11 @@ function PostPage() {
           <NavLink to={`/users/${post.owner.id}/profile`}>
             <img src={post.owner.image} className='post-page-user-image'></img>
           </NavLink>
-          <NavLink to={`/users/${post.owner.id}/profile`}>
-          <span className='post-page-owner-username'>{post.owner.username}</span>
-          </NavLink>
+          <NavLink to={`/users/${post.owner.id}/profile`} className='post-page-owner-username'>{post.owner.username}</NavLink>
         </div>
         <div className='post-page-caption-area'>
           <img src={post.owner.image} className='post-page-user-image'></img>
-          <NavLink to={`/users/${post.owner.id}/profile`}>
-          <span className='post-page-owner-username'>{post.owner.username}</span>
-          </NavLink>
+          <NavLink to={`/users/${post.owner.id}/profile`} className='post-page-owner-username'>{post.owner.username}</NavLink>
           <span className='post-page-caption'>{post.caption}</span>
           <div>
             {user.id == post.owner.id && <button onClick={() => setModalIsOpen(true)}>Edit caption</button>}
