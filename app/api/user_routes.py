@@ -129,7 +129,7 @@ def follow_user(targetid):
     return {"msg": "Follow successful"}
 
 
-@user_routes.route('/unfollow/<int:targetid>')
+@user_routes.route('/unfollow/<int:targetid>', methods = ['DELETE'])
 @login_required
 def unfollow_user(targetid):
 
