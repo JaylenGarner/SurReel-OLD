@@ -16,7 +16,7 @@ class Post(db.Model):
     owner = db.relationship("User", back_populates= 'my_posts')
 
     # Like Relationship
-    likes = db.relationship("Like", back_populates='post')
+    likes = db.relationship("Like", back_populates='post', cascade='all,delete')
 
     def to_dict(self):
         return {

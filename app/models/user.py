@@ -58,10 +58,10 @@ class User(db.Model, UserMixin):
             'image': self.image,
             'following': [following.to_dict_following() for following in self.following],
             'followers': [follower.to_dict_follower() for follower in self.followers],
-            'posts': [post.to_dict_basic() for post in self.my_posts],
-            'messages': [message.to_dict_basic() for message in self.messages],
+            # 'messages': [message.to_dict_basic() for message in self.messages],
             'owned_message_servers': [message_server.to_dict_basic() for message_server in self.owned_message_servers],
-            'joined_message_servers': [message_server.to_dict_basic() for message_server in self.joined_messages_servers]
+            'joined_message_servers': [message_server.to_dict_basic() for message_server in self.joined_messages_servers],
+            'posts': [post.to_dict_basic() for post in self.my_posts]
         }
 
     def to_dict_basic(self):
@@ -69,4 +69,39 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'image': self.image
+        }
+
+
+    def to_dict_posts(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'image': self.image,
+            'posts': [post.to_dict() for post in self.my_posts]
+        }
+
+
+    def to_dict_follow(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'image': self.image,
+            'following': [following.to_dict_following() for following in self.following],
+            'followers': [follower.to_dict_follower() for follower in self.followers]
+        }
+
+    def to_dict_get_followers(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'image': self.image,
+            'followers': [follower.to_dict_basic_follower() for follower in self.followers]
+        }
+
+    def to_dict_get_following(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'image': self.image,
+            'following': [following.to_dict_basic_following() for following in self.following]
         }

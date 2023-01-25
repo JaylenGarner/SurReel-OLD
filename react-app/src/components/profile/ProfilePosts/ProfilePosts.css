@@ -1,0 +1,21 @@
+.profile-posts-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 282px);
+    grid-template-rows: auto;
+    padding-top: 20px;
+    text-align: center;
+    width: 930px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-gap: 28px
+}
+
+.profile-post-container {
+    height: 282px;
+    width: 282px;
+}
+
+.profile-post-media {
+    height: 282px;
+    width: 282px;
+}

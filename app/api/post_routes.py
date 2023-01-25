@@ -1,23 +1,43 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, Post
+from app.models import db, User, Post
 
 post_routes = Blueprint('posts', __name__)
 
 
-@post_routes.route('/')
+# Get post by id
+@post_routes.route('/<int:id>')
 @login_required
-def get_my_posts():
+def get_post(id):
 
-    res = {}
+    post = Post.query.get(id)
+    return post.to_dict()
 
-    user = User.query.get(current_user.id)
-    posts = Post.query.all()
+# Edit a post
+@post_routes.route('/<int:id>/edit', methods=[ 'PUT' ])
+@login_required
+def edit_post(id):
 
-    print(posts)
+    post = Post.query.get(id)
+    post.caption = request.json["caption"]
 
-    for post in posts:
-        if post.owner_id == user.id:
-            res[f'{post.id}'] = post.to_dict()
+    if post.owner_id != current_user.id:
+        return 'You are not the owner of this post'
 
-    return res
+    db.session.commit()
+    return post.to_dict()
+
+
+# Delete a post
+@post_routes.route('/<int:id>/delete', methods=[ 'DELETE' ])
+def delete_post(id):
+
+    post = Post.query.get(id)
+
+    if post.owner_id != current_user.id:
+        return 'You are not the owner of this post'
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return 'The post has been deleted'
