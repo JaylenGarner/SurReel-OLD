@@ -23,3 +23,13 @@ class Follow(db.Model):
         return {
             'follower': self.follower.to_dict_posts(),
         }
+
+    def to_dict_basic_following(self):
+        return {
+            'followee': self.followee.to_dict_basic()
+        }
+
+    def to_dict_basic_follower(self):
+        return {
+            'follower': self.follower.to_dict_basic()
+        }

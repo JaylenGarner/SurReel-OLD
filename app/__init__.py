@@ -11,6 +11,7 @@ from .api.post_routes import post_routes
 from .api.message_server_routes import message_servers_routes
 from .seeds import seed_commands
 from .config import Config
+import boto3, botocore
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -38,6 +39,21 @@ Migrate(app, db)
 
 # Application Security
 CORS(app)
+
+
+# !!!! TO DO !!!!
+# Amazon Web Services
+# app.config['S3_BUCKET'] = "surreel-hosted-content"
+# app.config['S3_KEY'] = "AKIA4U5VOVT3GPZEF65P"
+# app.config['S3_SECRET'] = "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"
+# app.config['S3_LOCATION'] = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
+
+# s3 = boto3.client(
+#    "s3",
+#    aws_access_key_id=app.config['S3_KEY'],
+#    aws_secret_access_key=app.config['S3_SECRET']
+# )
+
 
 
 # Since we are deploying with Docker and Flask,

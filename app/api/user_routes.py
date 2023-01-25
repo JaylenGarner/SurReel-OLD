@@ -59,3 +59,36 @@ def get_my_feed(id):
             res[f'{post["id"]}'] = post
 
     return res
+
+
+@user_routes.route('/<int:id>/followers')
+@login_required
+def get_my_followers(id):
+
+    res = {}
+
+    user = User.query.get(id)
+    followers = user.to_dict_get_followers()['followers']
+
+    for follower in followers:
+        following_user = follower['follower']
+        res[f'{following_user["id"]}'] = following_user
+
+    return res
+
+
+
+@user_routes.route('/<int:id>/following')
+@login_required
+def get_my_followings(id):
+
+    res = {}
+
+    user = User.query.get(id)
+    following = user.to_dict_get_following()['following']
+
+    for followee in following:
+        followed_user = followee['followee']
+        res[f'{followed_user["id"]}'] = followed_user
+
+    return res
