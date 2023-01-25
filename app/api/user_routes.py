@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User, Post
+from flask_login import login_required, current_user
+from sqlalchemy import and_
+from app.models import db, User, Post, Follow
 
 user_routes = Blueprint('users', __name__)
 
@@ -92,3 +93,58 @@ def get_my_followings(id):
         res[f'{followed_user["id"]}'] = followed_user
 
     return res
+
+
+@user_routes.route('/follow/<int:targetid>')
+@login_required
+def follow_user(targetid):
+
+    user = User.query.get(current_user.id)
+    following = user.to_dict_get_following()['following']
+
+    users = User.query.all()
+    user_ids = ([el.to_dict_basic()['id'] for el in users])
+
+    if targetid not in user_ids:
+        return "This user doesn't exist"
+
+    if current_user.id == targetid:
+            return 'You cannot follow yourself'
+
+    for el in following:
+        followee = el['followee']
+
+        if followee['id'] == targetid:
+            return 'You already follow this user'
+
+
+    follow = Follow (
+        follower_id = current_user.id,
+        followee_id = targetid
+    )
+
+    db.session.add(follow)
+    db.session.commit()
+
+    return {"msg": "Follow successful"}
+
+
+@user_routes.route('/unfollow/<int:targetid>')
+@login_required
+def unfollow_user(targetid):
+
+    follower_id = current_user.id
+    followee_id = targetid
+
+    if User.query.get(followee_id) == None:
+        return "The user doesn't exist"
+
+    follow = Follow.query.filter(and_(Follow.follower_id == follower_id, Follow.followee_id == followee_id)).first()
+
+    if follow:
+        db.session.delete(follow)
+        db.session.commit()
+
+        return "You have unfollowed the user"
+
+    return "You do not follow this user"
