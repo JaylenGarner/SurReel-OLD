@@ -1,0 +1,25 @@
+.profile-follow-button {
+    /* margin-left: 50px; */
+    font-size: 18px;
+    width: 118px;
+    height: 28px;
+    /* border-radius: 5px; */
+    /* padding: 10px; */
+    background-color: #4193EF;
+    color: white;
+    border-radius: 8px;
+    border: none;
+}
+
+.profile-follow-button:hover {
+    /* margin-left: 50px; */
+    font-size: 18px;
+    width: 118px;
+    height: 28px;
+    /* border-radius: 5px; */
+    /* padding: 10px; */
+    background-color: #3975EA;
+    color: white;
+    border-radius: 8px;
+    border: none;
+}

@@ -3,7 +3,7 @@
     height: 100px;
     justify-content: center;
     align-items: center;
-    padding-right: 220px;
+    padding-right: 200px;
     margin-top: 60px;
     margin-bottom: 40px;
 }
@@ -33,6 +33,7 @@
     /* padding: 12px; */
     /* margin-top: 20px; */
     top: 0px;
+    margin-right: 40px;
 }
 
 .profile-count-labels {
@@ -43,6 +44,7 @@
 .profile-count-numbers {
     font-size: 20px;
     font-weight: bold;
+    padding-right: 2px;
 }
 
 .profile-border-container {

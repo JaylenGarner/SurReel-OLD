@@ -1,8 +1,8 @@
-"""test
+"""tet
 
-Revision ID: 71c61006ad4c
+Revision ID: 5dbf5b21fec8
 Revises: 
-Create Date: 2023-01-25 17:34:45.071885
+Create Date: 2023-01-26 17:51:41.149800
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '71c61006ad4c'
+revision = '5dbf5b21fec8'
 down_revision = None
 branch_labels = None
 depends_on = None

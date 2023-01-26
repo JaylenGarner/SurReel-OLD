@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfilePosts from '../ProfilePosts/ProfilePosts';
 import { loadFollowersThunk } from '../../../store/follows';
 import { loadFollowingThunk } from '../../../store/follows';
+import FollowButton from './FollowButton/FollowButton';
 import './Profile.css';
-import { loadFeedPostsThunk } from '../../../store/posts';
 
 function Profile() {
   const dispatch = useDispatch();
@@ -16,6 +16,9 @@ function Profile() {
   let following = useSelector((state) => state.follows.following)
 
   useEffect(() => {
+    dispatch(loadFollowersThunk(userId))
+    dispatch(loadFollowingThunk(userId))
+
     if (!userId) {
       return;
     }
@@ -25,8 +28,6 @@ function Profile() {
       setUser(user);
     })();
 
-    dispatch(loadFollowersThunk(userId))
-    dispatch(loadFollowingThunk(userId))
 
   }, [userId]);
 
@@ -55,6 +56,7 @@ function Profile() {
             <div>
               <div className='profile-user-username-container'>
             <span className='profile-user-username'>{user.username}</span>
+             <FollowButton targetUserId={user.id} followers={followers} following={following}/>
             </div>
             <div className='profile-stats-area'>
               {posts && <div>
