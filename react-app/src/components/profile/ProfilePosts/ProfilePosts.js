@@ -6,9 +6,7 @@ import './ProfilePosts.css';
 
 function ProfilePosts() {
     const dispatch = useDispatch();
-    // const user = useSelector((state) => state.session.user)
     const posts = useSelector((state) => state.posts)
-    console.log(posts)
     const { userId } = useParams()
 
 

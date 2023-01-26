@@ -3,18 +3,46 @@
     height: 100px;
     justify-content: center;
     align-items: center;
+    padding-right: 220px;
+    margin-top: 60px;
+    margin-bottom: 40px;
 }
 
 .profile-user-image {
-    height: 100px;
-    width: 100px;
-    border-radius: 50px;
+    height: 150px;
+    width: 150px;
+    border-radius: 100px;
+}
+
+.profile-user-image-container {
+    padding-right: 80px;
+}
+
+.profile-stats-area {
+    margin-bottom: 85px;
+    display: flex;
+    padding-top: 35px;
+}
+
+.profile-user-username-container {
+    margin-top: 60px;
 }
 
 .profile-user-username {
-    font-size: 40px;
+    font-size: 30px;
+    /* padding: 12px; */
+    /* margin-top: 20px; */
+    top: 0px;
+}
+
+.profile-count-labels {
+    font-size: 20px;
+    margin-right: 40px;
+}
+
+.profile-count-numbers {
+    font-size: 20px;
     font-weight: bold;
-    padding: 12px;
 }
 
 .profile-border-container {

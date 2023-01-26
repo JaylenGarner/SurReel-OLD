@@ -74,9 +74,9 @@ export default function reducer(state = defaultState, action) {
 
     switch (action.type) {
         case LOAD_FOLLOWERS:
-            return {...action.payload}
+            return {...state, followers: action.payload}
         case LOAD_FOLLOWING:
-            return {...action.payload}
+            return {...state, following: action.payload}
         case FOLLOW_USER:
             return {...newState}
         case UNFOLLOW_USER:

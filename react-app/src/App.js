@@ -8,7 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Profile from './components/profile/Profile/Profile';
-import PostPage from './PostPage/PostPage';
+import PostPage from './components/PostPage/PostPage';
 import HomeFeed from './components/HomeFeed/HomeFeed';
 import { authenticate } from './store/session';
 
