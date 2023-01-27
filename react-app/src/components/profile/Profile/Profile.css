@@ -57,3 +57,25 @@
     border-bottom: 0.01px solid #363636;
     width: 960px;
 }
+
+.profile-following-modal-header-container {
+    display: flex;
+    justify-content: center;
+    border-bottom: 0.01px solid #363636;
+    padding-bottom: 16px;
+}
+
+.profile-following-modal-close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.profile-following-modal-header-text {
+    font-size: 22px;
+}

@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfilePosts from '../ProfilePosts/ProfilePosts';
 import { loadFollowersThunk } from '../../../store/follows';
 import { loadFollowingThunk } from '../../../store/follows';
+import Modal from 'react-modal'
 import FollowButton from './FollowButton/FollowButton';
+import FollowersModalContent from '../FollowModalContent/FollowersModalContent';
 import './Profile.css';
 
 function Profile() {
@@ -15,10 +17,11 @@ function Profile() {
   let followers = useSelector((state) => state.follows.followers)
   let following = useSelector((state) => state.follows.following)
 
-  const [followLength, setFollowLength] = useState(0)
+  const [followerModalIsOpen, setFollowerModalIsOpen] = useState(false);
+  const [followingModalIsOpen, setFollowingModalIsOpen] = useState(false);
+
 
   useEffect(() => {
-
     if (!userId) {
       return;
     }
@@ -55,9 +58,28 @@ function Profile() {
                 <span className='profile-count-numbers'>{Object.keys(posts).length} </span>
                 <span className='profile-count-labels'>posts </span>
               </div>}
+              <Modal
+              isOpen={followerModalIsOpen}
+              style={{
+                content: {
+                  width: '400px',
+                  height: '400px',
+                  top: '18%',
+                  left: '42%',
+                  backgroundColor: '#262626',
+                  color: 'white',
+                }
+              }}
+              >
+                <div className='profile-following-modal-header-container'>
+                  <span className='profile-following-modal-header-text'>Followers</span>
+                </div>
+                <button onClick={() => setFollowerModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
+                <FollowersModalContent />
+             </Modal>
               {followers && <div>
-                <span className='profile-count-numbers'>{Object.keys(followers).length} </span>
-                <span className='profile-count-labels'>followers </span>
+                <span onClick={() => setFollowerModalIsOpen(true)} className='profile-count-numbers'>{Object.keys(followers).length} </span>
+                <span onClick={() => setFollowerModalIsOpen(true)} className='profile-count-labels'>followers </span>
               </div>}
               {following && <div>
                 <span className='profile-count-numbers'>{Object.keys(following).length} </span>
