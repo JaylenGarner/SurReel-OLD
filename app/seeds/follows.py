@@ -19,10 +19,10 @@ def seed_follows():
         followee_id = 1
     )
 
-    db.session.add(follow1)
-    db.session.add(follow2)
-    db.session.add(follow3)
-    db.session.add(follow4)
+    # db.session.add(follow1)
+    # db.session.add(follow2)
+    # db.session.add(follow3)
+    # db.session.add(follow4)
 
     db.session.commit()
 

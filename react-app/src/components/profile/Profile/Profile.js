@@ -15,9 +15,9 @@ function Profile() {
   let followers = useSelector((state) => state.follows.followers)
   let following = useSelector((state) => state.follows.following)
 
+  const [followLength, setFollowLength] = useState(0)
+
   useEffect(() => {
-    dispatch(loadFollowersThunk(userId))
-    dispatch(loadFollowingThunk(userId))
 
     if (!userId) {
       return;
@@ -28,24 +28,16 @@ function Profile() {
       setUser(user);
     })();
 
+    dispatch(loadFollowersThunk(userId))
+    dispatch(loadFollowingThunk(userId))
 
-  }, [userId]);
+  }, [userId, dispatch]);
 
-  if (!user) {
-    return null;
-  }
-
-  if (!posts) {
-    posts = 0
-  }
-
-  if (!followers) {
-    followers = 0
-  }
-
-  if (!following) {
-    following = 0
-  }
+  if (!user) return null;
+  if (!posts) posts = 0
+  if (!followers) followers = 0
+  if (!following) following = 0
+  // if (followers) setFollowLength(Object.keys(followers).length)
 
   return (
     <div className='profile-container'>
@@ -56,7 +48,7 @@ function Profile() {
             <div>
               <div className='profile-user-username-container'>
             <span className='profile-user-username'>{user.username}</span>
-             <FollowButton targetUserId={user.id} followers={followers} following={following}/>
+             <FollowButton targetUserId={user.id} followers={followers} following={following} />
             </div>
             <div className='profile-stats-area'>
               {posts && <div>

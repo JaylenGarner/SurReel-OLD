@@ -80,7 +80,7 @@ export default function reducer(state = defaultState, action) {
         case FOLLOW_USER:
             return {...newState}
         case UNFOLLOW_USER:
-            return null
+            return {...newState}
         default:
             return state;
     }
