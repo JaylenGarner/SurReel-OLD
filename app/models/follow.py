@@ -35,7 +35,7 @@ class Follow(db.Model):
 
     def to_dict_basic_follower(self):
         return {
-            'follower': self.follower.to_dict_basic()
+            'follower': self.follower.to_dict_follow()
         }
 
     def to_dict_basic(self):

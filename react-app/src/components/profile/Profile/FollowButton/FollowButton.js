@@ -23,7 +23,6 @@ function FollowButton({targetUserId, followers, following}) {
     const followData = await dispatch(loadFollowersThunk(targetUserId))
 };
 
-// Currently works but crashes
 const handleUnfollow = async (e) => {
     e.preventDefault()
     const data = await dispatch(unfollowUserThunk(targetUserId))

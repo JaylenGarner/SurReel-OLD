@@ -7,6 +7,7 @@ import { loadFollowingThunk } from '../../../store/follows';
 import Modal from 'react-modal'
 import FollowButton from './FollowButton/FollowButton';
 import FollowersModalContent from '../FollowModalContent/FollowersModalContent';
+import FollowingModalContent from '../FollowModalContent/FollowingModalContent';
 import './Profile.css';
 
 function Profile() {
@@ -75,15 +76,34 @@ function Profile() {
                   <span className='profile-following-modal-header-text'>Followers</span>
                 </div>
                 <button onClick={() => setFollowerModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
-                <FollowersModalContent />
+                <FollowersModalContent setFollowerModalIsOpen={setFollowerModalIsOpen}/>
              </Modal>
               {followers && <div>
                 <span onClick={() => setFollowerModalIsOpen(true)} className='profile-count-numbers'>{Object.keys(followers).length} </span>
                 <span onClick={() => setFollowerModalIsOpen(true)} className='profile-count-labels'>followers </span>
               </div>}
+              <Modal
+              isOpen={followingModalIsOpen}
+              style={{
+                content: {
+                  width: '400px',
+                  height: '400px',
+                  top: '18%',
+                  left: '42%',
+                  backgroundColor: '#262626',
+                  color: 'white',
+                }
+              }}
+              >
+                <div className='profile-following-modal-header-container'>
+                  <span className='profile-following-modal-header-text'>Following</span>
+                </div>
+                <button onClick={() => setFollowingModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
+                <FollowingModalContent setFollowingModalIsOpen={setFollowingModalIsOpen}/>
+             </Modal>
               {following && <div>
-                <span className='profile-count-numbers'>{Object.keys(following).length} </span>
-                <span className='profile-count-labels'>following </span>
+                <span onClick={() => setFollowingModalIsOpen(true)} className='profile-count-numbers'>{Object.keys(following).length} </span>
+                <span onClick={() => setFollowingModalIsOpen(true)} className='profile-count-labels'>following </span>
               </div>}
               </div>
             </div>

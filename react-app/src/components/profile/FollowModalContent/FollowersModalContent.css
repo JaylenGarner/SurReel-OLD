@@ -15,3 +15,8 @@
     margin-left: 12px;
     font-size: 18px;
 }
+
+.followers-modal-nav-link {
+    color: white;
+    text-decoration: none;
+}
