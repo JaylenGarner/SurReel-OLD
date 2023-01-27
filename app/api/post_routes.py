@@ -74,7 +74,7 @@ def like_post(id):
     return post.to_dict()
 
 
-@post_routes.route('/<int:id>/unlike')
+@post_routes.route('/<int:id>/unlike', methods = ['DELETE'])
 def unlike_post(id):
 
     like = Like.query.filter(and_(Like.user_id == current_user.id,
