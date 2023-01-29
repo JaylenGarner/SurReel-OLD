@@ -92,9 +92,39 @@
     /* background-color: red; */
     width: 40vw;
     border-top: 0.1px solid gray;
-    padding-top: 45px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.like-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .like-button-empty {
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+.like-button svg {
+    font-size: 26px;
+    color: red;
+}
+
+.like-button-empty svg {
+    font-size: 26px;
+    color: white;
 }
 
 .post-page-likes-modal-button {
-    /* padding-top: 16px; */
+    cursor: pointer;
+    font-weight: bold;
 }

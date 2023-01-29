@@ -79,15 +79,15 @@ function HomeFeed() {
                 <img src={post.media} className='home-feed-post-image'></img>
                 <div className='home-feed-post-interaction-area'>
 
+                {/* Like logic */}
                 {isLiked(post)}
-                {/* <button className="like-button">
-                  <FontAwesomeIcon icon={faHeartFilled} />
-                </button> */}
 
                 <span onClick={() => {
                   setCurrentPost(post.id)
                   setModalIsOpen(true)
-                  }}>Likes</span>
+                  }}
+                  className='home-page-feed-likes-span'
+                  >Likes</span>
                 <Modal
               isOpen={modalIsOpen}
               style={{

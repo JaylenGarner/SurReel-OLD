@@ -6,6 +6,11 @@ import { deletePostThunk } from '../../store/posts';
 import Modal from 'react-modal'
 import EditPostForm from './EditPostForm';
 import LikesModalContent from '../Likes/LikesModalContent';
+import { likePostThunk } from '../../store/likes';
+import { unlikePostThunk } from '../../store/likes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as faHeartO } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import './PostPage.css';
 
 function PostPage() {
@@ -32,6 +37,47 @@ function PostPage() {
     return null;
   }
 
+  const isLiked = (post) => {
+
+    let likes = []
+    if (post.likes) likes = post.likes
+
+    for (let i = 0; i < likes.length; i++) {
+      let like = likes[i]
+
+      // Liked
+      if (like.user.id == user.id) {
+        console.log('LIKED')
+        return (
+
+          // <span>Liked</span>
+        <button className="like-button" onClick={(e) => handleUnlike(e, post.id)}>
+        <FontAwesomeIcon icon={faHeartFilled} />
+        </button>)
+      }
+    }
+
+    // Not liked
+    console.log('NOT LIKED')
+      return (
+        <button className="like-button-empty" onClick={(e) => handleLike(e, post.id)}>
+        <FontAwesomeIcon icon={faHeartFilled} />
+        </button>
+      )
+    }
+
+    const handleLike = async (e, postId) => {
+      e.preventDefault()
+      const data = await dispatch(likePostThunk(postId))
+      const reload = await dispatch(loadPostThunk(postId))
+    };
+
+    const handleUnlike = async (e, postId) => {
+      e.preventDefault()
+      const data = await dispatch(unlikePostThunk(postId))
+      const reload = await dispatch(loadPostThunk(postId))
+    };
+
   return (
     <div className='post-page-grid'>
       <img className='post-page-image' src={post.media}></img>
@@ -49,9 +95,12 @@ function PostPage() {
           <NavLink to={`/users/${post.owner.id}/profile`} className='post-page-owner-username'>{post.owner.username}</NavLink>
           <span className='post-page-caption'>{post.caption}</span>
           <div className='post-page-interaction-area-container'>
+              {/* Like logic */}
+              {isLiked(post)}
               <span onClick={() => setLikesModalIsOpen(true)} className='post-page-likes-modal-button'>Likes</span>
              </div>
           <div>
+
             <div className='edit-post-caption-modal'>
               <Modal
               isOpen={editCaptionModalIsOpen}
@@ -70,6 +119,7 @@ function PostPage() {
                 <EditPostForm currentCaption={post.caption} setEditCaptionModalIsOpen={setEditCaptionModalIsOpen}/>
                 <button onClick={() => setEditCaptionModalIsOpen(false)}>Cancel</button>
              </Modal>
+
              <Modal
               isOpen={likesModalIsOpen}
               style={{
@@ -83,7 +133,10 @@ function PostPage() {
                 }
               }}
               >
+
                 <div className='profile-following-modal-header-container'>
+
+
                   <span className='profile-following-modal-header-text'>Likes</span>
                 </div>
                 <button onClick={() => setLikesModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
