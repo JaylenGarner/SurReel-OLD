@@ -36,6 +36,16 @@
     padding-top: 5px;
 }
 
+.nav-bar-create-container {
+    margin-top: 12px;
+}
+
+.nav-create-icon {
+    height: 28px;
+    width: 28px;
+    padding-top: 6px;
+}
+
 .nav-link-home {
     color: white;
     text-decoration: none;

@@ -15,7 +15,6 @@ const EditPostForm = ({currentCaption, setEditCaptionModalIsOpen}) => {
   const [caption, setCaption] = useState(currentCaption);
   const [errors, setErrors] = useState([]);
 
-
   const closeModal = () => {
     setEditCaptionModalIsOpen(false);
   }
@@ -26,9 +25,9 @@ const EditPostForm = ({currentCaption, setEditCaptionModalIsOpen}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const data = await dispatch(editPostThunk(user.id, caption))
-    const close = await closeModal()
+    const data = await dispatch(editPostThunk(postId, caption))
     const reload = await dispatch(loadPostThunk(postId))
+    const close = await closeModal()
   };
 
   const updateCaption = (e) => {

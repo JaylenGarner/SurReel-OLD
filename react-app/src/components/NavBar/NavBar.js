@@ -31,6 +31,13 @@ const NavBar = () => {
             <img src='https://i.ibb.co/VWZjy0J/8723112-home-icon-1.png' className='nav-home-icon'></img>
               <span className='nav-link-home-span'>Home</span>
             </NavLink>
+            <br></br>
+          </div>
+          <div className='nav-bar-create-container'>
+          <NavLink to='/create' exact={true} className='nav-link-home-area' activeClassName='active'>
+            <img src='https://i.ibb.co/q0wY2b6/8757645-new-post-post-media-tool-application-icon-1.png' className='nav-create-icon'></img>
+              <span className='nav-link-home-span'>Create</span>
+            </NavLink>
           </div>
             <NavLink to='/users' exact={true} activeClassName='active'>
               Users

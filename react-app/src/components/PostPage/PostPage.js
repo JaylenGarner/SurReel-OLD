@@ -17,25 +17,26 @@ function PostPage() {
   const dispatch = useDispatch();
   const history = useHistory()
   const user = useSelector((state) => state.session.user)
-  const post = useSelector((state) => state.posts.post)
+  const posts = useSelector((state) => state.posts)
+  const post = posts.post
+
+
   const { postId } = useParams()
 
   const [editCaptionModalIsOpen, setEditCaptionModalIsOpen] = useState(false);
   const [likesModalIsOpen, setLikesModalIsOpen] = useState(false);
 
-
-  const handleDelete = (postId) => {
-    dispatch(deletePostThunk(postId))
-    history.push("/");
+  const handleDelete = async (e, postId) => {
+    e.preventDefault()
+    const deletePost = await dispatch(deletePostThunk(postId))
+    const redirectToProfile = await history.push(`/users/${user.id}/profile`);
   }
+
 
   useEffect(() => {
      dispatch(loadPostThunk(postId));
   }, [dispatch]);
 
-  if (!post) {
-    return null;
-  }
 
   const isLiked = (post) => {
 
@@ -78,6 +79,11 @@ function PostPage() {
       const reload = await dispatch(loadPostThunk(postId))
     };
 
+    if (post === 'deleted' || !post) {
+      return null;
+    }
+
+
   return (
     <div className='post-page-grid'>
       <img className='post-page-image' src={post.media}></img>
@@ -88,7 +94,7 @@ function PostPage() {
           </NavLink>
           <NavLink to={`/users/${post.owner.id}/profile`} className='post-page-owner-username'>{post.owner.username}</NavLink>
           {user.id == post.owner.id && <button onClick={() => setEditCaptionModalIsOpen(true)} className='edit-caption-button'>Edit caption</button>}
-          {user.id == post.owner.id &&<button onClick={() => handleDelete(postId)} className='delete-post-button'>Delete Post</button>}
+          {user.id == post.owner.id &&<button onClick={(e) => handleDelete(e, postId)} className='delete-post-button'>Delete Post</button>}
         </div>
         <div className='post-page-caption-area'>
           <img src={post.owner.image} className='post-page-user-image'></img>

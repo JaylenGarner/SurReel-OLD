@@ -136,7 +136,7 @@ export default function reducer(state = defaultState, action) {
         case EDIT_POST:
             return {post: action.payload}
         case DELETE_POST:
-            return null;
+            return {post: 'deleted'};
         default:
             return state;
     }

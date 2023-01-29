@@ -7,6 +7,7 @@ import { createPostThunk } from '../../store/posts';
 const CreatePostForm = () => {
     const history = useHistory(); // so that we can redirect after the image upload is successful
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.session.user)
     const [image, setImage] = useState(null);
     const [caption, setCaption] = useState('')
     const [imageLoading, setImageLoading] = useState(false);
@@ -31,7 +32,7 @@ const CreatePostForm = () => {
         if (res.ok) {
             await res.json();
             setImageLoading(false);
-            // history.push("/images");
+            history.push(`/users/${user.id}/profile`);
         }
         else {
             setImageLoading(false);
