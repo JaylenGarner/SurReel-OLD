@@ -12,6 +12,38 @@
     left: 0;
 }
 
+.edit-caption-button {
+    position: absolute;
+    right: 150px;
+    background: none;
+    color: #4193EF;
+    border: none;
+}
+
+.delete-post-button {
+    position: absolute;
+    right: 40px;
+    background: none;
+    color: #4193EF;
+    border: none;
+}
+
+.edit-caption-button:hover {
+    position: absolute;
+    right: 150px;
+    background: none;
+    color: white;
+    border: none;
+}
+
+.delete-post-button:hover {
+    position: absolute;
+    right: 40px;
+    background: none;
+    color: white;
+    border: none;
+}
+
 .post-page-content {
     grid-column: 2;
     height: 100vh;
@@ -52,4 +84,17 @@
     height: 40px;
     width: 40px;
     border-radius: 25px;
+}
+
+.post-page-interaction-area-container {
+    position: absolute;
+    bottom: 2vw;
+    /* background-color: red; */
+    width: 40vw;
+    border-top: 0.1px solid gray;
+    padding-top: 45px;
+}
+
+.post-page-likes-modal-button {
+    /* padding-top: 16px; */
 }
