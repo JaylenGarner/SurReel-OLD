@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { loadFeedPostsThunk } from '../../store/posts';
+import LikesModalContent from '../Likes/LikesModalContent';
+import Modal from 'react-modal'
 import './HomeFeed.css'
 
 
@@ -9,7 +11,9 @@ function HomeFeed() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user)
   const posts = useSelector((state) => state.posts)
-// const posts = []
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [currentPost, setCurrentPost] = useState()
+
 
 
   useEffect(() => {
@@ -33,7 +37,29 @@ function HomeFeed() {
                 </div>
                 <img src={post.media} className='home-feed-post-image'></img>
                 <div className='home-feed-post-interaction-area'>
-
+                <span onClick={() => {
+                  setCurrentPost(post.id)
+                  setModalIsOpen(true)
+                  }}>Likes</span>
+                <Modal
+              isOpen={modalIsOpen}
+              style={{
+                content: {
+                  width: '400px',
+                  height: '400px',
+                  top: '18%',
+                  left: '42%',
+                  backgroundColor: '#262626',
+                  color: 'white',
+                }
+              }}
+              >
+                <div className='profile-following-modal-header-container'>
+                  <span className='profile-following-modal-header-text'>Likes</span>
+                </div>
+                <button onClick={() => setModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
+                <LikesModalContent setModalIsOpen={setModalIsOpen} postId={currentPost}/>
+             </Modal>
                 <span>{post.caption}</span>
                 </div>
             </div>

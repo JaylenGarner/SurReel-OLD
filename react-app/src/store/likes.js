@@ -6,7 +6,7 @@ const UNLIKE_POST = 'likes/UNLIKE_POST'
 
 const loadLikes = payload => {
     return {
-        type: LOAD_FOLLOWERS,
+        type: LOAD_LIKES,
         payload
     }
 }
@@ -49,7 +49,7 @@ export const unlikePostThunk = (postId) => async (dispatch) => {
         method: "DELETE"
     })
 
-    if (unlike.ok) dispatch(unlikePost(targetId))
+    if (unlike.ok) dispatch(unlikePost(postId))
 }
 
 export default function reducer(state = defaultState, action) {

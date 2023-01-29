@@ -14,7 +14,7 @@ function PostPage() {
   const post = useSelector((state) => state.posts.post)
   const { postId } = useParams()
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [editCaptionModalIsOpen, setEditCaptionModalIsOpen] = useState(false);
 
   const handleDelete = (postId) => {
     dispatch(deletePostThunk(postId))
@@ -44,11 +44,11 @@ function PostPage() {
           <NavLink to={`/users/${post.owner.id}/profile`} className='post-page-owner-username'>{post.owner.username}</NavLink>
           <span className='post-page-caption'>{post.caption}</span>
           <div>
-            {user.id == post.owner.id && <button onClick={() => setModalIsOpen(true)}>Edit caption</button>}
+            {user.id == post.owner.id && <button onClick={() => setEditCaptionModalIsOpen(true)}>Edit caption</button>}
             {user.id == post.owner.id &&<button onClick={() => handleDelete(postId)}>Delete Post</button>}
             <div className='edit-post-caption-modal'>
               <Modal
-              isOpen={modalIsOpen}
+              isOpen={editCaptionModalIsOpen}
               style={{
                 content: {
                   width: '400px',
@@ -61,8 +61,8 @@ function PostPage() {
                 }
               }}
               >
-                <EditPostForm currentCaption={post.caption} setModalIsOpen={setModalIsOpen}/>
-                <button onClick={() => setModalIsOpen(false)}>Cancel</button>
+                <EditPostForm currentCaption={post.caption} setEditCaptionModalIsOpen={setEditCaptionModalIsOpen}/>
+                <button onClick={() => setEditCaptionModalIsOpen(false)}>Cancel</button>
              </Modal>
             </div>
           </div>

@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import './EditPostForm.css'
 
-const EditPostForm = ({currentCaption, setModalIsOpen}) => {
+const EditPostForm = ({currentCaption, setEditCaptionModalIsOpen}) => {
   const user = useSelector(state => state.session.user);
   const {postId} = useParams();
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const EditPostForm = ({currentCaption, setModalIsOpen}) => {
 
 
   const closeModal = () => {
-    setModalIsOpen(false);
+    setEditCaptionModalIsOpen(false);
   }
 
   useEffect(() => {
