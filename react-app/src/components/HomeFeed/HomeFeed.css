@@ -83,3 +83,27 @@
     padding-bottom: 25px;
     border-bottom: .01px solid #363636
 }
+
+.like-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .like-button-empty {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+.like-button svg {
+    font-size: 22px;
+    color: red;
+}
+
+.like-button-empty svg {
+    font-size: 22px;
+    color: white;
+}

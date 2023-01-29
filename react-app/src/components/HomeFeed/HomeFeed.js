@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { loadFeedPostsThunk } from '../../store/posts';
 import LikesModalContent from '../Likes/LikesModalContent';
+import LikePostButton from '../Likes/LikePostButton';
+import { likePostThunk } from '../../store/likes';
+import { unlikePostThunk } from '../../store/likes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as faHeartO } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal'
 import './HomeFeed.css'
 
@@ -15,6 +21,41 @@ function HomeFeed() {
   const [currentPost, setCurrentPost] = useState()
 
 
+  const isLiked = (post) => {
+    let likes = []
+    if (post.likes) likes = post.likes
+
+    for (let i = 0; i < likes.length; i++) {
+      let like = likes[i]
+
+      // Liked
+      if (like.user.id == user.id) {
+        return (
+        <button className="like-button" onClick={(e) => handleUnlike(e, post.id)}>
+        <FontAwesomeIcon icon={faHeartFilled} />
+        </button>)
+      }
+    }
+
+    // Not liked
+      return (
+        <button className="like-button-empty" onClick={(e) => handleLike(e, post.id)}>
+        <FontAwesomeIcon icon={faHeartFilled} />
+        </button>
+      )
+    }
+
+    const handleLike = async (e, postId) => {
+      e.preventDefault()
+      const data = await dispatch(likePostThunk(postId))
+      const reload = await dispatch(loadFeedPostsThunk(user.id))
+    };
+
+    const handleUnlike = async (e, postId) => {
+      e.preventDefault()
+      const data = await dispatch(unlikePostThunk(postId))
+      const reload = await dispatch(loadFeedPostsThunk(user.id))
+    };
 
   useEffect(() => {
     dispatch(loadFeedPostsThunk(user.id));
@@ -37,6 +78,12 @@ function HomeFeed() {
                 </div>
                 <img src={post.media} className='home-feed-post-image'></img>
                 <div className='home-feed-post-interaction-area'>
+
+                {isLiked(post)}
+                {/* <button className="like-button">
+                  <FontAwesomeIcon icon={faHeartFilled} />
+                </button> */}
+
                 <span onClick={() => {
                   setCurrentPost(post.id)
                   setModalIsOpen(true)
@@ -60,10 +107,12 @@ function HomeFeed() {
                 <button onClick={() => setModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
                 <LikesModalContent setModalIsOpen={setModalIsOpen} postId={currentPost}/>
              </Modal>
+
                 <span>{post.caption}</span>
                 </div>
             </div>
         })}
+
         <div className='home-page-info-area'>
             <NavLink to={`/users/${user.id}/profile`}><img src={user.image} className='home-page-info-area-user-image'></img></NavLink>
             <NavLink className='home-page-info-nav-link-text' to={`/users/${user.id}/profile`}><span className='home-page-info-area-username'>{user.username}</span></NavLink>
