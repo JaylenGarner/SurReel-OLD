@@ -3,6 +3,7 @@ const defaultState = {}
 const LOAD_PROFILE_POSTS = 'posts/LOAD_MY_POSTS';
 const LOAD_FEED_POSTS = 'posts/LOAD_FEED_POSTS'
 const LOAD_POST = 'posts/LOAD_POST';
+const CREATE_POST = 'posts/CREATE_POST'
 const EDIT_POST = 'posts/EDIT_POST';
 const DELETE_POST = 'posts/DELETE_POST'
 
@@ -54,6 +55,32 @@ export const loadPostThunk = (postId) => async (dispatch) => {
       }
 }
 
+const createPost = payload => {
+    return {
+        type: CREATE_POST,
+        payload
+    }
+}
+
+export const createPostThunk = (formData) => async (dispatch) => {
+
+    const res = await fetch(`/api/posts/create`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        // body: JSON.stringify({
+        //   media,
+        //   caption
+        // }),
+      });
+
+      if (res.ok) {
+        // const newData = await res.json()
+        dispatch(createPost(res.data))
+    }
+}
+
 const editPost = payload => {
     return {
         type: EDIT_POST,
@@ -103,6 +130,8 @@ export default function reducer(state = defaultState, action) {
         case LOAD_FEED_POSTS:
             return {...action.payload}
         case LOAD_POST:
+            return {post: action.payload}
+        case CREATE_POST:
             return {post: action.payload}
         case EDIT_POST:
             return {post: action.payload}

@@ -10,6 +10,7 @@ import User from './components/User';
 import Profile from './components/profile/Profile/Profile';
 import PostPage from './components/PostPage/PostPage';
 import HomeFeed from './components/HomeFeed/HomeFeed';
+import CreatePostForm from './components/CreatePostForm/CreatePostForm';
 import { authenticate } from './store/session';
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
         <ProtectedRoute path='/posts/:postId' exact={true} >
           <PostPage />
         </ProtectedRoute>
+        <Route path='/create' exact={true} >
+          <CreatePostForm />
+        </Route>
         <Route path='/' exact={true} >
           <HomeFeed />
         </Route>

@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, render_template, redirect, url_for, flash
 from flask_login import login_required, current_user
 from sqlalchemy import and_
 from app.models import db, User, Post, Like
+from ..aws import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 
 post_routes = Blueprint('posts', __name__)
@@ -85,3 +86,43 @@ def unlike_post(id):
     db.session.commit()
 
     return 'You have unliked the post'
+
+
+# Create a post
+@post_routes.route("/create", methods=["POST"])
+@login_required
+def upload_image():
+
+    image = request.files["image"]
+    print(image, 'IMAGE WORKSSS')
+
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+
+
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        print('ERROR HIT HERE')
+        return upload, 400
+
+    url = upload["url"]
+    # flask_login allows us to get the current user from the request
+    post = Post(
+        owner_id = current_user.id,
+        media = url,
+        caption = request.form['caption']
+    )
+
+    db.session.add(post)
+    db.session.commit()
+    return {"url": url}
