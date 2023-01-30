@@ -7,8 +7,8 @@ class MessageServerMember(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    message_server_id = db.Column(db.Integer, db.ForeignKey('message_servers.id'), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
+    message_server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('message_servers.id')), primary_key=True)
 
 #     # Relationships
     user = db.relationship("User", foreign_keys=[user_id])
