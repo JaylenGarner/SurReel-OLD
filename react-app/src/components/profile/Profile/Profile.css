@@ -1,0 +1,81 @@
+.profile-info-area {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    padding-right: 200px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.profile-user-image {
+    height: 150px;
+    width: 150px;
+    border-radius: 100px;
+}
+
+.profile-user-image-container {
+    padding-right: 80px;
+}
+
+.profile-stats-area {
+    margin-bottom: 85px;
+    display: flex;
+    padding-top: 35px;
+}
+
+.profile-user-username-container {
+    margin-top: 60px;
+}
+
+.profile-user-username {
+    font-size: 30px;
+    /* padding: 12px; */
+    /* margin-top: 20px; */
+    top: 0px;
+    margin-right: 40px;
+}
+
+.profile-count-labels {
+    font-size: 20px;
+    margin-right: 40px;
+}
+
+.profile-count-numbers {
+    font-size: 20px;
+    font-weight: bold;
+    padding-right: 2px;
+}
+
+.profile-border-container {
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+}
+
+.profile-border {
+    border-bottom: 0.01px solid #363636;
+    width: 960px;
+}
+
+.profile-following-modal-header-container {
+    display: flex;
+    justify-content: center;
+    border-bottom: 0.01px solid #363636;
+    padding-bottom: 16px;
+}
+
+.profile-following-modal-close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.profile-following-modal-header-text {
+    font-size: 22px;
+}

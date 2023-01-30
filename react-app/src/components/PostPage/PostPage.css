@@ -1,0 +1,130 @@
+.post-page-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1;
+}
+
+.post-page-image {
+    grid-column: 1;
+    height: 100vh;
+    width: 40vw;
+    padding: 0px;
+    left: 0;
+}
+
+.edit-caption-button {
+    position: absolute;
+    right: 150px;
+    background: none;
+    color: #4193EF;
+    border: none;
+}
+
+.delete-post-button {
+    position: absolute;
+    right: 40px;
+    background: none;
+    color: #4193EF;
+    border: none;
+}
+
+.edit-caption-button:hover {
+    position: absolute;
+    right: 150px;
+    background: none;
+    color: white;
+    border: none;
+}
+
+.delete-post-button:hover {
+    position: absolute;
+    right: 40px;
+    background: none;
+    color: white;
+    border: none;
+}
+
+.post-page-content {
+    grid-column: 2;
+    height: 100vh;
+    width: 40vw;
+}
+
+.post-page-owner-info{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 0.1px solid gray;
+    padding-left: 10px;
+}
+
+.post-page-caption-area {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 6px;
+}
+
+.post-page-caption {
+    padding-left: 8px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.post-page-owner-username {
+    font-size: 20px;
+    font-weight: 900;
+    padding-left: 8px;
+    color: white;
+    text-decoration: none;
+}
+
+.post-page-user-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 25px;
+}
+
+.post-page-interaction-area-container {
+    position: absolute;
+    bottom: 2vw;
+    /* background-color: red; */
+    width: 40vw;
+    border-top: 0.1px solid gray;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.like-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .like-button-empty {
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+.like-button svg {
+    font-size: 26px;
+    color: red;
+}
+
+.like-button-empty svg {
+    font-size: 26px;
+    color: white;
+}
+
+.post-page-likes-modal-button {
+    cursor: pointer;
+    font-weight: bold;
+}

@@ -1,0 +1,115 @@
+
+.home-page-feed-container {
+    display: grid;
+    grid-template-columns: 30% 40%;
+    grid-template-rows: auto;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.home-feed-post-container {
+    grid-column: 1;
+    /* background-color: red; */
+    width: 35vw;
+    text-align: center;
+    margin-left: 12vw;
+    margin-bottom: 10px;
+    /* margin-top: 50px; */
+}
+
+.home-feed-post-owner-info-container {
+    /* background-color: blue; */
+    display: flex;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.home-feed-post-owner-image {
+    height: 32px;
+    width: 32px;
+    border-radius: 15px;
+}
+
+.home-feed-post-owner-username {
+    padding-left: 12px;
+    font-weight: bold;
+}
+
+.owner-info-nav-link-text {
+    margin-top: 8px;
+    color: white;
+    text-decoration: none;
+}
+
+.home-page-info-area {
+    grid-column: 2;
+    display: flex;
+    right:20vw;
+    margin-top: 10px;
+    position: fixed;
+    /* background-color: blue; */
+}
+
+.home-page-info-area-user-image {
+    height: 60px;
+    width: 60px;
+    border-radius: 35px;
+}
+
+.home-page-info-area-username {
+    margin-left: 14px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.home-page-info-nav-link-text {
+    margin-top: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+
+.home-feed-post-image {
+    height: 70vh;
+    width: 35vw;
+    border: 1px solid #363636;
+}
+
+.home-feed-post-interaction-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    border-bottom: .01px solid #363636
+}
+
+.like-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .like-button-empty {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+.like-button svg {
+    font-size: 22px;
+    color: red;
+}
+
+.like-button-empty svg {
+    font-size: 22px;
+    color: white;
+}
+
+.home-page-feed-likes-span {
+    font-weight: bold;
+    margin-bottom: 5px;
+    cursor: pointer;
+}

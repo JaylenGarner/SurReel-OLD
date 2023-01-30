@@ -3,10 +3,14 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import Profile from './components/profile/Profile/Profile';
+import PostPage from './components/PostPage/PostPage';
+import HomeFeed from './components/HomeFeed/HomeFeed';
+import CreatePostForm from './components/CreatePostForm/CreatePostForm';
 import { authenticate } from './store/session';
 
 function App() {
@@ -40,8 +44,17 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/profile' exact={true} >
+          <Profile />
+        </ProtectedRoute>
+        <ProtectedRoute path='/posts/:postId' exact={true} >
+          <PostPage />
+        </ProtectedRoute>
+        <Route path='/create' exact={true} >
+          <CreatePostForm />
+        </Route>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <HomeFeed />
         </Route>
       </Switch>
     </BrowserRouter>
