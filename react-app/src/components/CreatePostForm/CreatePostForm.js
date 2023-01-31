@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { createPostThunk } from '../../store/posts';
+// Uses Login Form Styling
+import '../auth/LoginForm.css'
+import './CreatePostForm.css'
 
 const CreatePostForm = () => {
     const history = useHistory(); // so that we can redirect after the image upload is successful
@@ -51,8 +54,11 @@ const CreatePostForm = () => {
     }
 
     return (
+        <div className='login-page-container'>
+         <div className='login-form-page-container' >
+         <h1 style={{"margin-bottom": "30px", "fontSize": "40px", "fontFamily": "cursive"}}>Create a Post</h1>
         <form onSubmit={handleSubmit}>
-            <span>Upload Image</span>
+        <div className='login-form-input-area'>
             <input
               type="file"
               name='image'
@@ -60,17 +66,21 @@ const CreatePostForm = () => {
               onChange={updateImage}
               required
             />
-            <span>Set a caption</span>
+            </div>
+            <div className='login-form-input-area'>
             <input
               name='caption'
               type="text"
               onChange={updateCaption}
               value={caption}
-              required
+              placeholder='Create a caption'
             />
-            <button type="submit">Submit</button>
+            </div>
+            <button type="submit" className='login-button'>Create Post</button>
             {(imageLoading)&& <p>Loading...</p>}
         </form>
+            </div>
+            </div>
     )
 }
 

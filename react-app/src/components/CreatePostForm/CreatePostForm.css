@@ -1,0 +1,10 @@
+input::file-selector-button {
+    background: none;
+    color: #4193EF;
+    border: none;
+}
+
+input::file-selector-button:hover {
+    cursor: pointer;
+    color: #3975EA;
+}
