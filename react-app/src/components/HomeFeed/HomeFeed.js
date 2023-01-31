@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { loadFeedPostsThunk } from '../../store/posts';
 import LikesModalContent from '../Likes/LikesModalContent';
 import LikePostButton from '../Likes/LikePostButton';
@@ -12,16 +12,19 @@ import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal'
 import './HomeFeed.css'
 
-
 function HomeFeed() {
   const dispatch = useDispatch();
+  const history = useHistory()
+
   const user = useSelector((state) => state.session.user)
   const posts = useSelector((state) => state.posts)
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState()
 
 
+
   const isLiked = (post) => {
+
     let likes = []
     if (post.likes) likes = post.likes
 
@@ -58,15 +61,19 @@ function HomeFeed() {
     };
 
   useEffect(() => {
-    dispatch(loadFeedPostsThunk(user.id));
+
+    if (user) {
+      dispatch(loadFeedPostsThunk(user.id));
+    }
   }, [dispatch]);
 
   if (!user) {
+    history.push('/login')
     return null;
   }
 
   if (!Object.values(posts).length) {
-    return <h1>There are no posts in your feed. Get started by following other users</h1>
+    return <h1 className='no-posts-in-your-feed'>There are no posts in your feed. Get started by following other users</h1>
   } else {
       return (
        <div className='home-page-feed-container'>
