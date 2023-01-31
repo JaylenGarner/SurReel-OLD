@@ -1,3 +1,7 @@
+.profile-container {
+  margin-left: 245px;
+}
+
 .profile-info-area {
     display: flex;
     height: 100px;

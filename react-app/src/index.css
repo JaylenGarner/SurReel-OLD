@@ -1,5 +1,6 @@
 body {
-  margin-left: 245px; /* Same as the width of the sidebar */
+  /* Same as the width of the sidebar */
+  /* margin-left: 245px; */
   padding: 0px 10px;
   background-color: #000000;
   color: white;

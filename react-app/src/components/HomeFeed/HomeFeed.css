@@ -1,5 +1,9 @@
+.no-posts-in-your-feed {
+  margin-left: 245px;
+}
 
 .home-page-feed-container {
+  margin-left: 245px;
     display: grid;
     grid-template-columns: 30% 40%;
     grid-template-rows: auto;

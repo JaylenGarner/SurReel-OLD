@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './LoginForm.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -31,14 +32,16 @@ const LoginForm = () => {
   }
 
   return (
+    <div className='login-page-container'>
+    <div className='login-form-page-container' >
+      <h1 className='login-form-header'>SurReel</h1>
     <form onSubmit={onLogin}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <div className='login-form-input-area'>
         <input
           name='email'
           type='text'
@@ -47,18 +50,26 @@ const LoginForm = () => {
           onChange={updateEmail}
         />
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+      <div className='login-form-input-area'>
         <input
+          // className=''
           name='password'
           type='password'
           placeholder='Password'
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
+        <br></br>
       </div>
+        <button type='submit' className='login-button'>Login</button>
+        <br></br>
+        <span className='dont-have-an-account'>Don't have an account?</span>
+        <NavLink to={`/sign-up`} className='login-form-nav-link'>
+        <span> Sign up</span>
+        </NavLink>
     </form>
+    </div>
+    </div>
   );
 };
 
