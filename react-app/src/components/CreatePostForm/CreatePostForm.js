@@ -57,6 +57,7 @@ const CreatePostForm = () => {
     }
 
     return (
+        <div className='create-a-post-form-container'>
         <div className='login-page-container'>
          <div className='login-form-page-container' >
          <h1 style={{"margin-bottom": "30px", "fontSize": "40px", "fontFamily": "cursive"}}>Create a Post</h1>
@@ -82,6 +83,7 @@ const CreatePostForm = () => {
             <button type="submit" className='login-button'>Create Post</button>
             {(imageLoading)&& <p>Loading...</p>}
         </form>
+            </div>
             </div>
             </div>
     )

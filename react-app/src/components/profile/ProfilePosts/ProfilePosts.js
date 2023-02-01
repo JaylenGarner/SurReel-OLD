@@ -15,7 +15,7 @@ function ProfilePosts() {
     }, [dispatch]);
 
     if (!Object.values(posts).length) {
-      return <h1>This user has not posted yet</h1>
+      return <h1 className='profile-user-has-not-posted'>This user has not posted yet</h1>
     } else {
       return (
         <div className='user-profile-container'>
