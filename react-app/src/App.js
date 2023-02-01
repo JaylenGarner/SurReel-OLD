@@ -11,6 +11,7 @@ import Profile from './components/profile/Profile/Profile';
 import PostPage from './components/PostPage/PostPage';
 import HomeFeed from './components/HomeFeed/HomeFeed';
 import CreatePostForm from './components/CreatePostForm/CreatePostForm';
+import DirectMessagesNav from './components/Messages/DirectMessagesNav';
 import { authenticate } from './store/session';
 
 function App() {
@@ -54,10 +55,14 @@ function App() {
         <NavBar />
           <PostPage />
         </ProtectedRoute>
-        <Route path='/create' exact={true} >
+        <ProtectedRoute path='/create' exact={true} >
         <NavBar />
           <CreatePostForm />
-        </Route>
+        </ProtectedRoute>
+        <ProtectedRoute path='/messages' exact={true} >
+        <NavBar />
+        <DirectMessagesNav />
+        </ProtectedRoute>
         <Route path='/' exact={true} >
         <NavBar />
           <HomeFeed />

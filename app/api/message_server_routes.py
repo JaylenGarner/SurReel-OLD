@@ -7,7 +7,7 @@ message_servers_routes = Blueprint('message_servers', __name__)
 
 
 # Get message servers that I am a member or owner of
-@message_servers_routes.route('/')
+@message_servers_routes.route('')
 @login_required
 def get_my_message_servers():
 
