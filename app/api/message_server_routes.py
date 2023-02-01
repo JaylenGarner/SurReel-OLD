@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from sqlalchemy import and_
-from app.models import db, User, MessageServer, MessageServerMember
+from app.models import db, User, MessageServer, MessageServerMember, Message
 
 message_servers_routes = Blueprint('message_servers', __name__)
 
@@ -97,6 +97,8 @@ def delete_message_server(id):
 @login_required
 def leave_message_server(id):
 
+    # Need to fix error handling, if you are not a member of a server, the request crashes
+
     message_server = MessageServer.query.get(id)
 
     if message_server == None:
@@ -112,3 +114,25 @@ def leave_message_server(id):
         return {'msg': "You have left the chat"}
 
     return {"You are not a member of this chat"}
+
+
+
+@message_servers_routes.route('/<int:id>/message', methods=['POST'])
+@login_required
+def create_a_message(id):
+
+    message_server = MessageServer.query.get(id)
+
+    if message_server == None:
+        return {'msg': 'This message server does not exist. Message failed'}
+
+    new_message = Message (
+        user_id = current_user.id,
+        message_server_id = id,
+        body = request.json['body']
+    )
+
+    db.session.add(new_message)
+    db.session.commit()
+
+    return new_message.to_dict()
