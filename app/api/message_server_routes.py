@@ -74,6 +74,7 @@ def create_message_server():
     return message_server.to_dict()
 
 
+# Only the owner can delete the chat, members will be presented with the option to leave the chat
 @message_servers_routes.route('<int:id>/delete', methods=['DELETE'])
 @login_required
 def delete_message_server(id):
@@ -90,3 +91,24 @@ def delete_message_server(id):
         return {'msg': "The chat has been deleted"}
 
     return {"msg": "You are not authorized to delete this chat"}
+
+
+@message_servers_routes.route('<int:id>/leave', methods=['DELETE'])
+@login_required
+def leave_message_server(id):
+
+    message_server = MessageServer.query.get(id)
+
+    if message_server == None:
+        return {'msg': "A message server with that ID does not exist"}
+
+    message_server_member = MessageServerMember.query.filter(and_(MessageServerMember.user_id == current_user.id,
+    MessageServerMember.message_server_id == id)).first()
+
+    if message_server_member is not None:
+        db.session.delete(message_server_member)
+        db.session.commit()
+
+        return {'msg': "You have left the chat"}
+
+    return {"You are not a member of this chat"}
