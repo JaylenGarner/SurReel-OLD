@@ -1,10 +1,12 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
+from sqlalchemy import and_
 from app.models import db, User, MessageServer, MessageServerMember
 
 message_servers_routes = Blueprint('message_servers', __name__)
 
 
+# Get message servers that I am a member or owner of
 @message_servers_routes.route('/')
 @login_required
 def get_my_message_servers():
@@ -13,14 +15,14 @@ def get_my_message_servers():
 
     user = User.query.get(current_user.id)
 
-    message_servers = MessageServer.query.all()
+    message_servers = MessageServerMember.query.filter(MessageServerMember.user_id == current_user.id).all()
 
     for serv in message_servers:
-        # if post.owner_id == user.id:
-            res[f'{serv.id}'] = serv.to_dict()
+        message_server_id = serv.to_dict()['message_server_id']
+        message_server = MessageServer.query.get(message_server_id)
+        res[f'{message_server.id}'] = message_server.to_dict()
 
     return res
-
 
 
 @message_servers_routes.route('/<int:id>')
