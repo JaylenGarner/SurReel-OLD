@@ -19,7 +19,6 @@ const CreatePostForm = () => {
         history.push('/login')
     }
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData()

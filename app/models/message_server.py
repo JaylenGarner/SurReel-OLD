@@ -19,7 +19,7 @@ class MessageServer(db.Model):
     messages = db.relationship("Message", back_populates= 'message_server', cascade='all,delete')
 
     # Message Server Member Relationship
-    members = db.relationship("MessageServerMember", foreign_keys=[MessageServerMember.message_server_id], back_populates= 'message_server')
+    members = db.relationship("MessageServerMember", foreign_keys=[MessageServerMember.message_server_id], back_populates= 'message_server', cascade='all,delete')
 
     def to_dict(self):
         return {
