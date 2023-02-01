@@ -15,6 +15,10 @@ const CreatePostForm = () => {
     const [caption, setCaption] = useState('')
     const [imageLoading, setImageLoading] = useState(false);
 
+    if (!user) {
+        history.push('/login')
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
