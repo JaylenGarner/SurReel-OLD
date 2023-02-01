@@ -130,6 +130,7 @@ def create_a_message(id):
         user_id = current_user.id,
         message_server_id = id,
         body = request.json['body']
+        # Will add media later on to send images in chat
     )
 
     db.session.add(new_message)
