@@ -11,6 +11,9 @@ def edit_message(id):
 
     message = Message.query.get(id)
 
+    if message == None:
+        return {"msg": "A message could not be found by the requested ID"}
+
     if message.user_id != current_user.id:
         return {"msg": "This is not your message"}
 
@@ -18,3 +21,21 @@ def edit_message(id):
     db.session.commit()
 
     return message.to_dict()
+
+
+@message_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_message(id):
+
+    message = Message.query.get(id)
+
+    if message == None:
+        return {"msg": "A message could not be found by the requested ID"}
+
+    if message.user_id != current_user.id:
+        return {"msg": "This is not your message"}
+
+    db.session.delete(message)
+    db.session.commit()
+
+    return {"msg": 'Message has been deleted'}

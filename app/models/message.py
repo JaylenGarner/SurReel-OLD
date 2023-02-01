@@ -15,7 +15,7 @@ class Message(db.Model):
 
     # User Relationship
     user = db.relationship("User", back_populates= 'messages')
-    message_server = db.relationship("MessageServer", back_populates= 'messages', cascade='all,delete')
+    message_server = db.relationship("MessageServer", back_populates= 'messages')
 
 
     def to_dict(self):
