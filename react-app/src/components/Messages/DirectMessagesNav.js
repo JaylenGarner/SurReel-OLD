@@ -16,7 +16,9 @@ const DirectMessagesNav = () => {
   }, [dispatch]);
 
     return (
-        <h1 className='dm-nav-test'>yo</h1>
+      <div className='dm-nav-username-container'>
+        <h1 className='dm-nav-username'>{user.username}</h1>
+      </div>
     );
 }
 

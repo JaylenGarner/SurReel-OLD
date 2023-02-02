@@ -1,11 +1,40 @@
 .message-page-container {
-    margin-left: 255px;
+    margin-left: 40px;
     background-color: #262626;
     height: 100vh;
     width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-body,html {
-    margin:0;
-    padding:0;
-  }
+.message-page-flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-page-content-container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 1;
+    width: 60vw;
+    height: 85vh;
+    background-color: black;
+    margin-left: 10vw;
+}
+
+.dm-nav-container {
+    grid-column: 1;
+    height: 85vh;
+    width: 18vw;
+    background-color: red;
+    /* padding: 0px; */
+    /* left: 0; */
+}
+
+.dm-page-messages-feed-container {
+    grid-column: 2;
+    background-color: #4193EF;
+
+}

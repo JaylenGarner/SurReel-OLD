@@ -1,3 +1,9 @@
-.dm-nav-test {
-    margin-left: 250px;
+.dm-nav-username-container {
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+
+.dm-nav-username {
+    font-size: 22px;
+    font-weight: bold;
 }
