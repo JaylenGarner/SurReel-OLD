@@ -1,9 +1,22 @@
 .dm-nav-username-container {
     text-align: center;
-    border-bottom: 1px solid white;
+    border-bottom: 0.1px solid gray;
 }
 
 .dm-nav-username {
     font-size: 22px;
     font-weight: bold;
+}
+
+.dm-nav-chat-button-div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    border-bottom: 0.01px solid gray;
+    overflow: hidden;
+}
+
+.dm-nav-chat-button-div:hover {
+    background-color: rgb(34, 28, 28);
+    cursor: pointer;
 }

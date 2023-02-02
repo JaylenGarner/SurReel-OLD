@@ -28,13 +28,11 @@
     grid-column: 1;
     height: 85vh;
     width: 18vw;
-    background-color: red;
+    border-right: 0.1px solid gray;
     /* padding: 0px; */
     /* left: 0; */
 }
 
 .dm-page-messages-feed-container {
     grid-column: 2;
-    background-color: #4193EF;
-
 }
