@@ -1,20 +1,20 @@
-"""test
+"""Migrating
 
-Revision ID: 9d438b88513f
+Revision ID: 9b7ddbe1d54f
 Revises:
-Create Date: 2023-01-29 16:45:33.634010
+Create Date: 2023-02-04 11:38:19.050313
 
 """
 from alembic import op
 import sqlalchemy as sa
 
+
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-
 # revision identifiers, used by Alembic.
-revision = '9d438b88513f'
+revision = '9b7ddbe1d54f'
 down_revision = None
 branch_labels = None
 depends_on = None

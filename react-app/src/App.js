@@ -11,7 +11,8 @@ import Profile from './components/profile/Profile/Profile';
 import PostPage from './components/PostPage/PostPage';
 import HomeFeed from './components/HomeFeed/HomeFeed';
 import CreatePostForm from './components/CreatePostForm/CreatePostForm';
-import MessagesPage from './components/Messages/MessagesPage';
+import HomeMessagesPage from './components/Messages/HomeMessagesPage';
+import MessageServerPage from './components/Messages/MessageServerPage';
 import { authenticate } from './store/session';
 
 function App() {
@@ -61,7 +62,11 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/messages' exact={true} >
         <NavBar />
-        <MessagesPage />
+        <HomeMessagesPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/messages/:messageServerId' exact={true} >
+        <NavBar />
+        <MessageServerPage />
         </ProtectedRoute>
         <Route path='/' exact={true} >
         <NavBar />

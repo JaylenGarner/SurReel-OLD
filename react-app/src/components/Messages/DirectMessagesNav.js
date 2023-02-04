@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { loadMessageServersThunk } from '../../store/messages';
 import './DirectMessagesNav.css';
 
@@ -47,6 +47,7 @@ const DirectMessagesNav = () => {
         })
 
         return(
+          <NavLink to={`/messages/${serv.id}`}>
         <div key={serv.id} className='dm-nav-chat-button-div'>
           {resMembers.map((member) => {
 
@@ -59,6 +60,7 @@ const DirectMessagesNav = () => {
             }
           })}
         </div>
+        </NavLink>
         )
       })}
       </div>

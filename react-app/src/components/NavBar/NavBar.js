@@ -39,6 +39,9 @@ const NavBar = () => {
               <span className='nav-link-home-span'>Create</span>
             </NavLink>
           </div>
+          <NavLink to='/messages' exact={true} activeClassName='active'>
+              Messages
+            </NavLink>
             <NavLink to='/users' exact={true} activeClassName='active'>
               Users
             </NavLink>

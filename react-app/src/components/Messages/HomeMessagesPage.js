@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DirectMessagesNav from './DirectMessagesNav';
-// import { loadMessageServersThunk } from '../../store/messages';
+import MessageFeed from './MessageFeed';
+import './HomeMessagesPage.css';
 
-import './MessagesPage.css';
-
-const MessagesPage = () => {
+const HomeMessagesPage = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user)
-
-
 
     return (
         <div className='message-page-container'>
@@ -19,9 +16,9 @@ const MessagesPage = () => {
                     <DirectMessagesNav />
                 </div>
                 <div className='dm-page-messages-feed-container'>
-
+                    <h1>Your messages</h1>
+                    <span>Send private messages to a friend of a group</span>
                 </div>
-
             </div>
             </div>
         </div>
@@ -29,4 +26,4 @@ const MessagesPage = () => {
 }
 
 
-export default MessagesPage;
+export default HomeMessagesPage;
