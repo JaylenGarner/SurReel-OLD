@@ -22,6 +22,7 @@ function MessageFeed() {
   } else {
       return (
         <div className='message-feed-container'>
+            <br></br>
             {messageServer.messages.map((message) => {
                 return (<div className="message-content-container">
                  {message.user_id === user.id ? <div className='message-sent-by-me-container'>
@@ -32,9 +33,9 @@ function MessageFeed() {
                 :
                 <div className='message-and-image-container'>
                     <div className='profile-image-contaner'>
-                        {/* <NavLink to={`/users/${message.user_id}/profile}`}> */}
+                        <NavLink to={`/users/${message.user_id}/profile`}>
                         <img src={message.user.image} className='message-user-image'></img>
-                        {/* </NavLink> */}
+                        </NavLink>
                     </div>
                 <div className='message-sent-by-other'>
                   <span className='message-body-sent-by-other'>{message.body}</span>

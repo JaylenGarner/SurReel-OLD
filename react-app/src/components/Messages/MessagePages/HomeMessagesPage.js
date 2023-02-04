@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import DirectMessagesNav from './DirectMessagesNav';
-import MessageFeed from './MessageFeed';
+import DirectMessagesNav from '../DirectMessagesNav/DirectMessagesNav';
+import MessageFeed from '../MessageFeed';
 import './HomeMessagesPage.css';
 
 const HomeMessagesPage = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { loadMessageServersThunk } from '../../store/messages';
+import { loadMessageServersThunk } from '../../../store/messages';
 import './DirectMessagesNav.css';
 
 const DirectMessagesNav = () => {
@@ -26,13 +26,18 @@ const DirectMessagesNav = () => {
       return (
       <div className='dm-nav-username-container'>
       <h1 className='dm-nav-username'>{user.username}</h1>
-    </div>
-      )
+      <NavLink to={'/messages/create'}>
+      <img className='componse-message-icon' src={'https://surreel-app-images.s3.amazonaws.com/componse_icon_white.png'}></img>
+      </NavLink>
+    </div>)
     } else {
     return (
       <div className='dm-nav-content-container'>
       <div className='dm-nav-username-container'>
         <h1 className='dm-nav-username'>{user.username}</h1>
+        <NavLink to={'/messages/create'}>
+        <img className='componse-message-icon' src={'https://surreel-app-images.s3.amazonaws.com/componse_icon_white.png'}></img>
+        </NavLink>
       </div>
       {messageServs && Object.values(messageServs).map((serv) => {
         let members = serv.members
@@ -47,7 +52,7 @@ const DirectMessagesNav = () => {
         })
 
         return(
-          <NavLink to={`/messages/${serv.id}`}>
+          <NavLink to={`/messages/${serv.id}`} className='nav-link'>
         <div key={serv.id} className='dm-nav-chat-button-div'>
           {resMembers.map((member) => {
 

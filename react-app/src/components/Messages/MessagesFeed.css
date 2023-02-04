@@ -6,8 +6,8 @@
 }
 
 .message-content-container {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .message-sent-by-me-container {
@@ -18,14 +18,10 @@
 .message-sent-by-me {
     display: flex;
     text-align: right;
-    /* margin-right: 30px; */
-    margin-top: 5px;
-    margin-bottom: 5px;
     background: #262626;
     max-width: fit-content;
     border-radius: 100px;
     padding: 10px;
-    /* margin-left: 30px; */
     align-self: flex-end;
     position: relative;
     right: 0px;

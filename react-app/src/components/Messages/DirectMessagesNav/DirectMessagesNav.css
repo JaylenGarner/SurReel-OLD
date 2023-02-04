@@ -1,11 +1,21 @@
 .dm-nav-username-container {
     text-align: center;
     border-bottom: 0.1px solid gray;
+    display: flex;
+    justify-content: center;
+}
+
+.componse-message-icon {
+    height: 25px;
+    width: 25px;
+    margin-top: 15px;
+    margin-left: 10px;
 }
 
 .dm-nav-username {
     font-size: 22px;
     font-weight: bold;
+    margin-left: 20px;
 }
 
 .dm-nav-chat-button-div {
@@ -19,4 +29,9 @@
 .dm-nav-chat-button-div:hover {
     background-color: rgb(34, 28, 28);
     cursor: pointer;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
 }
