@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { createMessageServerThunk } from '../../../store/messages'
+import { loadMessageServersThunk } from '../../../store/messages'
 import './CreateMessageServer.css'
 
 const CreateMessageServer = () => {
@@ -90,17 +92,29 @@ const CreateMessageServer = () => {
           setError("There is an existing conversation based off of your selection");
           return;
         }
+        console.log(selectedUsers, 'Before dispatch')
 
-        // const response = await fetch('/api/direct_message_server/', {
+        // const res = await fetch(`/api/message-servers/create`, {
         //   method: 'POST',
         //   headers: {
-        //     'Content-Type': 'application/json',
+        //       'Content-Type': 'application/json',
         //   },
-        //   body: JSON.stringify({ members: selectedUsers }),
-        // });
-        // const responseData = await response.json();
+        //   body: JSON.stringify({
+        //       "members": selectedUsers
+        //   }),
+      // });
 
-        // history.push(`/direct_message_server/${responseData.directMessageServer.id}`);
+      // console.log(res)
+        // dispatch(loadMessageServersThunk());
+
+
+      // if (res.ok) {
+      //     await res.json();
+      // }
+
+     const createServ = await dispatch(createMessageServerThunk(selectedUsers))
+     const loadServs = await dispatch(loadMessageServersThunk())
+
     };
 
     return (
@@ -118,5 +132,6 @@ const CreateMessageServer = () => {
         </div>
       );
     }
+
 
 export default CreateMessageServer;
