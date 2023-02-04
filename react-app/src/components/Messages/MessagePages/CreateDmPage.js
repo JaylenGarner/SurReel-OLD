@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import DirectMessagesNav from '../DirectMessagesNav/DirectMessagesNav';
+import CreateMessageServer from '../CreateMessageServer/CreateMessageServer';
 import './CreateDmPage.css';
 
 const CreateDmPage = () => {
@@ -16,8 +17,7 @@ const CreateDmPage = () => {
                 <DirectMessagesNav />
             </div>
             <div className='dm-page-messages-feed-container'>
-                {/* <MessageFeed /> */}
-                <span>hi</span>
+                <CreateMessageServer />
             </div>
         </div>
         </div>
