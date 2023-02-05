@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
-import { loadOneMessageServerThunk } from '../../store/messages';
+import { loadMessageServersThunk, loadOneMessageServerThunk } from '../../store/messages';
+import { useHistory } from 'react-router-dom';
+import { leaveMessageServerThunk } from '../../store/messages';
 import { useDispatch } from 'react-redux';
 import './MessagesFeed.css'
 
@@ -9,16 +11,39 @@ function MessageFeed() {
   const user = useSelector((state) => state.session.user)
   const {messageServerId} = useParams()
   const dispatch = useDispatch()
+  const history = useHistory()
   const messageServer = useSelector((state) => state.messages.currMessageServer)
+
+  if (!messageServer) {
+    history.push('/messages')
+  }
 
   useEffect(() => {
     dispatch(loadOneMessageServerThunk(messageServerId))
-  }, [dispatch, messageServerId]);
+
+    if (!messageServer) {
+      history.push('/messages')
+    }
+
+  }, [dispatch, messageServerId, dispatch]);
+
+  const handleLeave = async ()  => {
+    history.push('/messages')
+    const leave = await dispatch(leaveMessageServerThunk(messageServerId))
+    const reload = await dispatch(loadMessageServersThunk())
+  }
 
   if (!messageServer) {
     return <></>
   } else if (!messageServer.messages.length) {
-    return <h1>No messages have been exchanged. Get this conversation started</h1>
+    return (
+    <div>
+        <h1 className='no-messages'>No messages have beeen exchanged. Start a conversation.</h1>
+        <div className='message-feed-interaction-container'>
+            <span className='leave-conversation' onClick={() => handleLeave()}>Leave</span>
+        </div>
+    </div>
+    )
   } else {
       return (
         <div className='message-feed-container'>
@@ -43,6 +68,9 @@ function MessageFeed() {
                 </div>}
               </div>)
             })}
+            <div className='message-feed-interaction-container'>
+            <span className='leave-conversation' onClick={() => handleLeave()}>Leave</span>
+            </div>
         </div>
       );
   }

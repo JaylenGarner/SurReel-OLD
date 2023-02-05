@@ -94,26 +94,12 @@ const CreateMessageServer = () => {
         }
         console.log(selectedUsers, 'Before dispatch')
 
-        // const res = await fetch(`/api/message-servers/create`, {
-        //   method: 'POST',
-        //   headers: {
-        //       'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify({
-        //       "members": selectedUsers
-        //   }),
-      // });
-
-      // console.log(res)
-        // dispatch(loadMessageServersThunk());
-
-
-      // if (res.ok) {
-      //     await res.json();
-      // }
 
      const createServ = await dispatch(createMessageServerThunk(selectedUsers))
      const loadServs = await dispatch(loadMessageServersThunk())
+     const redirectToProfile = history.push('/messages')
+
+     console.log(createServ)
 
     };
 

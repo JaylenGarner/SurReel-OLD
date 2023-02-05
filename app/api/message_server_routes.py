@@ -111,6 +111,12 @@ def leave_message_server(id):
         db.session.delete(message_server_member)
         db.session.commit()
 
+        members = message_server.to_dict()['members']
+
+        if len(members) == 0:
+            db.session.delete(message_server)
+            db.session.commit()
+
         return {'msg': "You have left the chat"}
 
     return {"You are not a member of this chat"}
