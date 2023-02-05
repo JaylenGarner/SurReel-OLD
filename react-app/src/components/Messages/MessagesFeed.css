@@ -60,23 +60,3 @@
     text-align: center;
     font-size: 24px;
 }
-
-.leave-conversation {
-    margin: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #4193EF;
-}
-
-.leave-conversation:hover {
-    cursor: pointer;
-   color: #3975EA;
-}
-
-.message-feed-interaction-container {
-    display: flex;
-    bottom: 8vh;
-    position: absolute;
-    width: 40vw;
-    justify-content: flex-end;
-}
