@@ -15,9 +15,9 @@ const HomeMessagesPage = () => {
                 <div className='dm-nav-container'>
                     <DirectMessagesNav />
                 </div>
-                <div className='dm-page-messages-feed-container'>
-                    <h1>Your messages</h1>
-                    <span>Send private messages to a friend of a group</span>
+                <div className='dm-home-page-messages-feed-container'>
+                    <h1 className='messages-home-your-messages'>Your messages</h1>
+                    <span className='messages-home-sub-heading'>Send private messages to a friend or a group</span>
                 </div>
             </div>
             </div>

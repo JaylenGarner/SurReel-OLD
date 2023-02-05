@@ -84,13 +84,13 @@ def delete_message_server(id):
     if message_server == None:
         return {'msg': "A message server with that ID does not exist"}
 
-    if message_server.to_dict()['owner_id'] == current_user.id:
-        db.session.delete(message_server)
-        db.session.commit()
+    # if message_server.to_dict()['owner_id'] == current_user.id:
+    db.session.delete(message_server)
+    db.session.commit()
 
-        return {'msg': "The chat has been deleted"}
+    return {'msg': "The chat has been deleted"}
 
-    return {"msg": "You are not authorized to delete this chat"}
+    # return {"msg": "You are not authorized to delete this chat"}
 
 
 @message_servers_routes.route('<int:id>/leave', methods=['DELETE'])

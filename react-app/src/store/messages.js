@@ -73,7 +73,7 @@ export const createMessageServerThunk = (members) => async (dispatch) => {
     }
 
     export const leaveMessageServerThunk = (serverId) => async (dispatch) => {
-        const leave = await fetch(`/api/message-servers/${serverId}/leave`, {
+        const leave = await fetch(`/api/message-servers/${serverId}/delete`, {
             method: "DELETE"
         })
 
