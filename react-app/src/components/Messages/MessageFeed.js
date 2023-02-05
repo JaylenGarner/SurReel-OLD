@@ -35,13 +35,10 @@ function MessageFeed() {
 
   if (!messageServer) {
     return <></>
-  } else if (!messageServer.messages.length) {
+  } else if (!messageServer.messages || !messageServer.messages.length) {
     return (
     <div>
-        <h1 className='no-messages'>No messages, start a conversation.</h1>
-        {/* <div className='no-messages-message-feed-interaction-container'>
-            <span className='leave-conversation' onClick={() => handleLeave()}>Leave</span>
-        </div> */}
+        <h1 className='no-messages'>No messages, start a conversation</h1>
     </div>
     )
   } else {
@@ -68,9 +65,6 @@ function MessageFeed() {
                 </div>}
               </div>)
             })}
-            {/* <div className='message-feed-interaction-container'>
-            <span className='leave-conversation' onClick={() => handleLeave()}>Leave</span>
-            </div> */}
         </div>
       );
   }

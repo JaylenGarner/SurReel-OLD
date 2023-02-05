@@ -4,6 +4,7 @@ const LOAD_MESSAGE_SERVERS = 'messages/LOAD_MESSAGE_SERVERS';
 const LOAD_ONE_MESSAGE_SERVER = 'messages/LOAD_ONE_MESSAGE_SERVER';
 const CREATE_MESSAGE_SERVER = 'messages/CREATE_MESSAGE_SERVER'
 const LEAVE_MESSAGE_SERVER = 'messages/LEAVE_MESSAGE_SERVER'
+const CREATE_MESSAGE = 'messages/CREATE_MESSAGE'
 
 const loadMessageServers = payload => {
     return {
@@ -65,6 +66,33 @@ export const createMessageServerThunk = (members) => async (dispatch) => {
         }
     }
 
+    const createMessage = payload => {
+        return {
+            type: CREATE_MESSAGE,
+            payload
+        }
+    }
+
+    export const createMessageThunk = (serverId, body) => async (dispatch) => {
+            const res = await fetch(`/api/message-servers/${serverId}/message`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    body
+                }),
+            });
+
+            if (res.ok) {
+                const newData = await res.json()
+                dispatch(createMessage(newData))
+                return res
+            } else {
+                return res
+            }
+        }
+
     const leaveMessageServer = (serverId) => {
         return {
             type: LEAVE_MESSAGE_SERVER,
@@ -90,6 +118,8 @@ export default function reducer(state = defaultState, action) {
         case LOAD_ONE_MESSAGE_SERVER:
             return {...newState, currMessageServer: action.payload}
         case CREATE_MESSAGE_SERVER:
+            return {...newState, currMessageServer: action.payload}
+        case CREATE_MESSAGE:
             return {...newState, currMessageServer: action.payload}
         case LEAVE_MESSAGE_SERVER:
             delete newState.messageServers[action.serverId]
