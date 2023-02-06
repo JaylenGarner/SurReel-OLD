@@ -18,6 +18,7 @@ const MessageServerPage = () => {
 
   const [body, setBody] = useState('')
 
+
   const updateBody = (e) => {
     setBody(e.target.value);
 }
@@ -35,6 +36,11 @@ const MessageServerPage = () => {
     setBody('')
   }
 
+  const handleEnterPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSend(e);
+    }
+  }
 
     return (
         <div className='message-page-container'>
@@ -53,6 +59,7 @@ const MessageServerPage = () => {
                         onChange={updateBody}
                         value={body}
                         placeholder="Message..."
+                        onKeyDown={handleEnterPress}
                         >
                         </input>
                         <img onClick={(e) => handleSend(e)} className='send-message-submit' src='https://surreel-app-images.s3.amazonaws.com/assets/send_icon.png'></img>

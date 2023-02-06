@@ -120,7 +120,7 @@ export default function reducer(state = defaultState, action) {
         case CREATE_MESSAGE_SERVER:
             return {...newState, currMessageServer: action.payload}
         case CREATE_MESSAGE:
-            return {...newState, currMessageServer: action.payload}
+            return {...newState}
         case LEAVE_MESSAGE_SERVER:
             delete newState.messageServers[action.serverId]
             return newState

@@ -36,11 +36,10 @@ function MessageFeed() {
   if (!messageServer) {
     return <></>
   } else if (!messageServer.messages || !messageServer.messages.length) {
-    return (
-    <div>
-        <h1 className='no-messages'>No messages, start a conversation</h1>
-    </div>
-    )
+      return (
+        <div>
+         <h1 className='no-messages'>No messages, start a conversation</h1>
+      </div>)
   } else {
       return (
         <div className='message-feed-container'>

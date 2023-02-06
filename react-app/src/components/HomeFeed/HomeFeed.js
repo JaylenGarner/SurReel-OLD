@@ -73,7 +73,7 @@ function HomeFeed() {
   }
 
   if (!Object.values(posts).length) {
-    return <h1 className='no-posts-in-your-feed'>There are no posts in your feed. Get started by following other users</h1>
+    return <h1 className='no-posts-in-your-feed'>There are no posts in your feed, get started by following other users</h1>
   } else {
       return (
        <div className='home-page-feed-container'>

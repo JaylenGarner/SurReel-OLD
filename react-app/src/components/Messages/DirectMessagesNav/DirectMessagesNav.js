@@ -27,7 +27,7 @@ const DirectMessagesNav = () => {
       <div className='dm-nav-username-container'>
       <h1 className='dm-nav-username'>{user.username}</h1>
       <NavLink to={'/messages/create'}>
-      <img className='componse-message-icon' src={'https://surreel-app-images.s3.amazonaws.com/componse_icon_white.png'}></img>
+      <img className='componse-message-icon' src={'https://surreel-app-images.s3.amazonaws.com/assets/componse_icon_white.png'}></img>
       </NavLink>
     </div>)
     } else {
@@ -36,7 +36,7 @@ const DirectMessagesNav = () => {
       <div className='dm-nav-username-container'>
         <h1 className='dm-nav-username'>{user.username}</h1>
         <NavLink to={'/messages/create'}>
-        <img className='componse-message-icon' src={'https://surreel-app-images.s3.amazonaws.com/componse_icon_white.png'}></img>
+        <img className='componse-message-icon' src={'https://surreel-app-images.s3.amazonaws.com/assets/componse_icon_white.png'}></img>
         </NavLink>
       </div>
       {messageServs && Object.values(messageServs).map((serv) => {
