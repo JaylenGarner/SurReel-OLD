@@ -18,27 +18,25 @@ function MessageFeed() {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [targetMessage, setTargetMessage] = useState(null)
+  const [isLoaded, setIsLoaded] = useState(false)
 
-  if (!messageServer) {
-    history.push('/messages')
-  }
+  // if (!messageServer) {
+  //   history.push('/messages')
+  // }
 
-  useEffect(() => {
-    dispatch(loadOneMessageServerThunk(messageServerId))
 
-    if (!messageServer) {
-      history.push('/messages')
-    }
-
-    if (!modalIsOpen) setTargetMessage(false)
-
-  }, [dispatch, messageServerId]);
 
   const handleLeave = async ()  => {
     history.push('/messages')
     const leave = await dispatch(leaveMessageServerThunk(messageServerId))
     const reload = await dispatch(loadMessageServersThunk())
   }
+
+  useEffect(() => {
+    dispatch(loadOneMessageServerThunk(messageServerId))
+
+    if (!modalIsOpen) setTargetMessage(false)
+  }, [dispatch, messageServerId, isLoaded]);
 
   if (!messageServer) {
     return <></>
@@ -79,7 +77,7 @@ function MessageFeed() {
                   <span className='profile-following-modal-header-text'>Edit Message</span>
                 </div>
                 <button onClick={() => setModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
-                <MessageOptions currentBody={targetMessage} setModalIsOpen={setModalIsOpen}/>
+                <MessageOptions currentBody={targetMessage} setModalIsOpen={setModalIsOpen} serverId={messageServerId}/>
               </Modal>}
 
                  </div>

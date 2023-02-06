@@ -6,6 +6,8 @@ const CREATE_MESSAGE_SERVER = 'messages/CREATE_MESSAGE_SERVER'
 const LEAVE_MESSAGE_SERVER = 'messages/LEAVE_MESSAGE_SERVER'
 const CREATE_MESSAGE = 'messages/CREATE_MESSAGE'
 
+const DELETE_MESSAGE = 'messages/DELETE_MESSAGE'
+
 const loadMessageServers = payload => {
     return {
         type: LOAD_MESSAGE_SERVERS,
@@ -109,6 +111,22 @@ export const createMessageServerThunk = (members) => async (dispatch) => {
         return leave
     }
 
+    const deleteMessage = (messageId) => {
+        return {
+            type: DELETE_MESSAGE,
+            messageId
+        }
+    }
+
+    export const deleteMessageThunk = (messageId) => async (dispatch) => {
+        const deletion = await fetch(`/api/messages/${messageId}/delete`, {
+            method: "DELETE"
+        })
+
+        if (deletion.ok) dispatch(deleteMessage(messageId))
+        return deletion
+    }
+
 export default function reducer(state = defaultState, action) {
     const newState = {...state}
     if (!action || !action.type) return state;
@@ -120,6 +138,8 @@ export default function reducer(state = defaultState, action) {
         case CREATE_MESSAGE_SERVER:
             return {...newState, currMessageServer: action.payload}
         case CREATE_MESSAGE:
+            return {...newState}
+        case DELETE_MESSAGE:
             return {...newState}
         case LEAVE_MESSAGE_SERVER:
             delete newState.messageServers[action.serverId]
