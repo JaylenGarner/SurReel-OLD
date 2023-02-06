@@ -31,9 +31,14 @@ const MessageServerPage = () => {
 
   const handleSend = async (e) => {
     e.preventDefault()
-    const send = await dispatch(createMessageThunk(messageServerId, body))
-    const reload = await dispatch(loadOneMessageServerThunk(messageServerId))
-    setBody('')
+
+    if (body.length < 1) {
+      return
+    } else {
+      const send = await dispatch(createMessageThunk(messageServerId, body))
+      const reload = await dispatch(loadOneMessageServerThunk(messageServerId))
+      setBody('')
+    }
   }
 
   const handleEnterPress = (e) => {
@@ -56,6 +61,7 @@ const MessageServerPage = () => {
                         className='message-body-input'
                         name='body'
                         type='text'
+                        required={true}
                         onChange={updateBody}
                         value={body}
                         placeholder="Message..."

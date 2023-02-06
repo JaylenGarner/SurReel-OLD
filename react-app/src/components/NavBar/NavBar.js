@@ -39,11 +39,13 @@ const NavBar = () => {
               <span className='nav-link-home-span'>Create</span>
             </NavLink>
           </div>
-          <NavLink to='/messages' exact={true} activeClassName='active'>
-              Messages
+          <NavLink to='/messages' exact={true} activeClassName='active' className='nav-link-home-area'>
+          <img src='https://surreel-app-images.s3.amazonaws.com/assets/send_icon.png' className='nav-messages-icon'></img>
+              <span className='nav-link-messages-span' >Messages</span>
             </NavLink>
-            <NavLink to='/users' exact={true} activeClassName='active'>
-              Users
+            <NavLink to='/users' exact={true} activeClassName='active' className='nav-link-home-area'>
+            <img src='https://surreel-app-images.s3.amazonaws.com/assets/user_icon.png' className='nav-user-icon'></img>
+              <span className='nav-link-users-span' >Users</span>
             </NavLink>
         </div>
         <div className='nav-bar-logout-container'>
