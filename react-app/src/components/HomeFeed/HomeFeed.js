@@ -41,9 +41,6 @@ function HomeFeed() {
     }
 
     // Not liked
-    if (isLiked) {
-      return
-    }
       return (
         <button className="like-button-empty" onClick={(e) => handleLike(e, post)}>
         <FontAwesomeIcon icon={faHeartFilled} />
