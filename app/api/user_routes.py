@@ -9,11 +9,17 @@ user_routes = Blueprint('users', __name__)
 @user_routes.route('/')
 @login_required
 def users():
+
+    res = {'users': []}
     """
     Query for all users and returns them in a list of user dictionaries
     """
     users = User.query.all()
-    return {'users': [user.to_dict() for user in users]}
+    for user in users:
+        if user.id != current_user.id:
+            res['users'].append(user.to_dict())
+
+    return res
 
 
 @user_routes.route('/<int:id>')

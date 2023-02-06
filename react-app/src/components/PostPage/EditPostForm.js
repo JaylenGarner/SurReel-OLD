@@ -5,6 +5,7 @@ import { editPostThunk } from '../../store/posts';
 import { loadPostThunk } from '../../store/posts';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import MessageOptions from '../Messages/MessageOptions/MessageOptions';
 import './EditPostForm.css'
 
 const EditPostForm = ({currentCaption, setEditCaptionModalIsOpen}) => {

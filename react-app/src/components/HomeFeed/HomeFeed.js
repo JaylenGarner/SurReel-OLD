@@ -41,16 +41,24 @@ function HomeFeed() {
     }
 
     // Not liked
+    if (isLiked) {
+      return
+    }
       return (
-        <button className="like-button-empty" onClick={(e) => handleLike(e, post.id)}>
+        <button className="like-button-empty" onClick={(e) => handleLike(e, post)}>
         <FontAwesomeIcon icon={faHeartFilled} />
         </button>
       )
     }
 
-    const handleLike = async (e, postId) => {
+    const handleLike = async (e, post) => {
       e.preventDefault()
-      const data = await dispatch(likePostThunk(postId))
+
+      post.likes.forEach((like) => {
+        if (like.user.id == user.id) return
+      })
+
+      const data = await dispatch(likePostThunk(post.id))
       const reload = await dispatch(loadFeedPostsThunk(user.id))
     };
 
@@ -73,7 +81,7 @@ function HomeFeed() {
   }
 
   if (!Object.values(posts).length) {
-    return <h1 className='no-posts-in-your-feed'>There are no posts in your feed. Get started by following other users</h1>
+    return <h1 className='no-posts-in-your-feed'>There are no posts in your feed, get started by following other users</h1>
   } else {
       return (
        <div className='home-page-feed-container'>

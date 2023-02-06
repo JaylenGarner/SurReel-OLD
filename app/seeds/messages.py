@@ -6,25 +6,25 @@ def seed_messages():
         user_id = 1,
         message_server_id = 1,
         body='Suhhh dude',
-        media='https://i.kym-cdn.com/entries/icons/original/000/019/616/41584.jpg'
+        # media='https://i.kym-cdn.com/entries/icons/original/000/019/616/41584.jpg'
     )
     message2 = Message(
         user_id = 2,
         message_server_id = 2,
         body='You owe us... big time',
-        media='https://media.istockphoto.com/id/174879501/photo/irs-building-in-washington.jpg?s=612x612&w=0&k=20&c=4P9dxBYrG0VpPM4uy36OwFu38RpGVAP9dgDIZhiLq7c='
+        # media='https://media.istockphoto.com/id/174879501/photo/irs-building-in-washington.jpg?s=612x612&w=0&k=20&c=4P9dxBYrG0VpPM4uy36OwFu38RpGVAP9dgDIZhiLq7c='
     )
     message3 = Message(
         user_id = 3,
         message_server_id = 3,
         body='I kinda look like Kid Rock',
-        media='https://images.unsplash.com/photo-1571933052606-a7fce275801f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fG9sZCUyMGNvd2JveXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+        # media='https://images.unsplash.com/photo-1571933052606-a7fce275801f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fG9sZCUyMGNvd2JveXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
     )
     message4 = Message(
         user_id = 1,
         message_server_id = 3,
         body='I kinda look like Kid Rock too',
-        media='https://images.unsplash.com/photo-1571933052606-a7fce275801f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fG9sZCUyMGNvd2JveXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+        # media='https://images.unsplash.com/photo-1571933052606-a7fce275801f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fG9sZCUyMGNvd2JveXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
     )
 
 

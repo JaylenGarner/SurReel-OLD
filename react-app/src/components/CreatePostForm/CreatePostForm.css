@@ -8,3 +8,10 @@ input::file-selector-button:hover {
     cursor: pointer;
     color: #3975EA;
 }
+
+/* margin-left: 255px; */
+
+.create-a-post-form-container {
+    margin-left: 12vw;
+    margin-top: 8vh;
+}

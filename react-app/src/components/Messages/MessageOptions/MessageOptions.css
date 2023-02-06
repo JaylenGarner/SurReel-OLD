@@ -1,0 +1,47 @@
+.edit-message-form-header {
+    text-align: center;
+}
+
+.edit-form-image-input {
+    width: 400px;
+    /* text-align: center; */
+    background-color: black;
+    color: white;
+    border: 1px solid gray;
+    margin-top: 20px;
+}
+
+.message-buttons-container {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.message-buttons {
+    padding-top: 12px;
+    margin-top: 20px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.edit-message-button {
+    color: #4193EF;
+}
+
+.edit-message-button:hover {
+    cursor: pointer;
+    color: #3975EA;
+}
+
+.delete-message-button {
+    color: red;
+}
+
+.delete-message-button:hover {
+    color: rgb(214, 4, 4);
+    cursor: pointer;
+}
