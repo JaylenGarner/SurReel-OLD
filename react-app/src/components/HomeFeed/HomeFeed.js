@@ -41,16 +41,24 @@ function HomeFeed() {
     }
 
     // Not liked
+    if (isLiked) {
+      return
+    }
       return (
-        <button className="like-button-empty" onClick={(e) => handleLike(e, post.id)}>
+        <button className="like-button-empty" onClick={(e) => handleLike(e, post)}>
         <FontAwesomeIcon icon={faHeartFilled} />
         </button>
       )
     }
 
-    const handleLike = async (e, postId) => {
+    const handleLike = async (e, post) => {
       e.preventDefault()
-      const data = await dispatch(likePostThunk(postId))
+
+      post.likes.forEach((like) => {
+        if (like.user.id == user.id) return
+      })
+
+      const data = await dispatch(likePostThunk(post.id))
       const reload = await dispatch(loadFeedPostsThunk(user.id))
     };
 
