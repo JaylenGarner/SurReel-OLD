@@ -28,6 +28,12 @@
     align-self: flex-end;
     position: relative;
     right: 0px;
+    margin-right: 10px;
+}
+
+.message-sent-by-me:hover {
+    cursor: pointer;
+    background: #444242;
 }
 
 .message-body-sent-by-me {

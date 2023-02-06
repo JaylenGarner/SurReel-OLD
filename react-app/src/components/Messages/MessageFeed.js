@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
+import Modal from 'react-modal'
 import { loadMessageServersThunk, loadOneMessageServerThunk } from '../../store/messages';
 import { useHistory } from 'react-router-dom';
 import { leaveMessageServerThunk } from '../../store/messages';
 import { useDispatch } from 'react-redux';
+import MessageOptions from './MessageOptions/MessageOptions'
 import './MessagesFeed.css'
 
 function MessageFeed() {
@@ -13,6 +15,9 @@ function MessageFeed() {
   const dispatch = useDispatch()
   const history = useHistory()
   const messageServer = useSelector((state) => state.messages.currMessageServer)
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [targetMessage, setTargetMessage] = useState(null)
 
   if (!messageServer) {
     history.push('/messages')
@@ -25,7 +30,9 @@ function MessageFeed() {
       history.push('/messages')
     }
 
-  }, [dispatch, messageServerId, dispatch]);
+    if (!modalIsOpen) setTargetMessage(false)
+
+  }, [dispatch, messageServerId]);
 
   const handleLeave = async ()  => {
     history.push('/messages')
@@ -47,9 +54,34 @@ function MessageFeed() {
             {messageServer.messages.map((message) => {
                 return (<div className="message-content-container">
                  {message.user_id === user.id ? <div className='message-sent-by-me-container'>
-                 <div className='message-sent-by-me'>
+                 <div className='message-sent-by-me'
+                 onClick={() => {
+                  setModalIsOpen(true)
+                  setTargetMessage(message)
+                  }}>
                     <span className='message-body-sent-by-me'>{message.body}</span>
                  </div>
+
+              {message.user_id === user.id && <Modal
+              isOpen={modalIsOpen}
+              style={{
+                content: {
+                  width: '400px',
+                  height: '150px',
+                  top: '18%',
+                  left: '42%',
+                  backgroundColor: '#262626',
+                  color: 'white',
+                }
+              }}
+              >
+                <div className='profile-following-modal-header-container'>
+                  <span className='profile-following-modal-header-text'>Edit Message</span>
+                </div>
+                <button onClick={() => setModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
+                <MessageOptions currentBody={targetMessage} setModalIsOpen={setModalIsOpen}/>
+              </Modal>}
+
                  </div>
                 :
                 <div className='message-and-image-container'>

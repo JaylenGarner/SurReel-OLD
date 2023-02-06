@@ -80,6 +80,10 @@
     color: white;
 }
 
+.profile-following-modal-close-button {
+    cursor: pointer;
+}
+
 .profile-following-modal-header-text {
     font-size: 22px;
 }
