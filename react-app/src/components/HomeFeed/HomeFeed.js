@@ -21,8 +21,6 @@ function HomeFeed() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState()
 
-
-
   const isLiked = (post) => {
 
     let likes = []
@@ -58,10 +56,13 @@ function HomeFeed() {
         if (like.user.id == user.id) liked = true
       })
 
-      if (liked) return
 
-      const data = await dispatch(likePostThunk(post.id))
-      const reload = await dispatch(loadFeedPostsThunk(user.id))
+      if (liked) {
+        return
+      } else {
+        const data = await dispatch(likePostThunk(post.id))
+        const reload = await dispatch(loadFeedPostsThunk(user.id))
+      }
     };
 
     const handleUnlike = async (e, postId) => {
