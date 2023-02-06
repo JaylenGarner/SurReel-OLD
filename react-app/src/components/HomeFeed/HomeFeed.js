@@ -55,7 +55,7 @@ function HomeFeed() {
 
 
       post.likes.forEach((like) => {
-        if (like.user.id == user.id) liked = faTruckMedical
+        if (like.user.id == user.id) liked = true
       })
 
       if (liked) return
