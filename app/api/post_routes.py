@@ -64,12 +64,19 @@ def like_post(id):
 
     post = Post.query.get(id)
 
-    like = Like (
+    likes = post.to_dict()['likes']
+
+    for like in likes:
+        user = like['user']
+        if user['id'] == current_user.id:
+            return post.to_dict()
+
+    new_like = Like (
         user_id = current_user.id,
         post_id = id
     )
 
-    db.session.add(like)
+    db.session.add(new_like)
     db.session.commit()
 
     return post.to_dict()
