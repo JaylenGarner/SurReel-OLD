@@ -8,7 +8,7 @@ import { likePostThunk } from '../../store/likes';
 import { unlikePostThunk } from '../../store/likes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartO } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartFilled, faTruckMedical } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal'
 import './HomeFeed.css'
 
@@ -51,9 +51,14 @@ function HomeFeed() {
     const handleLike = async (e, post) => {
       e.preventDefault()
 
+     let liked;
+
+
       post.likes.forEach((like) => {
-        if (like.user.id == user.id) return
+        if (like.user.id == user.id) liked = faTruckMedical
       })
+
+      if (liked) return
 
       const data = await dispatch(likePostThunk(post.id))
       const reload = await dispatch(loadFeedPostsThunk(user.id))
