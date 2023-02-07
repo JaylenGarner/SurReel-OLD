@@ -79,8 +79,8 @@ function Profile() {
                 <FollowersModalContent setFollowerModalIsOpen={setFollowerModalIsOpen}/>
              </Modal>
               {followers && <div>
-                <span onClick={() => setFollowerModalIsOpen(true)} className='profile-count-numbers'>{Object.keys(followers).length} </span>
-                <span onClick={() => setFollowerModalIsOpen(true)} className='profile-count-labels'>followers </span>
+                <span onClick={() => setFollowerModalIsOpen(true)} className='profile-count-numbers profile-open-followers'>{Object.keys(followers).length} </span>
+                <span onClick={() => setFollowerModalIsOpen(true)} className='profile-count-labels profile-open-followers'>followers </span>
               </div>}
               <Modal
               isOpen={followingModalIsOpen}
@@ -96,14 +96,14 @@ function Profile() {
               }}
               >
                 <div className='profile-following-modal-header-container'>
-                  <span className='profile-following-modal-header-text'>Following</span>
+                  <span className='profile-following-modal-header-text '>Following</span>
                 </div>
                 <button onClick={() => setFollowingModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
                 <FollowingModalContent setFollowingModalIsOpen={setFollowingModalIsOpen}/>
              </Modal>
               {following && <div>
-                <span onClick={() => setFollowingModalIsOpen(true)} className='profile-count-numbers'>{Object.keys(following).length} </span>
-                <span onClick={() => setFollowingModalIsOpen(true)} className='profile-count-labels'>following </span>
+                <span onClick={() => setFollowingModalIsOpen(true)} className='profile-count-numbers profile-open-followers'>{Object.keys(following).length} </span>
+                <span onClick={() => setFollowingModalIsOpen(true)} className='profile-count-labels profile-open-followers'>following </span>
               </div>}
               </div>
             </div>

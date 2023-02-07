@@ -1,0 +1,35 @@
+.user-list-heading {
+    text-align: center;
+    font-size: 36px;
+}
+
+.user-info-container {
+    text-align: center;
+    margin-top: 30px;
+    /* display: flex; */
+    /* align-items: center;
+    justify-content: center; */
+    /* width: 100vw */
+}
+
+.user-list-image {
+    height: 70px;
+    width: 70px;
+    border-radius: 100px;
+    margin-bottom: 5px;
+}
+
+.user-list-image:hover {
+    border: 2px solid white;
+}
+
+.users-list-username {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.users-list-username:hover {
+    color: rgb(212, 195, 195);
+}

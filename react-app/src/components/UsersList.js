@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import './UsersList.css'
 
 function UsersList() {
   const [users, setUsers] = useState([]);
@@ -15,16 +16,19 @@ function UsersList() {
 
   const userComponents = users.map((user) => {
     return (
-      <li key={user.id}>
-        <NavLink to={`/users/${user.id}/profile`}>{user.username}</NavLink>
-      </li>
+      <div key={user.id} className='user-info-container'>
+        <div className='user-list-image-container'>
+        <NavLink to={`/users/${user.id}/profile`}><img src={user.image} className='user-list-image'></img></NavLink>
+        </div>
+        <NavLink to={`/users/${user.id}/profile`} className='users-list-username'>{user.username}</NavLink>
+      </div>
     );
   });
 
   return (
     <div style={{'margin-left': '240px'}}>
-      <h1>User List: </h1>
-      <ul>{userComponents}</ul>
+      <h1 className='user-list-heading'>All Users</h1>
+      {userComponents}
     </div>
   );
 }

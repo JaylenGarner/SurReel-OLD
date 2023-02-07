@@ -87,3 +87,7 @@
 .profile-following-modal-header-text {
     font-size: 22px;
 }
+
+.profile-open-followers:hover {
+    cursor: pointer;
+}

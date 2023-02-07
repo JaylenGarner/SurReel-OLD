@@ -1,7 +1,6 @@
 .no-posts-in-your-feed {
   margin-left: 16vw;
   text-align: center;
-
 }
 
 .home-page-feed-container {
@@ -118,4 +117,25 @@
     font-weight: bold;
     margin-bottom: 5px;
     cursor: pointer;
+}
+
+.find-users-button-container {
+    margin-top: 30px;
+    margin-left: 16vw;
+  text-align: center;
+}
+
+.find-users-button {
+    width: 200px;
+    height: 50px;
+    color: white;
+    background-color: #4193EF;
+    border-radius: 15px;
+    border: none;
+    text-align: center;
+}
+
+.find-users-button:hover {
+    cursor: pointer;
+    background-color: #3975EA;
 }
