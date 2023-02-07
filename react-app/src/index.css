@@ -11,3 +11,15 @@ body,html {
   margin:0;
   padding:0;
 }
+
+.github-logo {
+  width: 45px;
+  height: 45px;
+  top: 0px;
+  left: 7.5vw;
+  position: fixed;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}

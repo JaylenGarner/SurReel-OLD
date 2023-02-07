@@ -8,20 +8,15 @@ const NavBar = () => {
   const user = useSelector((state) => state.session.user)
 
   if (!user) {
-    return (
-      <nav className='nav-bar'>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-      </nav>
-    );
+    return <></>
   } else {
     return (
       <nav className='nav-bar'>
+        <a href='https://github.com/JaylenGarner/SurReel'>
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="github-logo"></img>
+        </a>
+
+
         <NavLink to='/' exact={true} className='nav-link-home'>
         <h2 className='navbar-sureel-span'>SurReel</h2>
         </NavLink>
