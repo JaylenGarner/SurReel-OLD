@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { deleteMessageThunk } from '../../../store/messages';
 import { loadOneMessageServerThunk } from '../../../store/messages';
 import { useParams } from 'react-router-dom';
+import { editMessageThunk } from '../../../store/messages';
 import './MessageOptions.css'
 
 const MessageOptions = ({currentBody, setModalIsOpen, serverId}) => {
@@ -22,16 +23,17 @@ const MessageOptions = ({currentBody, setModalIsOpen, serverId}) => {
 
   }, [dispatch, message])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    // const data = await dispatch(editPostThunk(postId, caption))
-    // const reload = await dispatch(loadPostThunk(postId))
-    const close = await closeModal()
-  };
 
   const handleDelete = async (e) => {
     e.preventDefault()
     const deleteMessage = await dispatch(deleteMessageThunk(currentBody.id))
+    const reload = await dispatch(loadOneMessageServerThunk(serverId))
+    closeModal()
+  }
+
+  const handleEdit = async (e) => {
+    e.preventDefault()
+    const editMessage = await dispatch(editMessageThunk(currentBody.id, message))
     const reload = await dispatch(loadOneMessageServerThunk(serverId))
     closeModal()
   }
@@ -45,7 +47,7 @@ const MessageOptions = ({currentBody, setModalIsOpen, serverId}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='edit-message-form-container'>
+    <form onSubmit={handleEdit} className='edit-message-form-container'>
       <div>
         {/* {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -62,7 +64,7 @@ const MessageOptions = ({currentBody, setModalIsOpen, serverId}) => {
           required
           />
         <div className='message-buttons-container'>
-        <button type='submit' className='message-buttons edit-message-button'>Change Message</button>
+        <button type='submit' className='message-buttons edit-message-button' onClick={(e) => handleEdit(e)}>Change Message</button>
         <button type='submit' className='message-buttons delete-message-button' onClick={(e) => handleDelete(e)}>Delete Message</button>
         </div>
       </div>
