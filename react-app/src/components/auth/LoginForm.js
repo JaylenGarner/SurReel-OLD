@@ -19,6 +19,14 @@ const LoginForm = () => {
     }
   };
 
+  const onDemoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    }
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -67,6 +75,8 @@ const LoginForm = () => {
         <NavLink to={`/sign-up`} className='login-form-nav-link'>
         <span> Sign up</span>
         </NavLink>
+        <br></br>
+          <button className='demo-login-button' onClick={onDemoLogin}>Demo Login</button>
     </form>
     </div>
     </div>

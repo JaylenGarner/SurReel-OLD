@@ -70,3 +70,16 @@ input {
     font-weight: bold;
     padding-bottom: 10px;
 }
+
+.demo-login-button {
+    background: none;
+    color: #4193EF;
+    border: none;
+    padding-top: 20px;
+    font-size: 16px;
+}
+
+.demo-login-button:hover {
+    color: #3975EA;
+    cursor: pointer;
+}
