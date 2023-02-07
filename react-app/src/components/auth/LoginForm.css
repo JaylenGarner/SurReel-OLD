@@ -64,3 +64,9 @@ input {
     width: 260px;
     border-radius: 5px;
 }
+
+.sign-up-error {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}

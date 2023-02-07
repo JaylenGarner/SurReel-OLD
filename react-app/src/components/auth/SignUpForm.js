@@ -16,7 +16,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password !== repeatPassword) {
-      if (!errors.includes("Passwords do not match.")) setErrors([...errors, "Passwords do not match."])
+      if (!errors.includes("password: Passwords do not match")) setErrors([...errors, "password: Passwords do not match"])
     } else {
       const data = await dispatch(signUp(username, email, password, image));
       if (data) {
@@ -56,7 +56,7 @@ const SignUpForm = () => {
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div key={ind} className='sign-up-error'>{error}</div>
         ))}
       </div>
       <div className='login-form-input-area'>
@@ -66,6 +66,7 @@ const SignUpForm = () => {
           onChange={updateUsername}
           value={username}
           placeholder='Username'
+          required={true}
         ></input>
       </div>
       <div className='login-form-input-area'>
@@ -75,6 +76,7 @@ const SignUpForm = () => {
           onChange={updateEmail}
           value={email}
           placeholder='Email'
+          required={true}
         ></input>
       </div>
       <div className='login-form-input-area'>
@@ -84,6 +86,7 @@ const SignUpForm = () => {
           onChange={updateImage}
           value={image}
           placeholder='Enter a valid image url'
+          required={true}
         ></input>
       </div>
       <div className='login-form-input-area'>
@@ -93,6 +96,7 @@ const SignUpForm = () => {
           onChange={updatePassword}
           value={password}
           placeholder='Password'
+          required={true}
         ></input>
       </div>
       <div className='login-form-input-area'>
