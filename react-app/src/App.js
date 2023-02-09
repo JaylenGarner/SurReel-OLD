@@ -14,6 +14,7 @@ import CreatePostForm from './components/CreatePostForm/CreatePostForm';
 import HomeMessagesPage from './components/Messages/MessagePages/HomeMessagesPage';
 import MessageServerPage from './components/Messages/MessagePages/MessageServerPage';
 import CreateDmPage from './components/Messages/MessagePages/CreateDmPage'
+import Chat from './components/Messages/Chat';
 import { authenticate } from './store/session';
 
 function App() {
@@ -72,6 +73,9 @@ function App() {
         <ProtectedRoute path='/messages/:messageServerId' exact={true} >
         <NavBar />
         <MessageServerPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/test' exact={true} >
+        <Chat />
         </ProtectedRoute>
         <Route path='/' exact={true} >
         <NavBar />
