@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
+import { loadOneMessageServerThunk } from "../../store/messages";
 let socket;
 
 const Chat = () => {
     const [chatInput, setChatInput] = useState("");
-    const [messages, setMessages] = useState([]);
+    const dispatch = useDispatch()
+    const { messageServerId } = useParams()
     const user = useSelector(state => state.session.user)
+    const messageServer = useSelector((state) => state.messages.currMessageServer)
+    const [messages, setMessages] = useState([]);
+
+    if (messageServer && !messages.length) setMessages(messageServer.messages)
 
     useEffect(() => {
+
+        dispatch(loadOneMessageServerThunk(messageServerId))
+
         // open socket connection
         // create websocket
         socket = io();
+
+        console.log(messages)
 
         socket.on("chat", (chat) => {
             setMessages(messages => [...messages, chat])
@@ -20,7 +32,8 @@ const Chat = () => {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, [messages])
+
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
@@ -28,7 +41,14 @@ const Chat = () => {
 
     const sendChat = (e) => {
         e.preventDefault()
-        socket.emit("chat", { user: user.username, msg: chatInput });
+
+        console.log(user.username)
+        socket.emit("chat", {
+            user: {
+              username: user.username,
+              image: user.image
+            },
+            body: chatInput });
         setChatInput("")
     }
 
@@ -36,7 +56,9 @@ const Chat = () => {
         <div>
             <div>
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user}: ${message.msg}`}</div>
+                    <div key={ind}>
+                        {`${message.user.username}: ${message.body}`}
+                    </div>
                 ))}
             </div>
             <form onSubmit={sendChat}>

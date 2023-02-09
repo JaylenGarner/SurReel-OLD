@@ -74,7 +74,7 @@ function App() {
         <NavBar />
         <MessageServerPage />
         </ProtectedRoute>
-        <ProtectedRoute path='/test' exact={true} >
+        <ProtectedRoute path='/messages/:messageServerId/test' exact={true} >
         <Chat />
         </ProtectedRoute>
         <Route path='/' exact={true} >
