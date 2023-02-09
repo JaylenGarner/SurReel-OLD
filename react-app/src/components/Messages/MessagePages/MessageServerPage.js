@@ -10,7 +10,7 @@ import { createMessageThunk } from '../../../store/messages';
 import './HomeMessagesPage.css';
 import './MessageServerPage.css';
 
-const MessageServerPage = () => {
+const MessageServerPage = ({sendChat}) => {
   const dispatch = useDispatch();
   const history = useHistory()
   const { messageServerId } = useParams()
@@ -35,6 +35,16 @@ const MessageServerPage = () => {
     if (body.length < 1) {
       return
     } else {
+
+      let msgObj = {
+        user: {
+          username: user.username,
+          image: user.image
+        },
+        body: body
+      }
+
+      sendChat(e, msgObj)
       const send = await dispatch(createMessageThunk(messageServerId, body))
       const reload = await dispatch(loadOneMessageServerThunk(messageServerId))
       setBody('')

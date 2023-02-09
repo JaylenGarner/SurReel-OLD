@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
 import { loadOneMessageServerThunk } from "../../store/messages";
+import MessageServerPage from "./MessagePages/MessageServerPage";
 let socket;
 
 const Chat = () => {
@@ -39,16 +40,11 @@ const Chat = () => {
         setChatInput(e.target.value)
     };
 
-    const sendChat = (e) => {
+    const sendChat = (e, msg) => {
         e.preventDefault()
 
         console.log(user.username)
-        socket.emit("chat", {
-            user: {
-              username: user.username,
-              image: user.image
-            },
-            body: chatInput });
+        socket.emit("chat", msg);
         setChatInput("")
     }
 
@@ -68,6 +64,7 @@ const Chat = () => {
                 />
                 <button type="submit">Send</button>
             </form>
+            <MessageServerPage sendChat={sendChat}/>
         </div>
     )
     )
