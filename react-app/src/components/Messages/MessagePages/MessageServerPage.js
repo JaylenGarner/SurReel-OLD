@@ -40,14 +40,11 @@ const MessageServerPage = () => {
         setMessages(messages => [...messages, chat])
     })
 
-
-    // console.log(messageServerId)
-
     // when component unmounts, disconnect
     return (() => {
       socket.disconnect()
     })
-  }, [messageServerId])
+  }, [messageServerId, dispatch])
 
 
 const handleSend = async (e) => {
@@ -60,15 +57,16 @@ const handleSend = async (e) => {
     let msgObj = {
       user: {
         username: user.username,
-        image: user.image
+        image: user.image,
+        id: user.id
       },
       body: body
     }
 
     socket.emit("chat", msgObj);
     setBody('')
+    dispatch(loadOneMessageServerThunk(messageServerId))
     dispatch(createMessageThunk(messageServerId, body))
-    const reload = await dispatch(loadOneMessageServerThunk(messageServerId))
   }
 }
 
@@ -89,34 +87,11 @@ const handleSend = async (e) => {
     }
   }
 
+  console.log(messageServers)
 
-  if (!messageServer) {
-    return <div>
-      <DirectMessagesNav />
-      {/* <MessageFeed /> */}
-      <h1>YO</h1>
-      </div>
-
-  // } else if (!messageServer.messages || !messageServer.messages.length) {
-  //     return (
-  //       <div>
-  //       <MessageFeed />
-  //     </div>)
-  }
-
-  // if (!messages.length) {
-  //   return (
-  //     <div>
-  //       <DirectMessagesNav />
-  //       <MessageFeed />
-  //       <h1 style={{'text-align': 'center'}}>YO</h1>
-  //     </div>
-  //   )
-  // }
-
-
-
-  else {
+  if (!messageServers || !messageServers[messageServerId]) {
+    return <div></div>
+  } else {
 
     if (messages.length === 0 && messageServers[messageServerId].messages.length !== 0)  setMessages(messageServers[messageServerId].messages)
 
@@ -144,15 +119,16 @@ const handleSend = async (e) => {
                         <img onClick={(e) => handleSend(e)} className='send-message-submit' src='https://surreel-app-images.s3.amazonaws.com/assets/send_icon.png'></img>
                     <span className='leave-conversation' onClick={() => handleLeave()}>Delete Chat</span>
                     </div>
-                    <div>{messages.map((message) => {
-              return <h1>{message.body}</h1>
-            })}</div>
+                    {/* <div>{messages.map((message) => {
+              // return <h1>{message.body}</h1>
+              return <></>
+            })}</div> */}
                 </div>
             </div>
             </div>
         </div>
     );
-          }
+  }
 }
 
 
