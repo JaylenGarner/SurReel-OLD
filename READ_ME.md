@@ -36,3 +36,7 @@ If you click on a user's username or profile picture in most area's of the appli
 
 <img width="1245" alt="Screenshot 2023-02-11 at 12 54 01 PM" src="https://user-images.githubusercontent.com/93837049/218273315-6ab8fcf2-a08a-4bec-a1cd-2672fb0d8288.png">
 
+I you click on either 'followers' or 'following', a modal will overlay the page and list the relevant users.
+![imgonline-com-ua-twotoone-839SyaSB6Cg86KiC](https://user-images.githubusercontent.com/93837049/218273906-27efa4fe-275b-4606-a86f-47908aa98b97.jpg)
+
+
