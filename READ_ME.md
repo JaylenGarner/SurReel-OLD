@@ -51,8 +51,16 @@ If you click on either 'followers' or 'following', a modal will overlay the page
 
 ![imgonline-com-ua-twotoone-839SyaSB6Cg86KiC](https://user-images.githubusercontent.com/93837049/218273906-27efa4fe-275b-4606-a86f-47908aa98b97.jpg)
 
-  
 If you select any of the displayed posts, you will be redirected to that post's page. 
+
+### Post Page
+
+This page will display the image at a much larger size, show the caption, allow the user to like the post, and allow the user to view all of the post's likes.
+
+<img width="1080" alt="Screenshot 2023-02-11 at 1 23 27 PM" src="https://user-images.githubusercontent.com/93837049/218274843-db8bc61b-5cff-416b-b022-83fdc5a55f4f.png">
+
+
+
 
 
 
