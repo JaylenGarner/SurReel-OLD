@@ -28,12 +28,11 @@ SurReel is an Instagram clone. When a user first accesses the site, they are bro
 ### Feed
 When logging into the site, the user is greeted with their feed. The feed will contain the posts of other users that the current user follows. If the user is not following anyone, they are presented with the following message and a button that navigates them to a page that displays all of the application's users: "There are no posts in your feed, get started by following other users"
 
+<img width="1113" alt="Screenshot 2023-02-11 at 12 23 33 PM" src="https://user-images.githubusercontent.com/93837049/218272084-e6c7b8a9-6ed7-4dd7-b8c9-a8d30c8ee563.png">
+
 The user can like and unlike posts in the feed by clicking on the heart icon beneath a post's image. If they select 'Likes' under a post's image, a modal will overlay the page and list the relevant users.
 
 <img width="492" alt="Screenshot 2023-02-11 at 1 13 53 PM" src="https://user-images.githubusercontent.com/93837049/218274506-69961d5b-bb5d-45f0-9edc-e6af1bcd1b7f.png">
-
-
-<img width="1113" alt="Screenshot 2023-02-11 at 12 23 33 PM" src="https://user-images.githubusercontent.com/93837049/218272084-e6c7b8a9-6ed7-4dd7-b8c9-a8d30c8ee563.png">
 
 ### Navigation Bar
 
