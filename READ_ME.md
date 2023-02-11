@@ -60,6 +60,11 @@ This page will display the image at a much larger size, show the caption, allow 
 <img width="1080" alt="Screenshot 2023-02-11 at 1 23 27 PM" src="https://user-images.githubusercontent.com/93837049/218274843-db8bc61b-5cff-416b-b022-83fdc5a55f4f.png">
 
 
+### Create a Post
+
+When the user selects 'Create a Post' in the nav bar, they will be redirected to a form that allows them to create a post. The form allows the user to select an image file from their system, as well as set a caption. Upon submission the user will see 'Loading...' until the image uplaods to the S3 bucket, once complete the user will be redirected to their home feed.
+
+<img width="1031" alt="Screenshot 2023-02-11 at 1 35 00 PM" src="https://user-images.githubusercontent.com/93837049/218275241-4b386363-17b5-42c1-9394-8da7a51836e5.png">
 
 
 
