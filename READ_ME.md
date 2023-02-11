@@ -27,3 +27,12 @@ When logging into the site, the user is greeted with their feed. The feed will c
 
 <img width="1113" alt="Screenshot 2023-02-11 at 12 23 33 PM" src="https://user-images.githubusercontent.com/93837049/218272084-e6c7b8a9-6ed7-4dd7-b8c9-a8d30c8ee563.png">
 
+In the navbar there are links to the user's home feed, a form to create a post, a view of all of the user's direct messaging chats, and a list of of the application's current users.
+
+If you click on a user's username or profile picture in most area's of the application, you will be redirected to that user's profile. While visiting a user's profile, you can see a display of all of their posts. Above the user's posts, there is an area that shows that user's total number of posts, followers, and following. A follow button is also present, and the functionality will change depending on the current user's relationship with the user.
+- If neither user follows eachother: The button will display 'Follow'
+- If the user is following the current user, but the current user is not following the user: The button will display 'Follow back'
+- If the current user follows the user: The button will display 'Unfollow'
+
+<img width="1245" alt="Screenshot 2023-02-11 at 12 54 01 PM" src="https://user-images.githubusercontent.com/93837049/218273315-6ab8fcf2-a08a-4bec-a1cd-2672fb0d8288.png">
+
