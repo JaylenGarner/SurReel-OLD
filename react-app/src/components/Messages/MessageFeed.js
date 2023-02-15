@@ -12,6 +12,10 @@ import './MessagesFeed.css'
 import { io } from 'socket.io-client';
 let socket;
 
+export const deleteMessage = (messageId) => {
+  socket.emit("delete_message", messageId);
+}
+
 function MessageFeed() {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -20,12 +24,11 @@ function MessageFeed() {
   const messageServer = useSelector((state) => state.messages.currMessageServer)
   const messageServers = useSelector((state) => state.messages.messageServers)
 
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [targetMessage, setTargetMessage] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
-
   const [messages, setMessages] = useState([]);
+
 
   useEffect(() => {
     dispatch(loadOneMessageServerThunk(messageServerId))
@@ -34,18 +37,24 @@ function MessageFeed() {
     socket = io();
 
     setMessages([])
-    // if (messageServer) {
+
       socket.on("chat", (chat) => {
         setMessages(messages => [...messages, chat])
     })
 
+    socket.on("message_deleted", (deletedMessageId) => {
+      setMessages((messages) =>
+        messages.filter((message) => message.id !== deletedMessageId)
+      );
+    });
+
+    if (!modalIsOpen) setTargetMessage(false)
 
     // when component unmounts, disconnect
     return (() => {
       socket.disconnect()
     })
 
-    if (!modalIsOpen) setTargetMessage(false)
   }, [dispatch, messageServerId, isLoaded, setMessages]);
 
   const handleLeave = async ()  => {
@@ -54,12 +63,8 @@ function MessageFeed() {
     const reload = await dispatch(loadMessageServersThunk())
   }
 
-  // if (!messageServer.messages || !messageServer.messages.length) {
-  //     return (
-  //       <div>
-  //        <h1 className='no-messages'>No messages, start a conversation</h1>
-  //     </div>)
-  // } else {
+
+
     if (messages.length === 0 && messageServers[messageServerId].messages.length !== 0)  setMessages(messageServers[messageServerId].messages)
 
       return (
@@ -93,7 +98,7 @@ function MessageFeed() {
                   <span className='profile-following-modal-header-text'>Edit Message</span>
                 </div>
                 <button onClick={() => setModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
-                <MessageOptions currentBody={targetMessage} setModalIsOpen={setModalIsOpen} serverId={messageServerId}/>
+                <MessageOptions currentBody={targetMessage} setModalIsOpen={setModalIsOpen} serverId={messageServerId} deleteMessageFunc={deleteMessage}/>
               </Modal>}
 
                  </div>
@@ -110,12 +115,9 @@ function MessageFeed() {
                 </div>}
               </div>)
             })}
-            {/* <div>{messages.map((message) => {
-              return <h1>{message.body}</h1>
-            })}</div> */}
         </div>
       );
   }
-// }
+
 
 export default MessageFeed;

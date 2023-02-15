@@ -6,14 +6,19 @@ import { useParams } from 'react-router-dom';
 import { editMessageThunk } from '../../../store/messages';
 import './MessageOptions.css'
 
+import { deleteMessage } from '../MessageFeed';
+
+const deleteMessageFunc = deleteMessage
+
 const MessageOptions = ({currentBody, setModalIsOpen, serverId}) => {
 //   const user = useSelector(state => state.session.user);
 //   const {postId} = useParams();
   const dispatch = useDispatch();
-//   const history = useHistory();
+
   const [message, setMessage] = useState(currentBody.body);
   const [messageId, setMessageId] = useState(currentBody.id)
 //   const [errors, setErrors] = useState([]);
+
 
   const closeModal = () => {
     setModalIsOpen(false);
@@ -26,6 +31,7 @@ const MessageOptions = ({currentBody, setModalIsOpen, serverId}) => {
 
   const handleDelete = async (e) => {
     e.preventDefault()
+    deleteMessageFunc(messageId)
     const deleteMessage = await dispatch(deleteMessageThunk(currentBody.id))
     const reload = await dispatch(loadOneMessageServerThunk(serverId))
     closeModal()
@@ -49,9 +55,6 @@ const MessageOptions = ({currentBody, setModalIsOpen, serverId}) => {
   return (
     <form onSubmit={handleEdit} className='edit-message-form-container'>
       <div>
-        {/* {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-          ))} */}
       </div>
       <div>
         <input
