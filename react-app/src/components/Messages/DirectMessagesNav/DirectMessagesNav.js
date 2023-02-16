@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { loadMessageServersThunk } from '../../../store/messages';
+import { loadRoomsThunk } from '../../../store/rooms';
+import { clearMessages } from '../../../store/messages';
 import { io } from 'socket.io-client';
 import './DirectMessagesNav.css';
 let socket;
@@ -10,13 +11,13 @@ let socket;
 const DirectMessagesNav = () => {
   const dispatch = useDispatch();
   const history = useHistory()
-  const messageServs = useSelector((state) => state.messages.messageServers)
+  const rooms = useSelector((state) => state.rooms)
   const user = useSelector((state) => state.session.user)
 
   useEffect(() => {
 
     if (user) {
-      dispatch(loadMessageServersThunk());
+      dispatch(loadRoomsThunk());
     }
   }, [dispatch]);
 
@@ -25,7 +26,7 @@ const DirectMessagesNav = () => {
     return null;
   }
 
-    if (messageServs === null) {
+    if (rooms === null) {
       return (
       <div className='dm-nav-username-container'>
       <h1 className='dm-nav-username'>{user.username}</h1>
@@ -42,8 +43,8 @@ const DirectMessagesNav = () => {
         <img className='componse-message-icon' src={'https://surreel-app-images.s3.amazonaws.com/assets/componse_icon_white.png'}></img>
         </NavLink>
       </div>
-      {messageServs && Object.values(messageServs).map((serv) => {
-        let members = serv.members
+      {rooms && Object.values(rooms).map((room) => {
+        let members = room.members
         let resMembers = []
 
          // Checks to see if only the owner is a member of the server
@@ -55,8 +56,8 @@ const DirectMessagesNav = () => {
         })
 
         return(
-          <NavLink to={`/messages/${serv.id}`} className='nav-link'>
-        <div key={serv.id} className='dm-nav-chat-button-div'>
+          <NavLink to={`/messages/${room.id}`} className='nav-link'>
+        <div key={room.id} className='dm-nav-chat-button-div'>
           {resMembers.map((member) => {
 
             // Conditional logic to determine who the last user is. A comma will not be displayed for them

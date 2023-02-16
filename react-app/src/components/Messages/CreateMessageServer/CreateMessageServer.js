@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createMessageServerThunk } from '../../../store/messages'
-import { loadMessageServersThunk } from '../../../store/messages'
+import { createRoomThunk } from '../../../store/rooms';
+import { loadRoomsThunk } from '../../../store/rooms'
 import './CreateMessageServer.css'
 
 const CreateMessageServer = () => {
@@ -10,7 +10,9 @@ const CreateMessageServer = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
     const [users, setUsers] = useState([]);
-    const messageServers = useSelector((state) => state.messages.messageServers)
+    // const messageServers = useSelector((state) => state.messages.messageServers)
+    const rooms = useSelector((state) => state.rooms)
+
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [error, setError] = useState();
 
@@ -58,8 +60,8 @@ const CreateMessageServer = () => {
       const sortSelected = selected.sort()
 
 
-      Object.values(messageServers).forEach((serv) => {
-        let members = serv.members
+      Object.values(rooms).forEach((room) => {
+        let members = room.members
         let memberIds = members.map((member) => {
           return member.member.id
         }).sort()
@@ -95,12 +97,9 @@ const CreateMessageServer = () => {
         console.log(selectedUsers, 'Before dispatch')
 
 
-     const createServ = await dispatch(createMessageServerThunk(selectedUsers))
-     const loadServs = await dispatch(loadMessageServersThunk())
+     dispatch(createRoomThunk(selectedUsers))
+    //  const loadServs = await dispatch(loadRoomsThunk())
      const redirectToProfile = history.push('/messages')
-
-     console.log(createServ)
-
     };
 
     return (

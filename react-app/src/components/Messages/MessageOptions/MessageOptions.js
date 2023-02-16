@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteMessageThunk } from '../../../store/messages';
-import { loadOneMessageServerThunk } from '../../../store/messages';
-import { useParams } from 'react-router-dom';
 import { editMessageThunk } from '../../../store/messages';
+import { loadRoomsThunk } from '../../../store/rooms';
 import './MessageOptions.css'
 
 import { deleteMessage } from '../MessageFeed';
 
 const deleteMessageFunc = deleteMessage
 
-const MessageOptions = ({currentBody, setModalIsOpen, serverId}) => {
+const MessageOptions = ({currentBody, setModalIsOpen, roomId}) => {
 //   const user = useSelector(state => state.session.user);
 //   const {postId} = useParams();
   const dispatch = useDispatch();
@@ -33,14 +32,14 @@ const MessageOptions = ({currentBody, setModalIsOpen, serverId}) => {
     e.preventDefault()
     deleteMessageFunc(messageId)
     const deleteMessage = await dispatch(deleteMessageThunk(currentBody.id))
-    const reload = await dispatch(loadOneMessageServerThunk(serverId))
+    const reload = await dispatch(loadRoomsThunk(roomId))
     closeModal()
   }
 
   const handleEdit = async (e) => {
     e.preventDefault()
     const editMessage = await dispatch(editMessageThunk(currentBody.id, message))
-    const reload = await dispatch(loadOneMessageServerThunk(serverId))
+    const reload = await dispatch(loadRoomsThunk(roomId))
     closeModal()
   }
 

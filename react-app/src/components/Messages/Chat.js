@@ -2,7 +2,6 @@
 // import { useDispatch, useSelector } from "react-redux";
 // import { useParams } from "react-router-dom";
 // import { io } from 'socket.io-client';
-// import { loadOneMessageServerThunk } from "../../store/messages";
 // import MessageServerPage from "./MessagePages/MessageServerPage";
 // import DirectMessagesNav from "./DirectMessagesNav/DirectMessagesNav";
 // let socket;
@@ -31,7 +30,6 @@
 //     useEffect(() => {
 //         socket = io();
 
-//         // dispatch(loadOneMessageServerThunk(messageServerId))
 
 
 //         socket.on("chat", (chat) => {
@@ -55,7 +53,6 @@
 
 //     // const reconnect = () => {
 
-//     //     // dispatch(loadOneMessageServerThunk(messageServerId))
 //     //     // socket.disconnect()
 //     //     socket = io();
 

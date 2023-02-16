@@ -3,48 +3,46 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import DirectMessagesNav from '../DirectMessagesNav/DirectMessagesNav';
 import MessageFeed from '../MessageFeed';
-import { leaveMessageServerThunk } from '../../../store/messages';
-import { loadMessageServersThunk } from '../../../store/messages';
-import { loadOneMessageServerThunk } from '../../../store/messages';
+import { deleteRoomThunk } from '../../../store/rooms';
+import { loadRoomsThunk } from '../../../store/rooms';
 import { createMessageThunk } from '../../../store/messages';
+import { loadMessagesThunk } from '../../../store/messages';
 import './HomeMessagesPage.css';
 import './MessageServerPage.css';
 
 import { io } from 'socket.io-client';
 let socket;
 
-
 const MessageServerPage = () => {
   const dispatch = useDispatch();
   const history = useHistory()
-  const { messageServerId } = useParams()
   const user = useSelector((state) => state.session.user)
+  const messages = useSelector((state) => state.messages)
+  const { roomId } = useParams()
   const [body, setBody] = useState('')
-  const messageServer = useSelector((state) => state.messages.currMessageServer)
-  const messageServers = useSelector((state) => state.messages.messageServers)
+  const rooms = useSelector((state) => state.rooms)
 
-  const [messages, setMessages] = useState([]);
+  const [chat, setChat] = useState([]);
 
 
   useEffect(() => {
-    // open socket connection
-    // create websocket
-    dispatch(loadOneMessageServerThunk(messageServerId))
-    dispatch(loadMessageServersThunk())
+
+    dispatch(loadRoomsThunk())
+    dispatch(loadMessagesThunk(roomId))
 
     socket = io();
 
-    setMessages([])
-    // if (messageServer) {
-      socket.on("chat", (chat) => {
-        setMessages(messages => [...messages, chat])
+    setChat([])
+
+      socket.on("chat", (message) => {
+        setChat(chat => [...chat, message])
     })
 
     // when component unmounts, disconnect
     return (() => {
       socket.disconnect()
     })
-  }, [messageServerId, dispatch])
+  }, [roomId, dispatch])
 
 
 const handleSend = async (e) => {
@@ -65,8 +63,7 @@ const handleSend = async (e) => {
 
     socket.emit("chat", msgObj);
     setBody('')
-    dispatch(loadOneMessageServerThunk(messageServerId))
-    dispatch(createMessageThunk(messageServerId, body))
+    dispatch(createMessageThunk(roomId, body))
   }
 }
 
@@ -76,8 +73,7 @@ const handleSend = async (e) => {
 
   const handleLeave = async ()  => {
     history.push('/messages')
-    const leave = await dispatch(leaveMessageServerThunk(messageServerId))
-    const reload = await dispatch(loadMessageServersThunk())
+    dispatch(deleteRoomThunk(roomId))
   }
 
 
@@ -87,13 +83,12 @@ const handleSend = async (e) => {
     }
   }
 
-  console.log(messageServers)
-
-  if (!messageServers || !messageServers[messageServerId]) {
-    return <div></div>
+  if (!rooms || !rooms[roomId]) {
+    return <div>ddkcndlkcnldknclkdncmdcmd.c</div>
   } else {
 
-    if (messages.length === 0 && messageServers[messageServerId].messages.length !== 0)  setMessages(messageServers[messageServerId].messages)
+    // if (messages.length === 0 && rooms[roomId].messages.length !== 0)  setMessages(rooms[roomId].messages)
+    // if (!messages.length) return <h1>ddjkedncjdnclkdnckldnvljkdbnvkjelmcklsnckjdejfe;wk.,c ekjfje;lc</h1>
 
     return (
         <div className='message-page-container'>
@@ -119,10 +114,6 @@ const handleSend = async (e) => {
                         <img onClick={(e) => handleSend(e)} className='send-message-submit' src='https://surreel-app-images.s3.amazonaws.com/assets/send_icon.png'></img>
                     <span className='leave-conversation' onClick={() => handleLeave()}>Delete Chat</span>
                     </div>
-                    {/* <div>{messages.map((message) => {
-              // return <h1>{message.body}</h1>
-              return <></>
-            })}</div> */}
                 </div>
             </div>
             </div>

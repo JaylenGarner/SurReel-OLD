@@ -25,20 +25,6 @@ def get_my_message_servers():
     return res
 
 
-@message_servers_routes.route('/<int:id>')
-@login_required
-def get_message_server_by_id(id):
-
-    message_server = MessageServer.query.get(id)
-
-    if message_server == None:
-        return {'msg': "A message server with that ID does not exist"}
-
-    return message_server.to_dict()
-
-
-
-
 @message_servers_routes.route('/create', methods=['POST'])
 @login_required
 def create_message_server():
@@ -74,7 +60,6 @@ def create_message_server():
     return message_server.to_dict()
 
 
-# Only the owner can delete the chat, members will be presented with the option to leave the chat
 @message_servers_routes.route('<int:id>/delete', methods=['DELETE'])
 @login_required
 def delete_message_server(id):
@@ -89,38 +74,6 @@ def delete_message_server(id):
     db.session.commit()
 
     return {'msg': "The chat has been deleted"}
-
-    # return {"msg": "You are not authorized to delete this chat"}
-
-
-@message_servers_routes.route('<int:id>/leave', methods=['DELETE'])
-@login_required
-def leave_message_server(id):
-
-    # Need to fix error handling, if you are not a member of a server, the request crashes
-
-    message_server = MessageServer.query.get(id)
-
-    if message_server == None:
-        return {'msg': "A message server with that ID does not exist"}
-
-    message_server_member = MessageServerMember.query.filter(and_(MessageServerMember.user_id == current_user.id,
-    MessageServerMember.message_server_id == id)).first()
-
-    if message_server_member is not None:
-        db.session.delete(message_server_member)
-        db.session.commit()
-
-        members = message_server.to_dict()['members']
-
-        if len(members) == 0:
-            db.session.delete(message_server)
-            db.session.commit()
-
-        return {'msg': "You have left the chat"}
-
-    return {"You are not a member of this chat"}
-
 
 
 @message_servers_routes.route('/<int:id>/message', methods=['POST'])
@@ -143,3 +96,17 @@ def create_a_message(id):
     db.session.commit()
 
     return new_message.to_dict()
+
+@message_servers_routes.route('/<int:id>/messages')
+@login_required
+def get_messages_by_room(id):
+
+    res = {}
+
+    messages = Message.query.filter(Message.message_server_id == id).all()
+
+    for message in messages:
+        message_id = message.to_dict()['id']
+        res[f'{message_id}'] = message.to_dict()
+
+    return res

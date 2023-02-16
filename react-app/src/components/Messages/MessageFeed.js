@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import Modal from 'react-modal'
-import { loadMessageServersThunk, loadOneMessageServerThunk } from '../../store/messages';
+import { loadRoomsThunk} from '../../store/rooms';
+import { loadMessagesThunk } from '../../store/messages';
 import { useHistory } from 'react-router-dom';
-import { leaveMessageServerThunk } from '../../store/messages';
+import { deleteRoomThunk } from '../../store/rooms';
 import { useDispatch } from 'react-redux';
 import MessageOptions from './MessageOptions/MessageOptions'
 import './MessagesFeed.css'
@@ -19,32 +20,38 @@ export const deleteMessage = (messageId) => {
 function MessageFeed() {
   const dispatch = useDispatch()
   const history = useHistory()
-  const {messageServerId} = useParams()
+  const {roomId} = useParams()
   const user = useSelector((state) => state.session.user)
-  const messageServer = useSelector((state) => state.messages.currMessageServer)
-  const messageServers = useSelector((state) => state.messages.messageServers)
+  const messages = useSelector((state) => state.messages)
+  const rooms = useSelector((state) => state.rooms)
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [targetMessage, setTargetMessage] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [messages, setMessages] = useState([]);
-
+  const [chat, setChat] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(loadOneMessageServerThunk(messageServerId))
-    dispatch(loadMessageServersThunk())
-
+    setIsLoading(true);
+    dispatch(loadRoomsThunk())
+    dispatch(loadMessagesThunk(roomId))
     socket = io();
 
-    setMessages([])
+    setChat([])
 
-      socket.on("chat", (chat) => {
-        setMessages(messages => [...messages, chat])
+    if (messages) {
+      setChat(Object.values(messages));
+      setIsLoading(false);
+    }
+
+
+      socket.on("chat", (message) => {
+        setChat(chat => [...chat, message])
     })
 
     socket.on("message_deleted", (deletedMessageId) => {
-      setMessages((messages) =>
-        messages.filter((message) => message.id !== deletedMessageId)
+      setChat((chat) =>
+        chat.filter((message) => message.id !== deletedMessageId)
       );
     });
 
@@ -55,24 +62,32 @@ function MessageFeed() {
       socket.disconnect()
     })
 
-  }, [dispatch, messageServerId, isLoaded, setMessages]);
+  }, [dispatch, roomId, isLoaded, setChat]);
+
+  useEffect(() => {
+    // if ((chat.length === 0)) {
+      // setChat(Object.values(messages));
+      // setIsLoading(false);
+    // }
+  }, [messages, roomId, setChat]);
 
   const handleLeave = async ()  => {
     history.push('/messages')
-    const leave = await dispatch(leaveMessageServerThunk(messageServerId))
-    const reload = await dispatch(loadMessageServersThunk())
+    deleteRoomThunk(roomId)
   }
 
+    if (isLoading) {
+      return <div>Loading...</div>
+    } else {
 
-
-    if (messages.length === 0 && messageServers[messageServerId].messages.length !== 0)  setMessages(messageServers[messageServerId].messages)
-
+      // if (chat.length === 0 && messages.length === 0) setChat(Object.values(messages))
       return (
         <div className='message-feed-container'>
             <br></br>
-            {messages.map((message) => {
-                return (<div className="message-content-container">
-                 {message.user.id === user.id ? <div className='message-sent-by-me-container'>
+            {chat.map((message) => {
+                return (
+                <div className="message-content-container">
+                 {message.user && message.user.id && message.user.id === user.id ? <div className='message-sent-by-me-container'>
                  <div className='message-sent-by-me'
                  onClick={() => {
                   setModalIsOpen(true)
@@ -98,7 +113,7 @@ function MessageFeed() {
                   <span className='profile-following-modal-header-text'>Edit Message</span>
                 </div>
                 <button onClick={() => setModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
-                <MessageOptions currentBody={targetMessage} setModalIsOpen={setModalIsOpen} serverId={messageServerId} deleteMessageFunc={deleteMessage}/>
+                <MessageOptions currentBody={targetMessage} setModalIsOpen={setModalIsOpen} roomId={roomId} deleteMessageFunc={deleteMessage}/>
               </Modal>}
 
                  </div>
@@ -118,6 +133,7 @@ function MessageFeed() {
         </div>
       );
   }
+}
 
 
 export default MessageFeed;
