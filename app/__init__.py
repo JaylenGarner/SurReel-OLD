@@ -12,6 +12,7 @@ from .api.message_server_routes import message_servers_routes
 from .api.message_routes import message_routes
 from .seeds import seed_commands
 from .config import Config
+from .socketio import socketio
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -40,7 +41,7 @@ Migrate(app, db)
 
 # Application Security
 CORS(app)
-
+socketio.init_app(app)
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
