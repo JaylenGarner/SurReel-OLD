@@ -15,6 +15,7 @@ import HomeMessagesPage from './components/Messages/MessagePages/HomeMessagesPag
 import MessageServerPage from './components/Messages/MessagePages/MessageServerPage';
 import CreateDmPage from './components/Messages/MessagePages/CreateDmPage'
 import { authenticate } from './store/session';
+import ChatRoom from './components/ChatRoom';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -72,6 +73,11 @@ function App() {
         <ProtectedRoute path='/messages/:messageServerId' exact={true} >
         <NavBar />
         <MessageServerPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/test' exact={true} >
+        {/* <NavBar /> */}
+        {/* <MessageServerPage /> */}
+        <ChatRoom />
         </ProtectedRoute>
         <Route path='/' exact={true} >
         <NavBar />

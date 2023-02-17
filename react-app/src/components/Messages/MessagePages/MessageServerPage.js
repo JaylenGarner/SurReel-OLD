@@ -21,7 +21,28 @@ const MessageServerPage = () => {
 
   const [body, setBody] = useState('')
 
-  socket = io()
+  useEffect(() => {
+
+    // dispatch(loadRoomsThunk())
+    // dispatch(loadMessagesThunk(roomId))
+
+    // socket = io();
+
+    // setChat([])
+
+    //   socket.on("connect", (message) => {
+    //     // setChat(chat => [...chat, message])
+    // })
+
+    //   socket.on("chat", (message) => {
+    //     setChat(chat => [...chat, message])
+    // })
+
+    // when component unmounts, disconnect
+    // return (() => {
+    //   socket.disconnect()
+    // })
+  }, [dispatch])
 
 
   const updateBody = (e) => {
