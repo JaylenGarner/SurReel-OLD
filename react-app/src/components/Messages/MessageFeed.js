@@ -20,11 +20,9 @@ function MessageFeed() {
   const [targetMessage, setTargetMessage] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
-  // if (!messageServer) {
-  //   history.push('/messages')
-  // }
-
-
+  if (!messageServer) {
+    history.push('/messages')
+  }
 
   const handleLeave = async ()  => {
     history.push('/messages')

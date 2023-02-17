@@ -32,7 +32,7 @@ const MessageServerPage = () => {
   const handleSend = async (e) => {
     e.preventDefault()
 
-    if (body.length < 1) {
+    if (body === '') {
       return
     } else {
       const send = await dispatch(createMessageThunk(messageServerId, body))
