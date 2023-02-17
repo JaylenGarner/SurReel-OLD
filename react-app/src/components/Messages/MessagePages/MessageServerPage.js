@@ -10,6 +10,9 @@ import { createMessageThunk } from '../../../store/messages';
 import './HomeMessagesPage.css';
 import './MessageServerPage.css';
 
+import { io } from 'socket.io-client';
+let socket;
+
 const MessageServerPage = () => {
   const dispatch = useDispatch();
   const history = useHistory()
@@ -17,6 +20,8 @@ const MessageServerPage = () => {
   const user = useSelector((state) => state.session.user)
 
   const [body, setBody] = useState('')
+
+  socket = io()
 
 
   const updateBody = (e) => {
