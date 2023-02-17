@@ -6,10 +6,11 @@ const CREATE_MESSAGE = 'messages/CREATE_MESSAGE'
 const EDIT_MESSAGE = 'messages/EDIT_MESSAGE'
 const DELETE_MESSAGE = 'messages/DELETE_MESSAGE'
 
-const loadMessages = payload => {
+const loadMessages = (payload, roomId) => {
     return {
         type: LOAD_MESSAGES,
-        payload
+        payload,
+        roomId
     }
 }
 
@@ -19,7 +20,7 @@ export const loadMessagesThunk = (roomId) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json()
-        dispatch(loadMessages(data))
+        dispatch(loadMessages(data, roomId))
       }
 }
 
@@ -31,10 +32,11 @@ export const clearMessages = payload => {
 }
 
 
-    export const createMessage = payload => {
+    export const createMessage = (payload, roomId) => {
         return {
             type: CREATE_MESSAGE,
-            payload
+            payload,
+            roomId
         }
     }
 
@@ -51,7 +53,7 @@ export const clearMessages = payload => {
 
             if (res.ok) {
                 const newData = await res.json()
-                dispatch(createMessage(newData))
+                dispatch(createMessage(newData, serverId))
                 return res
             } else {
                 return res
@@ -107,19 +109,38 @@ export default function reducer(state = defaultState, action) {
     if (!action || !action.type) return state;
     switch (action.type) {
         case LOAD_MESSAGES:
-            return {...action.payload}
+            return {...newState, [action.roomId] : action.payload}
         case CLEAR_MESSAGES:
             return {}
         case CREATE_MESSAGE:
-            return {...newState, [action.payload.id] : action.payload}
+            const room = newState[action.roomId];
+            const messageId = action.payload.id;
+            return {
+                ...newState,
+                [action.roomId]: {
+                    ...room,
+                    [messageId]: action.payload,
+                },
+            };
         case EDIT_MESSAGE:
             return {...newState}
-        case DELETE_MESSAGE:
-            delete newState[action.messageId]
-            return newState
-        // case DELETE_ROOM:
-        //     delete newState[action.serverId]
-        //     return newState
+            case DELETE_MESSAGE:
+                const roomId = Object.keys(newState).find(key => newState[key][action.messageId]);
+                if (roomId) {
+                  const room = newState[roomId];
+                  const updatedRoom = Object.keys(room)
+                    .filter(messageId => messageId !== action.messageId)
+                    .reduce((obj, key) => {
+                      obj[key] = room[key];
+                      return obj;
+                    }, {});
+                  return {
+                    ...newState,
+                    [roomId]: updatedRoom,
+                  };
+                } else {
+                  return newState;
+                }
         default:
             return state;
     }

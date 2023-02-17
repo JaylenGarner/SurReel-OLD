@@ -39,8 +39,8 @@ function MessageFeed() {
 
     setChat([])
 
-    if (messages) {
-      setChat(Object.values(messages));
+    if (messages[roomId]) {
+      setChat(Object.values(messages[roomId]) || []);
       setIsLoading(false);
     }
 
@@ -65,10 +65,14 @@ function MessageFeed() {
   }, [dispatch, roomId, isLoaded, setChat]);
 
   useEffect(() => {
-    // if ((chat.length === 0)) {
-      // setChat(Object.values(messages));
-      // setIsLoading(false);
-    // }
+    if ((chat.length === 0) && messages) {
+      if (messages.length) {
+        setChat(Object.values(messages[roomId]) || []);
+        setIsLoading(false);
+      } else {
+        setIsLoading(false)
+      }
+    }
   }, [messages, roomId, setChat]);
 
   const handleLeave = async ()  => {
