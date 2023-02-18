@@ -126,7 +126,7 @@ export default function reducer(state = defaultState, action) {
 
     switch (action.type) {
         case LOAD_PROFILE_POSTS:
-            return {...action.payload}
+            return {...newState, ...action.payload}
         case LOAD_FEED_POSTS:
             return {...action.payload}
         case LOAD_POST:

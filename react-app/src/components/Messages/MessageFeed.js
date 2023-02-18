@@ -20,12 +20,6 @@ function MessageFeed() {
   const [targetMessage, setTargetMessage] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
-  // if (!messageServer) {
-  //   history.push('/messages')
-  // }
-
-
-
   const handleLeave = async ()  => {
     history.push('/messages')
     const leave = await dispatch(leaveMessageServerThunk(messageServerId))
