@@ -15,7 +15,6 @@ function ProfilePosts() {
   }, [dispatch]);
 
   const filterPosts = () => {
-
     if (posts && Object.values(posts).length) {
 
       const values = Object.values(posts);
@@ -31,26 +30,29 @@ function ProfilePosts() {
     }
   }
 
-    if (!Object.values(posts).length) {
-      return <h1 className='profile-user-has-not-posted'>This user has not posted yet</h1>
-    } else {
+    if (posts) {
       const filteredPosts = filterPosts()
-      return (
-        <div className='user-profile-container'>
-          <div className='profile-posts-grid-container'>
-            {posts &&  filteredPosts.map((post) => {
-              return (
-              <div key={post.id} className='profile-post-container'>
-                <NavLink to={`/posts/${post.id}`}>
-                <img src={post.media} className='profile-post-media'></img>
-                </NavLink>
-              </div>
-              )
-            })}
+
+      if (!filteredPosts.length) {
+        return <h1 className='profile-user-has-not-posted'>This user has not posted yet</h1>
+      } else {
+        return (
+          <div className='user-profile-container'>
+            <div className='profile-posts-grid-container'>
+              {posts &&  filteredPosts.map((post) => {
+                return (
+                <div key={post.id} className='profile-post-container'>
+                  <NavLink to={`/posts/${post.id}`}>
+                  <img src={post.media} className='profile-post-media'></img>
+                  </NavLink>
+                </div>
+                )})}
+            </div>
           </div>
-        </div>
-        );
+          );
+        }
       }
     }
+
 
 export default ProfilePosts;
