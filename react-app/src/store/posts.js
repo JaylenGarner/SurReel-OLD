@@ -130,13 +130,14 @@ export default function reducer(state = defaultState, action) {
         case LOAD_FEED_POSTS:
             return {...newState, ...action.payload}
         case LOAD_POST:
-            return {post: action.payload}
+            return {...newState, [action.payload.id] : action.payload}
         case CREATE_POST:
-            return {post: action.payload}
+            return {...newState, [action.payload.id] : action.payload}
         case EDIT_POST:
-            return {post: action.payload}
+            return {...newState, [action.payload.id] : action.payload}
         case DELETE_POST:
-            return {post: 'deleted'};
+            delete newState[action.postId]
+            return newState
         default:
             return state;
     }

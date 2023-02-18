@@ -9,7 +9,6 @@ import LikesModalContent from '../Likes/LikesModalContent';
 import { likePostThunk } from '../../store/likes';
 import { unlikePostThunk } from '../../store/likes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as faHeartO } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import './PostPage.css';
 
@@ -18,8 +17,6 @@ function PostPage() {
   const history = useHistory()
   const user = useSelector((state) => state.session.user)
   const posts = useSelector((state) => state.posts)
-  const post = posts.post
-
 
   const { postId } = useParams()
 
@@ -32,11 +29,9 @@ function PostPage() {
     const redirectToProfile = await history.push(`/users/${user.id}/profile`);
   }
 
-
   useEffect(() => {
      dispatch(loadPostThunk(postId));
   }, [dispatch]);
-
 
   const isLiked = (post) => {
 
@@ -48,10 +43,8 @@ function PostPage() {
 
       // Liked
       if (like.user.id == user.id) {
-        console.log('LIKED')
-        return (
 
-          // <span>Liked</span>
+        return (
         <button className="like-button" onClick={(e) => handleUnlike(e, post.id)}>
         <FontAwesomeIcon icon={faHeartFilled} />
         </button>)
@@ -79,12 +72,17 @@ function PostPage() {
       const reload = await dispatch(loadPostThunk(postId))
     };
 
-    if (post === 'deleted' || !post) {
-      return null;
-    }
+    // if (post === 'deleted' || !post) {
+    //   return null;
+    // }
 
+    if (!posts || !posts[postId]) {
+      return <></>
+    } else {
 
-  return (
+    const post = posts[postId]
+
+    return (
     <div className='post-page-grid'>
       <img className='post-page-image' src={post.media}></img>
       <div className='post-page-content'>
@@ -154,5 +152,6 @@ function PostPage() {
       </div>
     </div>
   );
+  }
 }
 export default PostPage;
