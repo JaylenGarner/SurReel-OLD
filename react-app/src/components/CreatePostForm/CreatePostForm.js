@@ -81,7 +81,10 @@ const CreatePostForm = () => {
             />
             </div>
             <button type="submit" className='login-button'>Create Post</button>
-            {(imageLoading)&& <p>Loading...</p>}
+            {(imageLoading)&& <div className='aws-loading-container'>
+                <div class="aws-loading"><div></div><div></div><div></div></div>
+                </div>
+            }
         </form>
             </div>
             </div>
