@@ -17,6 +17,9 @@ By _[Jaylen Garner](https://github.com/JaylenGarner)_
 - CSS
 - Python
 - Flask/SQLAlchemy
+- PostgreSQL (production)
+- SQLite3 (development)
+- AWS S3 (Uploading images)
 
 ## Overview
 
