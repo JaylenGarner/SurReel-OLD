@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { createCommentThunk } from '../../../store/comments';
 import './CreateComment.css'
 
-const CreateComment = () => {
+const CreateComment = ({id}) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
@@ -14,7 +14,7 @@ const CreateComment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createCommentThunk(postId, comment))
+    dispatch(createCommentThunk((postId || id), comment))
     setComment('')
   };
 
@@ -36,9 +36,9 @@ const CreateComment = () => {
               />
             </div>
             <div className='post-submission-area'>
-            <button type="submit" className="comment-button">
+              {comment.length ? <button type="submit" className="comment-button">
               Post
-            </button>
+            </button> : <></>}
         </div>
     </form>
   );

@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal'
 import './HomeFeed.css'
+import CreateComment from '../PostPage/CreateComment/CreateComment'
 import { loadFollowingThunk } from '../../store/follows';
 
 import { likeHelper } from '../../utils/likes/likeHelper';
@@ -163,8 +164,15 @@ function HomeFeed() {
                  <button onClick={() => setModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
                  <LikesModalContent setModalIsOpen={setModalIsOpen} postId={currentPost}/>
               </Modal>
-
+               <div>
+                 <NavLink to={`/users/${post.owner.id}/profile`} className='home-feed-caption-area-username'><span>{post.owner.username}</span></NavLink>
                  <span>{post.caption}</span>
+               </div>
+
+                {/* <span>leave a comment</span> */}
+                {/* <CreateComment /> */}
+                <NavLink to={`/posts/${post.id}`} className='view-all-comments'><span>View all comments...</span></NavLink>
+               <CreateComment id={post.id}/>
                  </div>
              </div>
          })}

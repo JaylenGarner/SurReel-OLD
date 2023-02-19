@@ -139,3 +139,18 @@
     cursor: pointer;
     background-color: #3975EA;
 }
+
+.home-feed-caption-area-username {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.view-all-comments {
+    padding-top: 8px;
+    text-decoration: none;
+    color: gray;
+    font-style: italic;
+    font-size: 16px;
+}
