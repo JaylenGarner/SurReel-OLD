@@ -55,3 +55,14 @@ input::file-selector-button:hover {
     height: 32px;
   }
 }
+
+.post-submission-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-post-preview-image {
+  height: 300px;
+  width: 300px;
+}

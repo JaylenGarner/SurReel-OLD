@@ -1,0 +1,17 @@
+.edit-server-form-container {
+    text-align: center;
+}
+
+.edit-post-form-change-button {
+    background: none;
+    border: none;
+    padding-top: 25px;
+    color: #5791E8;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.edit-post-form-change-button:hover {
+    cursor: pointer;
+    color: #3975EA;
+}

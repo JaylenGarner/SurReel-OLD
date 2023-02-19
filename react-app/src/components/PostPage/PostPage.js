@@ -119,7 +119,9 @@ function PostPage() {
               }}
               >
                 <EditPostForm currentCaption={post.caption} setEditCaptionModalIsOpen={setEditCaptionModalIsOpen}/>
-                <button onClick={() => setEditCaptionModalIsOpen(false)}>Cancel</button>
+                <div className='edit-post-cancel-button-container'>
+                <button onClick={() => setEditCaptionModalIsOpen(false)} className='edit-post-cancel-button'>Cancel</button>
+                </div>
              </Modal>
 
              <Modal

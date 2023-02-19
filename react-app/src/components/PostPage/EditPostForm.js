@@ -5,7 +5,6 @@ import { editPostThunk } from '../../store/posts';
 import { loadPostThunk } from '../../store/posts';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import MessageOptions from '../Messages/MessageOptions/MessageOptions';
 import './EditPostForm.css'
 
 const EditPostForm = ({currentCaption, setEditCaptionModalIsOpen}) => {
@@ -54,7 +53,7 @@ const EditPostForm = ({currentCaption, setEditCaptionModalIsOpen}) => {
           required
           />
         <div className='edit-form-button-container'>
-        <button type='submit' className='edit-form-button'>Change Caption</button>
+        <button type='submit' className='edit-post-form-change-button'>Change Caption</button>
         </div>
       </div>
     </form>
