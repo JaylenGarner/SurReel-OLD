@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { followUserThunk } from '../../../../store/follows';
-import { unfollowUserThunk } from '../../../../store/follows';
-import { loadFollowersThunk } from '../../../../store/follows';
+import { followUserThunk } from '../../../../store/following';
+import { unfollowUserThunk } from '../../../../store/following';
+import { loadFollowersThunk } from '../../../../store/followers';
 import './FollowButton.css';
 
 function FollowButton({targetUserId, followers, following}) {

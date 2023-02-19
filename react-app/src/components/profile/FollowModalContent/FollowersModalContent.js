@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './FollowersModalContent.css';
 
-function FollowersModalContent({setFollowerModalIsOpen}) {
-  let followers = useSelector((state) => state.follows.followers)
+function FollowersModalContent({setFollowerModalIsOpen, followers}) {
 
     if (followers) {
         return (

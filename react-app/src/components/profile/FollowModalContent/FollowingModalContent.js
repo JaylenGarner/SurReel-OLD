@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import './FollowersModalContent.css';
 
 function FollowingModalContent({setFollowingModalIsOpen}) {
-  let following = useSelector((state) => state.follows.following)
+  let following = useSelector((state) => state.following)
 
     if (following) {
         return (

@@ -1,25 +1,8 @@
 const defaultState = {}
 
-const LOAD_FOLLOWERS = 'follows/LOAD_FOLLOWERS';
 const LOAD_FOLLOWING = 'follows/LOAD_FOLLOWING'
 const FOLLOW_USER = 'follows/FOLLOW_USER';
 const UNFOLLOW_USER = 'follows/UNFOLLOW_USER'
-
-const loadFollowers = payload => {
-    return {
-        type: LOAD_FOLLOWERS,
-        payload
-    }
-}
-
-export const loadFollowersThunk = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/users/${userId}/followers`)
-
-    if (res.ok) {
-        const data = await res.json()
-        dispatch(loadFollowers(data))
-      }
-}
 
 const loadFollowing = payload => {
     return {
@@ -73,13 +56,12 @@ export default function reducer(state = defaultState, action) {
     const newState = {...state}
 
     switch (action.type) {
-        case LOAD_FOLLOWERS:
-            return {...state, followers: action.payload}
         case LOAD_FOLLOWING:
-            return {...state, following: action.payload}
+            return {...newState, ...action.payload}
         case FOLLOW_USER:
-            return {...newState}
+            return {...newState, [action.payload.id]: action.payload}
         case UNFOLLOW_USER:
+            delete newState[action.payload]
             return {...newState}
         default:
             return state;

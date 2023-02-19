@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal'
 import './HomeFeed.css'
-import { loadFollowingThunk } from '../../store/follows';
+import { loadFollowingThunk } from '../../store/following';
 
 import { likeHelper } from '../../utils/likes/likeHelper';
 
@@ -20,7 +20,7 @@ function HomeFeed() {
   const user = useSelector((state) => state.session.user)
   const posts = useSelector((state) => state.posts)
   const likes = useSelector((state) => state.likes)
-  const following = useSelector((state) => state.follows.following)
+  const following = useSelector((state) => state.following)
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState()
   const [postLikes, setPostLikes] = useState({});

@@ -2,14 +2,16 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
 import posts from './posts'
-import follows from './follows'
+import followers from './followers'
+import following from './following'
 import likes from './likes'
 import messages from './messages'
 
 const rootReducer = combineReducers({
   session,
   posts,
-  follows,
+  followers,
+  following,
   likes,
   messages
 });
