@@ -31,10 +31,10 @@
     margin-right: 10px;
 }
 
-.message-sent-by-me:hover {
+/* .message-sent-by-me:hover {
     cursor: pointer;
     background: #444242;
-}
+} */
 
 .message-body-sent-by-me {
     text-align: left;

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import DirectMessagesNav from '../DirectMessagesNav/DirectMessagesNav';
-import MessageFeed from '../MessageFeed';
-import './HomeMessagesPage.css';
+import RoomsNav from '../../Rooms/RoomsNav/RoomsNav';
+import MessageFeed from '../MessageFeed/MessageFeed';
+import './MessagingHome.css';
 
-const HomeMessagesPage = () => {
+const MessagingHome = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user)
 
@@ -13,7 +13,7 @@ const HomeMessagesPage = () => {
             <div className='message-page-flex-container'>
             <div className='message-page-content-container'>
                 <div className='dm-nav-container'>
-                    <DirectMessagesNav />
+                    <RoomsNav />
                 </div>
                 <div className='dm-home-page-messages-feed-container'>
                     <h1 className='messages-home-your-messages'>Your messages</h1>
@@ -26,4 +26,4 @@ const HomeMessagesPage = () => {
 }
 
 
-export default HomeMessagesPage;
+export default MessagingHome;

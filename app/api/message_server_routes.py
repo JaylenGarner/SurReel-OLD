@@ -143,3 +143,18 @@ def create_a_message(id):
     db.session.commit()
 
     return new_message.to_dict()
+
+
+@message_servers_routes.route('/<int:id>/messages')
+@login_required
+def get_messages_by_room(id):
+
+    res = {}
+
+    messages = Message.query.filter(Message.message_server_id == id).all()
+
+    for message in messages:
+        message_id = message.to_dict()['id']
+        res[f'{message_id}'] = message.to_dict()
+
+    return res

@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { loadMessageServersThunk } from '../../../store/messages';
-import './DirectMessagesNav.css';
+import { deleteRoomThunk, loadRoomsThunk } from '../../../store/rooms';
+import './RoomsNav.css';
 
-const DirectMessagesNav = () => {
+const RoomsNav = () => {
   const dispatch = useDispatch();
   const history = useHistory()
-  const messageServs = useSelector((state) => state.messages.messageServers)
+  const rooms = useSelector((state) => state.rooms)
   const user = useSelector((state) => state.session.user)
 
   useEffect(() => {
 
     if (user) {
-      dispatch(loadMessageServersThunk());
+      dispatch(loadRoomsThunk());
     }
   }, [dispatch]);
 
@@ -22,7 +22,7 @@ const DirectMessagesNav = () => {
     return null;
   }
 
-    if (messageServs === null) {
+    if (!rooms) {
       return (
       <div className='dm-nav-username-container'>
       <h1 className='dm-nav-username'>{user.username}</h1>
@@ -39,7 +39,7 @@ const DirectMessagesNav = () => {
         <img className='componse-message-icon' src={'https://surreel-app-images.s3.amazonaws.com/assets/componse_icon_white.png'}></img>
         </NavLink>
       </div>
-      {messageServs && Object.values(messageServs).map((serv) => {
+      {rooms && Object.values(rooms).map((serv) => {
         let members = serv.members
         let resMembers = []
 
@@ -74,4 +74,4 @@ const DirectMessagesNav = () => {
 }
 
 
-export default DirectMessagesNav;
+export default RoomsNav;

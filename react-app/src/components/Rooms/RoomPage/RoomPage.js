@@ -1,32 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import DirectMessagesNav from '../DirectMessagesNav/DirectMessagesNav';
-import MessageFeed from '../MessageFeed';
-import { leaveMessageServerThunk } from '../../../store/messages';
-import { loadMessageServersThunk } from '../../../store/messages';
-import { loadOneMessageServerThunk } from '../../../store/messages';
+import RoomsNav from '../RoomsNav/RoomsNav';
+import MessageFeed from '../../Messages/MessageFeed/MessageFeed';
+import { deleteRoomThunk, loadRoomsThunk } from '../../../store/rooms';
 import { createMessageThunk } from '../../../store/messages';
-import './HomeMessagesPage.css';
-import './MessageServerPage.css';
+import '../../Messages/MessagingHome/MessagingHome.css'
+import './RoomPage.css';
 
-const MessageServerPage = () => {
+const RoomPage = () => {
   const dispatch = useDispatch();
   const history = useHistory()
-  const { messageServerId } = useParams()
+  const { roomId } = useParams()
   const user = useSelector((state) => state.session.user)
 
   const [body, setBody] = useState('')
-
 
   const updateBody = (e) => {
     setBody(e.target.value);
 }
 
-  const handleLeave = async ()  => {
+  const handleDelete = async ()  => {
+    dispatch(deleteRoomThunk(roomId))
     history.push('/messages')
-    const leave = await dispatch(leaveMessageServerThunk(messageServerId))
-    const reload = await dispatch(loadMessageServersThunk())
   }
 
   const handleSend = async (e) => {
@@ -35,8 +31,7 @@ const MessageServerPage = () => {
     if (body.length < 1) {
       return
     } else {
-      const send = await dispatch(createMessageThunk(messageServerId, body))
-      const reload = await dispatch(loadOneMessageServerThunk(messageServerId))
+      const send = await dispatch(createMessageThunk(roomId, body))
       setBody('')
     }
   }
@@ -52,7 +47,7 @@ const MessageServerPage = () => {
             <div className='message-page-flex-container'>
             <div className='message-page-content-container'>
                 <div className='dm-nav-container'>
-                    <DirectMessagesNav />
+                    <RoomsNav />
                 </div>
                 <div className='dm-page-messages-feed-container'>
                     <MessageFeed />
@@ -69,7 +64,7 @@ const MessageServerPage = () => {
                         >
                         </input>
                         <img onClick={(e) => handleSend(e)} className='send-message-submit' src='https://surreel-app-images.s3.amazonaws.com/assets/send_icon.png'></img>
-                    <span className='leave-conversation' onClick={() => handleLeave()}>Delete Chat</span>
+                    <span className='leave-conversation' onClick={() => handleDelete()}>Delete Chat</span>
                     </div>
                 </div>
             </div>
@@ -79,4 +74,4 @@ const MessageServerPage = () => {
 }
 
 
-export default MessageServerPage;
+export default RoomPage;

@@ -11,9 +11,9 @@ import Profile from './components/Profile/Profile/Profile';
 import PostPage from './components/PostPage/PostPage';
 import HomeFeed from './components/HomeFeed/HomeFeed';
 import CreatePostForm from './components/CreatePostForm/CreatePostForm';
-import HomeMessagesPage from './components/Messages/MessagePages/HomeMessagesPage';
-import MessageServerPage from './components/Messages/MessagePages/MessageServerPage';
-import CreateDmPage from './components/Messages/MessagePages/CreateDmPage'
+import MessagingHome from './components/Messages/MessagingHome/MessagingHome';
+import RoomPage from './components/Rooms/RoomPage/RoomPage';
+import CreateRoomPage from './components/Rooms/CreateRoom/CreateRoomPage/CreateRoomPage'
 import { authenticate } from './store/session';
 
 function App() {
@@ -63,15 +63,15 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/messages' exact={true} >
         <NavBar />
-        <HomeMessagesPage />
+        <MessagingHome />
         </ProtectedRoute>
         <ProtectedRoute path='/messages/create' exact={true} >
         <NavBar />
-        <CreateDmPage />
+        <CreateRoomPage />
         </ProtectedRoute>
-        <ProtectedRoute path='/messages/:messageServerId' exact={true} >
+        <ProtectedRoute path='/messages/:roomId' exact={true} >
         <NavBar />
-        <MessageServerPage />
+        <RoomPage />
         </ProtectedRoute>
         <Route path='/' exact={true} >
         <NavBar />
