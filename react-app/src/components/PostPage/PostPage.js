@@ -7,6 +7,7 @@ import Modal from 'react-modal'
 import EditPostForm from './EditPostForm';
 import LikesModalContent from '../Likes/LikesModalContent';
 import PostPageComments from './PostPageComments/PostPageComments';
+import CreateComment from './CreateComment/CreateComment';
 import { likePostThunk } from '../../store/likes';
 import { unlikePostThunk } from '../../store/likes';
 import { loadLikesThunk } from '../../store/likes';
@@ -108,6 +109,7 @@ function PostPage() {
               {/* Like logic */}
               {isLiked(post)}
               <span onClick={() => setLikesModalIsOpen(true)} className='post-page-likes-modal-button'>Likes</span>
+              <CreateComment />
              </div>
           <div>
         </div>

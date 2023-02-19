@@ -98,6 +98,7 @@
     cursor: pointer;
     margin-bottom: 10px;
     text-align: left;
+    width: fit-content;
   }
 
   .like-button-empty {
@@ -106,21 +107,25 @@
     cursor: pointer;
     text-align: left;
     margin-bottom: 10px;
+    width: fit-content;
   }
 
 .like-button svg {
     font-size: 26px;
     color: red;
+    width: fit-content;
 }
 
 .like-button-empty svg {
     font-size: 26px;
     color: white;
+    width: fit-content;
 }
 
 .post-page-likes-modal-button {
     cursor: pointer;
     font-weight: bold;
+    width: fit-content;
 }
 
 .edit-post-cancel-button-container {
@@ -144,7 +149,7 @@
 .post-page-interaction-grid {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 81vh 11vh;
+    grid-template-rows: 75vh 17vh;
 }
 
 .post-page-comments-feed-container {

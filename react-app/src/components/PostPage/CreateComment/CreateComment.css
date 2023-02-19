@@ -1,0 +1,27 @@
+.create-comment-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+}
+
+.create-comment-input {
+    color: gray;
+    background: none;
+    border: none;
+    font-size: 16px;
+}
+
+.comment-button {
+    color:  #4193EF;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.comment-button:hover {
+    cursor: pointer;
+    color: white;
+}

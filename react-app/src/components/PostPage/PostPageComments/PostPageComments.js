@@ -12,8 +12,9 @@ function PostPageComments() {
     const comments = useSelector((state) => state.comments)
 
     if (!comments) {
-        return <h1>There are no comments, be the first!</h1>
+        return <></>
     } else {
+
         return (
             <div className='post-page-comment-feed-container'>
                 {Object.values(comments).map((comment) => {
