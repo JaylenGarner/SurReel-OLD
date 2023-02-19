@@ -32,6 +32,7 @@ const CreateComment = () => {
                 onChange={handleCommentChange}
                 value={comment}
                 placeholder="Leave a comment..."
+                required='true'
               />
             </div>
             <div className='post-submission-area'>

@@ -145,6 +145,7 @@ function HomeFeed() {
                    >Likes</span>
                  <Modal
                isOpen={modalIsOpen}
+
                style={{
                  content: {
                    width: '400px',
