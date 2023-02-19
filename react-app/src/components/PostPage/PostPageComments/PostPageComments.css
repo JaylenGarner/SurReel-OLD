@@ -1,0 +1,16 @@
+.post-page-comment-feed-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.post-page-comment-container {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.post-page-comment-body {
+    font-size: 16px;
+}

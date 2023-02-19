@@ -19,6 +19,8 @@
     background: none;
     color: #4193EF;
     border: none;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .delete-post-button {
@@ -27,6 +29,8 @@
     background: none;
     color: #4193EF;
     border: none;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .edit-caption-button:hover {
@@ -138,25 +142,18 @@
 }
 
 .post-page-interaction-grid {
-    /* background-color: red; */
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 83vh 9vh;
+    grid-template-rows: 81vh 11vh;
 }
 
 .post-page-comments-feed-container {
-    /* background-color: green; */
     grid-row: 1;
-    background-color: blue;
     overflow: auto;
 }
 
 .post-page-interaction-area-container {
-    /* position: absolute;
-    bottom: 2vw; */
-    /* background-color: blue; */
     grid-row: 2;
-    /* width: 40vw; */
     border-top: 0.1px solid gray;
     padding-top: 20px;
     display: flex;

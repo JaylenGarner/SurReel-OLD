@@ -6,6 +6,7 @@ import { deletePostThunk } from '../../store/posts';
 import Modal from 'react-modal'
 import EditPostForm from './EditPostForm';
 import LikesModalContent from '../Likes/LikesModalContent';
+import PostPageComments from './PostPageComments/PostPageComments';
 import { likePostThunk } from '../../store/likes';
 import { unlikePostThunk } from '../../store/likes';
 import { loadLikesThunk } from '../../store/likes';
@@ -100,7 +101,7 @@ function PostPage() {
         <div className='post-page-interaction-grid'>
 
           <div className='post-page-comments-feed-container'>
-            comments
+            <PostPageComments />
           </div>
 
         <div className='post-page-interaction-area-container'>
