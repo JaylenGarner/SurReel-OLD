@@ -67,17 +67,10 @@ function PostPage() {
     const handleUnlike = async (e, postId) => {
       e.preventDefault()
 
-      if (likes) {
+      const like = likeHelper(user.id, postId, likes)
 
-        const like = Object.values(likes).filter((like) => {
-          return (like.post_id == postId && like.user.id == user.id)
-        })
-
-        console.log(like, 'LIKE')
-
-        if (like) {
-          const data = await dispatch(unlikePostThunk(postId, like[0].id))
-        }
+      if (user && likes && like) {
+        const data = await dispatch(unlikePostThunk(postId, like.id))
       }
     };
 
@@ -86,8 +79,6 @@ function PostPage() {
     } else {
 
     const post = posts[postId]
-
-    isLiked(post)
 
     return (
     <div className='post-page-grid'>
