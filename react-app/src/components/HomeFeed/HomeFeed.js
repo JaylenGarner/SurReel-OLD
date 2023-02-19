@@ -11,6 +11,8 @@ import Modal from 'react-modal'
 import './HomeFeed.css'
 import { loadFollowingThunk } from '../../store/follows';
 
+import { likeHelper } from '../../utils/likes/likeHelper';
+
 function HomeFeed() {
   const dispatch = useDispatch();
   const history = useHistory()
@@ -21,100 +23,79 @@ function HomeFeed() {
   const following = useSelector((state) => state.follows.following)
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState()
-  const [isLiking, setIsLiking] = useState(false);
+  const [postLikes, setPostLikes] = useState({});
 
-  const isLiked = (post) => {
-
-    let likes = []
-    if (post.likes) likes = post.likes
-
-    for (let i = 0; i < likes.length; i++) {
-      let like = likes[i]
-
-      // Liked
-      if (like.user.id == user.id) {
-        return (
-        <button className="like-button" onClick={(e) => handleUnlike(e, post.id)}>
-        <FontAwesomeIcon icon={faHeartFilled} />
-        </button>)
-      }
-    }
-
-      // Not liked
-      return (
-        <button className="like-button-empty" onClick={(e) => handleLike(e, post)}>
-        <FontAwesomeIcon icon={faHeartFilled} />
-        </button>
-      )
-    }
-
-    const handleLike = async (e, post) => {
-      e.preventDefault()
-      if (isLiking) return;
-      setIsLiking(true);
-
-     let liked;
-
-      if (likes) {
-        Object.values(likes).forEach((like) => {
-          if (like.post_id == post.id && like.user.id == user.id) liked = true
-        })
-      }
-
-      if (likes && liked) {
-        return
-      } else {
-        const data = await dispatch(likePostThunk(post.id))
-        const reload = await dispatch(loadFeedPostsThunk(user.id))
-        setIsLiking(false);
-      }
-    };
-
-    const handleUnlike = async (e, postId) => {
-      e.preventDefault()
-
-      dispatch(loadLikesThunk(postId))
-
-      if (likes) {
-
-        const like = Object.values(likes).filter((like) => {
-          return (like.post_id == postId && like.user.id == user.id)
-        })
-
-
-        const data = await dispatch(unlikePostThunk(postId, like[0].id))
-      }
-
-    };
 
   useEffect(() => {
 
     if (user) {
       dispatch(loadFeedPostsThunk(user.id));
-      dispatch(loadFollowingThunk(user.id))
+      dispatch(loadFollowingThunk(user.id));
     }
 
   }, [dispatch]);
+
+  const isLiked = (post) => {
+
+    if (user && likes && post) {
+      const myLike = likeHelper(user.id, post.id, likes)
+
+    // Liked
+    if (myLike) {
+      return (
+        <button className="like-button" onClick={(e) => handleUnlike(e, post.id)}>
+          <FontAwesomeIcon icon={faHeartFilled} />
+        </button>)
+      }
+      // Not liked
+      return (
+        <button className="like-button-empty" onClick={(e) => handleLike(e, post.id)}>
+          <FontAwesomeIcon icon={faHeartFilled} />
+        </button>
+      )
+    }
+  }
+
+  const handleLike = async (e, postId) => {
+    e.preventDefault()
+    const data = await dispatch(likePostThunk(postId))
+  };
+
+  const handleUnlike = async (e, postId) => {
+    e.preventDefault()
+
+    const like = likeHelper(user.id, postId, likes)
+
+    if (user && likes && like) {
+      const data = await dispatch(unlikePostThunk(postId, like.id))
+    }
+  };
 
   const filterPosts = () => {
     const userIds = []
 
     if (following && Object.values(following).length) {
-
       const users = Object.values(following);
-
       users.forEach((user) => {
         if (!userIds.includes(user.id)) userIds.push(user.id)
       })
     }
 
     if (posts && Object.values(posts).length) {
-
       const values = Object.values(posts);
-
       const filteredPosts = values.filter((post) => {
         return userIds.includes(post.owner_id)
       });
+
+      if (filterPosts && !Object.keys(postLikes).length) {
+        filteredPosts.forEach((post) => {
+          dispatch(loadLikesThunk(post.id)).then((likes) => {
+            setPostLikes((prevPostLikes) => {
+              return { ...prevPostLikes, [post.id]: likes };
+            });
+          });
+        });
+      }
 
       return filteredPosts;
 
