@@ -7,8 +7,6 @@ import './LikePostButton.css'
 
 const LikePostButton = ({postId}) => {
 
-
-
   return (
     <button className="like-button">
         {/* liked ? faHeartFilled : faHeartO} */}

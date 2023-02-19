@@ -8,20 +8,29 @@ import EditPostForm from './EditPostForm';
 import LikesModalContent from '../Likes/LikesModalContent';
 import { likePostThunk } from '../../store/likes';
 import { unlikePostThunk } from '../../store/likes';
+import { loadLikesThunk } from '../../store/likes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import './PostPage.css';
+
+import { likeHelper } from '../../utils/likes/likeHelper';
 
 function PostPage() {
   const dispatch = useDispatch();
   const history = useHistory()
   const user = useSelector((state) => state.session.user)
   const posts = useSelector((state) => state.posts)
+  const likes = useSelector((state) => state.likes)
 
   const { postId } = useParams()
 
   const [editCaptionModalIsOpen, setEditCaptionModalIsOpen] = useState(false);
   const [likesModalIsOpen, setLikesModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(loadPostThunk(postId));
+    dispatch(loadLikesThunk(postId))
+ }, [dispatch]);
 
   const handleDelete = async (e, postId) => {
     e.preventDefault()
@@ -29,58 +38,56 @@ function PostPage() {
     const redirectToProfile = await history.push(`/users/${user.id}/profile`);
   }
 
-  useEffect(() => {
-     dispatch(loadPostThunk(postId));
-  }, [dispatch]);
-
   const isLiked = (post) => {
 
-    let likes = []
-    if (post.likes) likes = post.likes
+    if (user && likes) {
+      const myLike = likeHelper(user.id, post.id, likes)
 
-    for (let i = 0; i < likes.length; i++) {
-      let like = likes[i]
-
-      // Liked
-      if (like.user.id == user.id) {
-
-        return (
+    // Liked
+    if (myLike) {
+      return (
         <button className="like-button" onClick={(e) => handleUnlike(e, post.id)}>
-        <FontAwesomeIcon icon={faHeartFilled} />
+          <FontAwesomeIcon icon={faHeartFilled} />
         </button>)
       }
-    }
-
-    // Not liked
-    console.log('NOT LIKED')
+      // Not liked
       return (
         <button className="like-button-empty" onClick={(e) => handleLike(e, post.id)}>
-        <FontAwesomeIcon icon={faHeartFilled} />
+          <FontAwesomeIcon icon={faHeartFilled} />
         </button>
       )
     }
+  }
 
     const handleLike = async (e, postId) => {
       e.preventDefault()
       const data = await dispatch(likePostThunk(postId))
-      const reload = await dispatch(loadPostThunk(postId))
     };
 
     const handleUnlike = async (e, postId) => {
       e.preventDefault()
-      const data = await dispatch(unlikePostThunk(postId))
-      const reload = await dispatch(loadPostThunk(postId))
-    };
 
-    // if (post === 'deleted' || !post) {
-    //   return null;
-    // }
+      if (likes) {
+
+        const like = Object.values(likes).filter((like) => {
+          return (like.post_id == postId && like.user.id == user.id)
+        })
+
+        console.log(like, 'LIKE')
+
+        if (like) {
+          const data = await dispatch(unlikePostThunk(postId, like[0].id))
+        }
+      }
+    };
 
     if (!posts || !posts[postId]) {
       return <></>
     } else {
 
     const post = posts[postId]
+
+    isLiked(post)
 
     return (
     <div className='post-page-grid'>
@@ -144,7 +151,7 @@ function PostPage() {
                   <span className='profile-following-modal-header-text'>Likes</span>
                 </div>
                 <button onClick={() => setLikesModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
-                <LikesModalContent setModalIsOpen={setLikesModalIsOpen} postId={post.id} postPage={true}/>
+                <LikesModalContent setModalIsOpen={setLikesModalIsOpen} postId={post.id}/>
              </Modal>
             </div>
           </div>

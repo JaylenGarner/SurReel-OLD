@@ -79,7 +79,7 @@ def like_post(id):
     db.session.add(new_like)
     db.session.commit()
 
-    return post.to_dict()
+    return new_like.to_dict()
 
 
 @post_routes.route('/<int:id>/unlike', methods = ['DELETE'])
@@ -88,11 +88,10 @@ def unlike_post(id):
     like = Like.query.filter(and_(Like.user_id == current_user.id,
     Like.post_id == id)).first()
 
-
     db.session.delete(like)
     db.session.commit()
 
-    return 'You have unliked the post'
+    return like.to_dict()
 
 
 # Create a post

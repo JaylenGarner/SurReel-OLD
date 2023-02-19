@@ -37,19 +37,20 @@ export const likePostThunk = (postId) => async (dispatch) => {
     }
 }
 
-const unlikePost = (payload) => {
+const unlikePost = (payload, likeId) => {
     return {
         type: UNLIKE_POST,
-        payload
+        payload,
+        likeId
     }
 }
 
-export const unlikePostThunk = (postId) => async (dispatch) => {
+export const unlikePostThunk = (postId, likeId) => async (dispatch) => {
     const unlike = await fetch(`/api/posts/${postId}/unlike`, {
         method: "DELETE"
     })
 
-    if (unlike.ok) dispatch(unlikePost(postId))
+    if (unlike.ok) dispatch(unlikePost(postId, likeId))
 }
 
 export default function reducer(state = defaultState, action) {
@@ -57,10 +58,11 @@ export default function reducer(state = defaultState, action) {
 
     switch (action.type) {
         case LOAD_LIKES:
-            return {...action.payload}
+            return {...newState, ...action.payload}
         case LIKE_POST:
-            return {...action.payload}
+            return {...newState, [action.payload.id]: action.payload}
         case UNLIKE_POST:
+            delete newState[action.likeId]
             return {...newState}
         default:
             return state;

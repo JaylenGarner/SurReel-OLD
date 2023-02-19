@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { loadFeedPostsThunk } from '../../store/posts';
 import LikesModalContent from '../Likes/LikesModalContent';
-import { likePostThunk } from '../../store/likes';
+import { likePostThunk, loadLikesThunk } from '../../store/likes';
 import { unlikePostThunk } from '../../store/likes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +17,7 @@ function HomeFeed() {
 
   const user = useSelector((state) => state.session.user)
   const posts = useSelector((state) => state.posts)
+  const likes = useSelector((state) => state.likes)
   const following = useSelector((state) => state.follows.following)
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState()
@@ -54,11 +55,13 @@ function HomeFeed() {
 
      let liked;
 
-      post.likes.forEach((like) => {
-        if (like.user.id == user.id) liked = true
-      })
+      if (likes) {
+        Object.values(likes).forEach((like) => {
+          if (like.post_id == post.id && like.user.id == user.id) liked = true
+        })
+      }
 
-      if (liked) {
+      if (likes && liked) {
         return
       } else {
         const data = await dispatch(likePostThunk(post.id))
@@ -69,8 +72,19 @@ function HomeFeed() {
 
     const handleUnlike = async (e, postId) => {
       e.preventDefault()
-      const data = await dispatch(unlikePostThunk(postId))
-      const reload = await dispatch(loadFeedPostsThunk(user.id))
+
+      dispatch(loadLikesThunk(postId))
+
+      if (likes) {
+
+        const like = Object.values(likes).filter((like) => {
+          return (like.post_id == postId && like.user.id == user.id)
+        })
+
+
+        const data = await dispatch(unlikePostThunk(postId, like[0].id))
+      }
+
     };
 
   useEffect(() => {
