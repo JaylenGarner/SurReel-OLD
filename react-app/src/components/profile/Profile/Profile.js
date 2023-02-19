@@ -21,7 +21,6 @@ function Profile() {
   const [followerModalIsOpen, setFollowerModalIsOpen] = useState(false);
   const [followingModalIsOpen, setFollowingModalIsOpen] = useState(false);
 
-
   useEffect(() => {
     if (!userId) {
       return;
@@ -43,6 +42,16 @@ function Profile() {
   if (!following) following = 0
   // if (followers) setFollowLength(Object.keys(followers).length)
 
+  const postCount = () => {
+    let count = 0;
+
+    Object.values(posts).forEach((post) => {
+      if (post.owner_id == userId) count++;
+    })
+
+    return count;
+  }
+
   return (
     <div className='profile-container'>
         <div className='profile-info-area'>
@@ -56,7 +65,7 @@ function Profile() {
             </div>
             <div className='profile-stats-area'>
               {posts && <div>
-                <span className='profile-count-numbers'>{Object.keys(posts).length} </span>
+                <span className='profile-count-numbers'>{postCount()} </span>
                 <span className='profile-count-labels'>posts </span>
               </div>}
               <Modal
