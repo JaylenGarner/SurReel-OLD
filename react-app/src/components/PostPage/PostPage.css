@@ -87,17 +87,6 @@
     border-radius: 25px;
 }
 
-.post-page-interaction-area-container {
-    position: absolute;
-    bottom: 2vw;
-    /* background-color: red; */
-    width: 40vw;
-    border-top: 0.1px solid gray;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
 
 .like-button {
     border: none;
@@ -146,4 +135,30 @@
 .edit-post-cancel-button:hover {
     cursor: pointer;
     color: rgb(223, 9, 9);
+}
+
+.post-page-interaction-grid {
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 83vh 9vh;
+}
+
+.post-page-comments-feed-container {
+    /* background-color: green; */
+    grid-row: 1;
+    background-color: blue;
+    overflow: auto;
+}
+
+.post-page-interaction-area-container {
+    /* position: absolute;
+    bottom: 2vw; */
+    /* background-color: blue; */
+    grid-row: 2;
+    /* width: 40vw; */
+    border-top: 0.1px solid gray;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
 }

@@ -9,6 +9,7 @@ import LikesModalContent from '../Likes/LikesModalContent';
 import { likePostThunk } from '../../store/likes';
 import { unlikePostThunk } from '../../store/likes';
 import { loadLikesThunk } from '../../store/likes';
+import { loadCommentsThunk } from '../../store/comments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons';
 import './PostPage.css';
@@ -21,6 +22,7 @@ function PostPage() {
   const user = useSelector((state) => state.session.user)
   const posts = useSelector((state) => state.posts)
   const likes = useSelector((state) => state.likes)
+  const comments = useSelector((state) => state.comments)
 
   const { postId } = useParams()
 
@@ -30,7 +32,8 @@ function PostPage() {
   useEffect(() => {
     dispatch(loadPostThunk(postId));
     dispatch(loadLikesThunk(postId))
- }, [dispatch]);
+    dispatch(loadCommentsThunk(postId))
+ }, [dispatch, postId]);
 
   const handleDelete = async (e, postId) => {
     e.preventDefault()
@@ -89,19 +92,25 @@ function PostPage() {
             <img src={post.owner.image} className='post-page-user-image'></img>
           </NavLink>
           <NavLink to={`/users/${post.owner.id}/profile`} className='post-page-owner-username'>{post.owner.username}</NavLink>
+          <span className='post-page-caption'>{post.caption}</span>
           {user.id == post.owner.id && <button onClick={() => setEditCaptionModalIsOpen(true)} className='edit-caption-button'>Edit caption</button>}
           {user.id == post.owner.id &&<button onClick={(e) => handleDelete(e, postId)} className='delete-post-button'>Delete Post</button>}
         </div>
-        <div className='post-page-caption-area'>
-          <img src={post.owner.image} className='post-page-user-image'></img>
-          <NavLink to={`/users/${post.owner.id}/profile`} className='post-page-owner-username'>{post.owner.username}</NavLink>
-          <span className='post-page-caption'>{post.caption}</span>
-          <div className='post-page-interaction-area-container'>
+
+        <div className='post-page-interaction-grid'>
+
+          <div className='post-page-comments-feed-container'>
+            comments
+          </div>
+
+        <div className='post-page-interaction-area-container'>
               {/* Like logic */}
               {isLiked(post)}
               <span onClick={() => setLikesModalIsOpen(true)} className='post-page-likes-modal-button'>Likes</span>
              </div>
           <div>
+        </div>
+
 
             <div className='edit-post-caption-modal'>
               <Modal
@@ -137,10 +146,7 @@ function PostPage() {
                 }
               }}
               >
-
                 <div className='profile-following-modal-header-container'>
-
-
                   <span className='profile-following-modal-header-text'>Likes</span>
                 </div>
                 <button onClick={() => setLikesModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
@@ -150,7 +156,6 @@ function PostPage() {
           </div>
         </div>
       </div>
-    </div>
   );
   }
 }
