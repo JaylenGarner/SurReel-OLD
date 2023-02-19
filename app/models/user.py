@@ -30,6 +30,9 @@ class User(db.Model, UserMixin):
     # Potential bonus feature (Liked Posts) !!!
     liked_posts = db.relationship("Like", back_populates= 'user', cascade='all,delete')
 
+    # Comment relationship
+    comments = db.relationship("Comment", back_populates= 'user', cascade='all,delete')
+
     # Message relationship
     messages = db.relationship("Message", back_populates= 'user', cascade='all,delete')
 

@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .follows import seed_follows, undo_follows
 from .posts import seed_posts, undo_posts
 from .likes import seed_likes, undo_likes
+from .comments import seed_comments, undo_comments
 from .message_servers import seed_message_servers, undo_message_servers
 from .messages import seed_messages, undo_messages
 from .message_server_members import seed_message_server_members, undo_message_server_members
@@ -26,6 +27,7 @@ def seed():
         db.session.execute(f"TRUNCATE table {SCHEMA}.follows RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.posts RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.likes RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.message_servers RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.messages RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.message_server_members RESTART IDENTITY CASCADE;")
@@ -34,6 +36,7 @@ def seed():
     seed_follows()
     seed_posts()
     seed_likes()
+    seed_comments()
     seed_message_servers()
     seed_messages()
     seed_message_server_members()
@@ -48,6 +51,7 @@ def undo():
     undo_follows()
     undo_posts()
     undo_likes()
+    undo_comments()
     undo_messages()
     undo_message_servers()
     undo_message_server_members()

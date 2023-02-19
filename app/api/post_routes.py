@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, render_template, redirect, url_for, flash
 from flask_login import login_required, current_user
 from sqlalchemy import and_
-from app.models import db, User, Post, Like
+from app.models import db, User, Post, Like, Comment
 from ..aws import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 
@@ -46,6 +46,7 @@ def delete_post(id):
     return 'The post has been deleted'
 
 
+# Get all likes for a post
 @post_routes.route('/<int:id>/likes')
 def get_post_likes(id):
 
@@ -59,6 +60,7 @@ def get_post_likes(id):
 
     return res
 
+# Like a post
 @post_routes.route('/<int:id>/like')
 def like_post(id):
 
@@ -82,6 +84,7 @@ def like_post(id):
     return new_like.to_dict()
 
 
+# Unlike a post
 @post_routes.route('/<int:id>/unlike', methods = ['DELETE'])
 def unlike_post(id):
 
@@ -92,6 +95,38 @@ def unlike_post(id):
     db.session.commit()
 
     return like.to_dict()
+
+
+# Get all of a posts comments
+@post_routes.route('/<int:id>/comments')
+def get_post_comments(id):
+
+    res = {}
+
+    comments = Comment.query.filter(Comment.post_id == id).all()
+
+    for comment in comments:
+        el = comment.to_dict()
+        res[f'{el["id"]}'] = el
+
+    return res
+
+# Comment on a post
+@post_routes.route('/<int:id>/comment', methods=[ 'POST' ])
+def comment_on_post(id):
+
+    post = Post.query.get(id)
+
+    comment = Comment (
+        user_id = current_user.id,
+        post_id = id,
+        body = request.json["body"]
+    )
+
+    db.session.add(comment)
+    db.session.commit()
+
+    return comment.to_dict()
 
 
 # Create a post

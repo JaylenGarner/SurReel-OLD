@@ -1,20 +1,20 @@
-"""Migrating
+"""Init
 
-Revision ID: 9b7ddbe1d54f
+Revision ID: 0a62664ca70e
 Revises:
-Create Date: 2023-02-04 11:38:19.050313
+Create Date: 2023-02-19 11:02:50.462707
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+
 # revision identifiers, used by Alembic.
-revision = '9b7ddbe1d54f'
+revision = '0a62664ca70e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -53,6 +53,15 @@ def upgrade():
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('comments',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('post_id', sa.Integer(), nullable=False),
+    sa.Column('body', sa.String(length=255), nullable=True),
+    sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('likes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -83,12 +92,13 @@ def upgrade():
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE follows SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE message_servers SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE messages SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE message_server_members SET SCHEMA {SCHEMA};")
-
     # ### end Alembic commands ###
+
 
 
 def downgrade():
@@ -96,6 +106,7 @@ def downgrade():
     op.drop_table('messages')
     op.drop_table('message_server_members')
     op.drop_table('likes')
+    op.drop_table('comments')
     op.drop_table('posts')
     op.drop_table('message_servers')
     op.drop_table('follows')
