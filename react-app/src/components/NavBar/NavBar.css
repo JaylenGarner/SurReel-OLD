@@ -83,7 +83,9 @@
 }
 
 .nav-bar-logout-container {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: fixed;
     bottom: 0;
     padding-bottom: 100px;
@@ -102,4 +104,11 @@
     margin-top: 16px;
     margin-left: 12px;
     font-weight: 500;
+}
+
+.nav-bar-user-image {
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
 }

@@ -44,6 +44,9 @@ const NavBar = () => {
             </NavLink>
         </div>
         <div className='nav-bar-logout-container'>
+        <NavLink to={`/users/${user.id}/profile`}>
+          <img src={user.image} className='nav-bar-user-image'></img>
+        </NavLink>
         <LogoutButton className='nav-bar-logout'/>
         </div>
       </nav>
