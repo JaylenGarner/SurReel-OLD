@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loadMessagesThunk } from "../../store/messages";
 import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
 let socket;
 
 const Chat = () => {
     const [chatInput, setChatInput] = useState("");
+    const dispatch = useDispatch()
+    const feed = useSelector((state) => state.messages)
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
     const {roomId} = useParams()
 
     useEffect(() => {
+        dispatch(loadMessagesThunk(roomId))
+
         // create websocket
         socket = io();
+
+        // setMessages([])
 
         // join the current room
         socket.emit("connection", roomId);
@@ -20,9 +27,7 @@ const Chat = () => {
         // handle chat messages
         socket.on("chat", (chat) => {
             // check if the message is coming from the current room
-            if (chat.room === roomId) {
-                setMessages(messages => [...messages, chat]);
-            }
+            setMessages(messages => [...messages, chat]);
         });
 
         // when component unmounts, disconnect
@@ -37,15 +42,22 @@ const Chat = () => {
 
     const sendChat = (e) => {
         e.preventDefault()
-        socket.emit("chat", { user: user.username, msg: chatInput, room: roomId });
+        const messageObj = { message: {userId: user.id, roomId: roomId, body: chatInput}, room: roomId}
+        socket.emit("chat", messageObj);
         setChatInput("")
     }
+
+    if (!feed) {
+        return <></>
+    } else {
+
+    if (Object.values(feed).length && !messages.length) setMessages(Object.values(feed))
 
     return (user && (
         <div>
             <div>
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user}: ${message.msg}`}</div>
+                    <div key={ind}>{`${message.user.username}: ${message.body}`}</div>
                 ))}
             </div>
             <form onSubmit={sendChat}>
@@ -58,6 +70,7 @@ const Chat = () => {
         </div>
     )
     )
+                }
 };
 
 export default Chat

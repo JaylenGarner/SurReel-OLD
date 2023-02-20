@@ -2,6 +2,7 @@
 from flask_socketio import SocketIO, emit, join_room, leave_room
 import os
 from flask_login import current_user
+from app.models import Message, db
 
 # configure cors_allowed_origins
 if os.environ.get('FLASK_ENV') == 'production':
@@ -18,7 +19,6 @@ socketio = SocketIO(cors_allowed_origins=origins)
 # Join room
 @socketio.on("connection")
 def connected(room):
-    print(room, 'ROOM!!!!!!!!!!!!!!')
     join_room(room)
     message = f"Connected!!! to room {room}"
     emit("connection", message, room=room)
@@ -27,9 +27,18 @@ def connected(room):
 # handle chat messages
 @socketio.on("chat")
 def handle_chat(data):
+    messageObj = data.get("message")
+
+    new_message = Message (
+        user_id = messageObj['userId'],
+        message_server_id = messageObj['roomId'],
+        body = messageObj['body']
+    )
+
+    db.session.add(new_message)
+    db.session.commit()
+
     room = data.get("room")
-    user = current_user.username
     leave_room(room) # leave all previous rooms
     join_room(room)
-    message = {"user": user, "msg": data.get("msg"), "room": room}
-    emit("chat", message, room=room)
+    emit("chat", new_message.to_dict(), room=room)
