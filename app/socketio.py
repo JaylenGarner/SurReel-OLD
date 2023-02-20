@@ -1,3 +1,4 @@
+
 from flask_socketio import SocketIO, emit, join_room, leave_room
 import os
 from flask_login import current_user
@@ -15,17 +16,20 @@ else:
 socketio = SocketIO(cors_allowed_origins=origins)
 
 # Join room
-@socketio.on("connect")
+@socketio.on("connection")
 def connected(room):
+    print(room, 'ROOM!!!!!!!!!!!!!!')
     join_room(room)
-    message = f"Connected to room {room}"
-    emit("connect", message, room=room)
+    message = f"Connected!!! to room {room}"
+    emit("connection", message, room=room)
     print(f"Emitting message: {message}")
 
 # handle chat messages
 @socketio.on("chat")
 def handle_chat(data):
     room = data.get("room")
+    user = current_user.username
+    leave_room(room) # leave all previous rooms
     join_room(room)
-    emit("chat", data, room=room)
-    # leave_room(room)
+    message = {"user": user, "msg": data.get("msg"), "room": room}
+    emit("chat", message, room=room)

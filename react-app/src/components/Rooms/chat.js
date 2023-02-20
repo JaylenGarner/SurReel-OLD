@@ -11,15 +11,13 @@ const Chat = () => {
     const {roomId} = useParams()
 
     useEffect(() => {
-        // open socket connection
         // create websocket
         socket = io();
 
-        socket.on("connect", (message) => {
-            socket.emit("join", roomId); // join the current room
-            setMessages(messages => [...messages, { user: "system", msg: message || `Connected to room ${roomId}` }])
-        })
+        // join the current room
+        socket.emit("connection", roomId);
 
+        // handle chat messages
         socket.on("chat", (chat) => {
             // check if the message is coming from the current room
             if (chat.room === roomId) {
@@ -32,8 +30,6 @@ const Chat = () => {
             socket.disconnect()
         })
     }, [roomId]);
-
-    console.log(roomId)
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
@@ -64,5 +60,4 @@ const Chat = () => {
     )
 };
 
-
-export default Chat;
+export default Chat
