@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ProfilePosts from './ProfilePosts/ProfilePosts';
-import { loadFollowersThunk } from '../../store/follows';
-import { loadFollowingThunk } from '../../store/follows';
+import ProfilePosts from '../ProfilePosts/ProfilePosts';
+import { loadFollowersThunk } from '../../../store/follows';
+import { loadFollowingThunk } from '../../../store/follows';
 import Modal from 'react-modal'
-import FollowButton from './Profile/FollowButton/FollowButton';
-import FollowersModalContent from './FollowModalContent/FollowersModalContent';
-import FollowingModalContent from './FollowModalContent/FollowingModalContent';
+import FollowButton from './FollowButton/FollowButton';
+import FollowersModalContent from '../FollowModalContent/FollowersModalContent';
+import FollowingModalContent from '../FollowModalContent/FollowingModalContent';
 import './Profile.css';
 
 const Profile = () => {
