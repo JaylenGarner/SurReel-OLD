@@ -14,7 +14,6 @@ import CreatePostForm from './components/CreatePostForm/CreatePostForm';
 import MessagingHome from './components/Messages/MessagingHome/MessagingHome';
 import RoomPage from './components/Rooms/RoomPage/RoomPage';
 import CreateRoomPage from './components/Rooms/CreateRoom/CreateRoomPage/CreateRoomPage'
-import Chat from './components/Rooms/chat';
 import { authenticate } from './store/session';
 
 function App() {
@@ -73,9 +72,6 @@ function App() {
         <ProtectedRoute path='/messages/:roomId' exact={true} >
         <NavBar />
         <RoomPage />
-        </ProtectedRoute>
-        <ProtectedRoute path='/:roomId/test' exact={true} >
-        <Chat />
         </ProtectedRoute>
         <Route path='/' exact={true} >
         <NavBar />
