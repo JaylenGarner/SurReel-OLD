@@ -7,7 +7,7 @@ import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import Profile from './components/test/Profile/Profile.js';
+import Profile from './components/Profile/Profile/Profile.js';
 import PostPage from './components/PostPage/PostPage';
 import HomeFeed from './components/HomeFeed/HomeFeed';
 import CreatePostForm from './components/CreatePostForm/CreatePostForm';
