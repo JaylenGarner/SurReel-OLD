@@ -136,10 +136,14 @@ def upload_image():
 
     image = request.files["image"]
 
+    print (image, 'IMAGE ON BACKEND SUBMISSION!!!')
+
     if "image" not in request.files:
+        print("IMAGE NOT IN REQUESTED FILES")
         return {"errors": "image required"}, 400
 
     if not allowed_file(image.filename):
+        print("IMAGE NOT A PERMITTED FILE")
         return {"errors": "file type not permitted"}, 400
 
     image.filename = get_unique_filename(image.filename)
@@ -150,6 +154,7 @@ def upload_image():
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
+        print(" URL NOT IN UPLOAD")
         return upload, 400
 
     url = upload["url"]
@@ -160,6 +165,8 @@ def upload_image():
         caption = request.form['caption']
     )
 
+    print(post.to_dict(), "POST CREATED")
+    print(url, "HERE IS THE URL")
     db.session.add(post)
     db.session.commit()
     return {"url": url}

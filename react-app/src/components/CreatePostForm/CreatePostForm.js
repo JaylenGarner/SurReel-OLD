@@ -84,7 +84,8 @@ const CreatePostForm = () => {
             type="file"
             name="image"
             accept=".pdf, .png, .jpg, .jpeg, .gif"
-            onChange={handleImageChange} required
+            onChange={handleImageChange}
+            required={true}
             className='post-file-input'
             />
             </div>
