@@ -6,19 +6,17 @@ import { useDispatch } from 'react-redux';
 import { loadMessagesThunk } from '../../../store/messages';
 import './MessageFeed.css'
 
-function MessageFeed() {
+function MessageFeed({messages}) {
   const { roomId } = useParams()
   const user = useSelector((state) => state.session.user)
   const room = useSelector((state) => state.rooms[roomId])
-  const messages = useSelector((state) => state.messages)
+  const feed = useSelector((state) => state.messages)
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const [isLoaded, setIsLoaded] = useState(false)
-
   useEffect(() => {
-    dispatch(loadMessagesThunk(roomId))
-  }, [dispatch, roomId, isLoaded]);
+    // dispatch(loadMessagesThunk(roomId))
+  }, [dispatch, roomId]);
 
 
   if (!messages) {
