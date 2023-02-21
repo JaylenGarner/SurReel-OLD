@@ -1,148 +1,74 @@
-# Flask React Project
+# SurReel
 
-This is the starter for the Flask React project.
+By _[Jaylen Garner](https://github.com/JaylenGarner)_
 
-## Getting started
-1. Clone this repository (only this branch)
+## Index
 
-2. Install dependencies
+- [API Documentation](https://github.com/JaylenGarner/SurReel/wiki/API-Routes)
+- [Database Schema](https://github.com/JaylenGarner/SurReel/wiki/Database-Schema)
+- [Frontend Routes](https://github.com/JaylenGarner/SurReel/wiki/Frontend-Routes)
+- [MVP Feature List](https://github.com/JaylenGarner/SurReel/wiki/MVP-List)
+- [User Stories](https://github.com/JaylenGarner/SurReel/wiki/User-Stories)
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+## Technologies Used
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+- JavaScript
+- React/Redux
+- CSS
+- Python
+- Flask/SQLAlchemy
+- PostgreSQL (production)
+- SQLite3 (development)
+- AWS S3 (Uploading images)
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+## Overview
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
+### Login/Signup
+SurReel is an Instagram clone. When a user first accesses the site, they are brought to the login page. On the login page, they are also presented with the option to navigate to the sign up page, as well as the option to sign in as the 'Demo' user. Attempting to access any page on the site without login/signup will redirect them to login.
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+![imgonline-com-ua-twotoone-nS3QGu7CJNeU](https://user-images.githubusercontent.com/93837049/218271834-b108cfe4-a913-4a2b-80bb-9a4a0b96bb21.jpg)
 
-   ```bash
-   pipenv shell
-   ```
+### Feed
+When logging into the site, the user is greeted with their feed. The feed will contain the posts of other users that the current user follows. If the user is not following anyone, they are presented with the following message and a button that navigates them to a page that displays all of the application's users: "There are no posts in your feed, get started by following other users"
 
-   ```bash
-   flask db upgrade
-   ```
+<img width="1113" alt="Screenshot 2023-02-11 at 12 23 33 PM" src="https://user-images.githubusercontent.com/93837049/218272084-e6c7b8a9-6ed7-4dd7-b8c9-a8d30c8ee563.png">
 
-   ```bash
-   flask seed all
-   ```
+The user can like and unlike posts in the feed by clicking on the heart icon beneath a post's image. If they select 'Likes' under a post's image, a modal will overlay the page and list the relevant users.
 
-   ```bash
-   flask run
-   ```
+<img width="492" alt="Screenshot 2023-02-11 at 1 13 53 PM" src="https://user-images.githubusercontent.com/93837049/218274506-69961d5b-bb5d-45f0-9edc-e6af1bcd1b7f.png">
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+### Navigation Bar
+
+In the navbar there are links to the user's home feed, a form to create a post, a view of all of the user's direct messaging chats, and a list of of the application's current users.
+
+### Profile
+
+If you click on a user's username or profile picture in most area's of the application, you will be redirected to that user's profile. While visiting a user's profile, you can see a display of all of their posts. Above the user's posts, there is an area that shows that user's total number of posts, followers, and following. A follow button is also present, and the functionality will change depending on the current user's relationship with the user.
+- If neither user follows eachother: The button will display 'Follow'
+- If the user is following the current user, but the current user is not following the user: The button will display 'Follow back'
+- If the current user follows the user: The button will display 'Unfollow'
+
+<img width="1245" alt="Screenshot 2023-02-11 at 12 54 01 PM" src="https://user-images.githubusercontent.com/93837049/218273315-6ab8fcf2-a08a-4bec-a1cd-2672fb0d8288.png">
+
+If you click on either 'followers' or 'following', a modal will overlay the page and list the relevant users.
+
+![imgonline-com-ua-twotoone-839SyaSB6Cg86KiC](https://user-images.githubusercontent.com/93837049/218273906-27efa4fe-275b-4606-a86f-47908aa98b97.jpg)
+
+If you select any of the displayed posts, you will be redirected to that post's page. 
+
+### Post Page
+
+This page will display the image at a much larger size, show the caption, allow the user to like the post, and allow the user to view all of the post's likes.
+
+<img width="1080" alt="Screenshot 2023-02-11 at 1 23 27 PM" src="https://user-images.githubusercontent.com/93837049/218274843-db8bc61b-5cff-416b-b022-83fdc5a55f4f.png">
 
 
-## Deployment through Render.com
+### Create a Post
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+When the user selects 'Create a Post' in the nav bar, they will be redirected to a form that allows them to create a post. The form allows the user to select an image file from their system, as well as set a caption. Upon submission the user will see 'Loading...' until the image uplaods to the S3 bucket, once complete the user will be redirected to their home feed.
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+<img width="1031" alt="Screenshot 2023-02-11 at 1 35 00 PM" src="https://user-images.githubusercontent.com/93837049/218275241-4b386363-17b5-42c1-9394-8da7a51836e5.png">
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
 
-### Part A: Configure the Start and Build Commands
 
-Start by giving your application a name.
-
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
-
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
-
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
-
-For your Flask project, enter the following command into the Build field, all in
-one line:
-
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
-
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
-
-Now, add your start command in the Start field:
-
-```shell
-# start script
-gunicorn app:app
-```
-
-_If you are using websockets, use the following start command instead for increased performance:_
-
-`gunicorn --worker-class eventlet -w 1 app:app`
-
-### Part B: Add the Environment Variables
-
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/# SurReel
