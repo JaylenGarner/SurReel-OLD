@@ -12,7 +12,7 @@ const RoomsNav = () => {
   const user = useSelector((state) => state.session.user)
 
   useEffect(() => {
-    dispatch(loadRoomsThunk)
+    dispatch(loadRoomsThunk())
 
     // Object.keys(rooms).forEach((room) => {
     //   console.log(room)
