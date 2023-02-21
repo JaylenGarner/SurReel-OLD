@@ -135,7 +135,6 @@ def comment_on_post(id):
 def upload_image():
 
     image = request.files["image"]
-    print(image, 'IMAGE WORKSSS')
 
     if "image" not in request.files:
         return {"errors": "image required"}, 400
@@ -151,7 +150,6 @@ def upload_image():
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
-        print('ERROR HIT HERE')
         return upload, 400
 
     url = upload["url"]
