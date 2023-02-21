@@ -24,6 +24,7 @@ const CreatePostForm = () => {
     formData.append('image', image);
     formData.append('caption', caption);
 
+    console.log(image, 'Image upon submission')
     // aws uploads can be a bit slow—displaying
     // some sort of loading message is a good idea
     setImageLoading(true);
@@ -35,21 +36,26 @@ const CreatePostForm = () => {
 
     if (res.ok) {
       await res.json();
+      console.log('success!!!!')
       setImageLoading(false);
       history.push(`/users/${user.id}/profile`);
     } else {
       setImageLoading(false);
       // a real app would probably use more advanced
       // error handling
-      console.log('error');
+      console.log('Error with the backends response');
     }
   };
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
 
+    console.log('Selected image, step 1')
+
     if (selectedImage) {
       setImage(selectedImage);
+
+      console.log('Image was staged, step 2')
 
       const reader = new FileReader();
       reader.onload = () => {
@@ -57,6 +63,7 @@ const CreatePostForm = () => {
       };
       reader.readAsDataURL(selectedImage);
     } else {
+      console.log('Image was set to null')
       setImage(null);
       setImagePreview(null);
     }
