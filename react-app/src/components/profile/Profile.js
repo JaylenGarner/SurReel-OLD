@@ -10,7 +10,7 @@ import FollowersModalContent from './FollowModalContent/FollowersModalContent';
 import FollowingModalContent from './FollowModalContent/FollowingModalContent';
 import './Profile.css';
 
-function Profile() {
+const Profile = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const { userId }  = useParams();
