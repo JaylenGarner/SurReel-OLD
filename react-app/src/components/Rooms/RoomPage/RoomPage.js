@@ -45,6 +45,10 @@ const RoomPage = () => {
     })
 }, [roomId]);
 
+  useEffect(() => {
+    setMessages(Object.values(feed))
+  }, [feed])
+
   const updateBody = (e) => {
     setBody(e.target.value);
   };

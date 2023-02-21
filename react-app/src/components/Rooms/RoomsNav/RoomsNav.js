@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
+import { loadMessagesThunk } from '../../../store/messages';
 import { deleteRoomThunk, loadRoomsThunk } from '../../../store/rooms';
 import './RoomsNav.css';
 
@@ -11,10 +12,12 @@ const RoomsNav = () => {
   const user = useSelector((state) => state.session.user)
 
   useEffect(() => {
+    dispatch(loadRoomsThunk)
 
-    if (user) {
-      dispatch(loadRoomsThunk());
-    }
+    // Object.keys(rooms).forEach((room) => {
+    //   console.log(room)
+    //   loadMessagesThunk(room.id)
+    // })
   }, [dispatch]);
 
   if (!user) {

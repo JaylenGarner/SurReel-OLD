@@ -9,15 +9,6 @@ import './MessageFeed.css'
 function MessageFeed({messages}) {
   const { roomId } = useParams()
   const user = useSelector((state) => state.session.user)
-  const room = useSelector((state) => state.rooms[roomId])
-  const feed = useSelector((state) => state.messages)
-  const dispatch = useDispatch()
-  const history = useHistory()
-
-  useEffect(() => {
-    // dispatch(loadMessagesThunk(roomId))
-  }, [dispatch, roomId]);
-
 
   if (!messages) {
     return (
