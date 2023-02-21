@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadLikesThunk } from '../../store/likes';
-import '../test/FollowModalContent/FollowersModalContent.css'
+import '../Profile/FollowModalContent/FollowersModalContent.css'
 
 const LikesModalContent = ({setModalIsOpen, postId}) => {
     const dispatch = useDispatch()
