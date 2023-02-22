@@ -152,6 +152,7 @@ def upload_image():
 
     print(image.filename, "MADE IT TO BE ASSIGNED A FILENAME")
 
+    # ERROR HAPPENS HERE
     upload = upload_file_to_s3(image)
 
     print(upload, "MADE IT PAST THE UPLOAD")
