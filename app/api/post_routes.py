@@ -146,9 +146,15 @@ def upload_image():
         print("IMAGE NOT A PERMITTED FILE")
         return {"errors": "file type not permitted"}, 400
 
+    print(image, "MADE IT PAST CONDITIONALS")
+
     image.filename = get_unique_filename(image.filename)
 
+    print(image.filename, "MADE IT TO BE ASSIGNED A FILENAME")
+
     upload = upload_file_to_s3(image)
+
+    print(upload, "MADE IT PAST THE UPLOAD")
 
     if "url" not in upload:
         # if the dictionary doesn't have a url key
@@ -158,6 +164,8 @@ def upload_image():
         return upload, 400
 
     url = upload["url"]
+
+    print(url, "URL CREATED")
     # flask_login allows us to get the current user from the request
     post = Post(
         owner_id = current_user.id,
