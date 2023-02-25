@@ -174,7 +174,7 @@ def upload_image():
         caption = request.form['caption']
     )
 
-    print(post.owner)
+    print(post.owner, 'POST OWNER')
 
     print(post.to_dict_basic(), "POST CREATED")
     print(url, "HERE IS THE URL")
