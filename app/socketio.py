@@ -6,10 +6,11 @@ from app.models import Message, db
 
 # configure cors_allowed_origins
 if os.environ.get('FLASK_ENV') == 'production':
-    origins = [
-        "https://surreel.onrender.com",
-        "http://surreel.onrender.com",
-    ]
+    origins = "*"
+    # [
+    #     "https://surreel.onrender.com",
+    #     "http://surreel.onrender.com",
+    # ]
 else:
     origins = "*"
 
