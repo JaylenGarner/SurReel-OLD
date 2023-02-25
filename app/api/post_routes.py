@@ -174,7 +174,9 @@ def upload_image():
         caption = request.form['caption']
     )
 
-    print(post.to_dict(), "POST CREATED")
+    print(post.owner)
+
+    print(post.to_dict_basic(), "POST CREATED")
     print(url, "HERE IS THE URL")
     db.session.add(post)
     db.session.commit()
