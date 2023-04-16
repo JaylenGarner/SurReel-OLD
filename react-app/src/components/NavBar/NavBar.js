@@ -21,26 +21,29 @@ const NavBar = () => {
         <h2 className='navbar-sureel-span'>SurReel</h2>
         </NavLink>
         <div className='navbar-buttons-container'>
-          <div className='nav-bar-home-container'>
             <NavLink to='/' exact={true} className='nav-link-home-area' activeClassName='active'>
+          <div className='nav-bar-home-container'>
             <img src='https://i.ibb.co/VWZjy0J/8723112-home-icon-1.png' className='nav-home-icon'></img>
               <span className='nav-link-home-span'>Home</span>
-            </NavLink>
-            <br></br>
           </div>
-          <div className='nav-bar-create-container'>
+            </NavLink>
           <NavLink to='/create' exact={true} className='nav-link-home-area' activeClassName='active'>
+          <div className='nav-bar-home-container'>
             <img src='https://i.ibb.co/q0wY2b6/8757645-new-post-post-media-tool-application-icon-1.png' className='nav-create-icon'></img>
               <span className='nav-link-home-span'>Create</span>
-            </NavLink>
           </div>
+            </NavLink>
           <NavLink to='/messages' exact={true} activeClassName='active' className='nav-link-home-area'>
+            <div className='nav-bar-home-container'>
           <img src='https://surreel-app-images.s3.amazonaws.com/assets/send_icon.png' className='nav-messages-icon'></img>
               <span className='nav-link-messages-span' >Messages</span>
+            </div>
             </NavLink>
             <NavLink to='/users' exact={true} activeClassName='active' className='nav-link-home-area'>
+              <div className='nav-bar-home-container'>
             <img src='https://surreel-app-images.s3.amazonaws.com/assets/user_icon.png' className='nav-user-icon'></img>
               <span className='nav-link-users-span' >Users</span>
+              </div>
             </NavLink>
         </div>
         <div className='nav-bar-logout-container'>

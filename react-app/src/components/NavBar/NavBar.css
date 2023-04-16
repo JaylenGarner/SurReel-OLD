@@ -3,11 +3,11 @@
     width: 255px;
     color: white;
     z-index: 1;
-    background-color: #000000;
+    background-color: #113254;
     position: fixed;
     top: 0;
     left: 0;
-    border-right: .01px solid #363636;
+    /* border-right: .01px solid #363636; */
 }
 
 .navbar-sureel-span {
@@ -21,13 +21,25 @@
     padding-top: 30px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 52px;
 }
 
 .nav-bar-home-container {
     display: flex;
-    width: 180px;
-    justify-content: center;
+    width: 120px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* justify-content: center; */
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.nav-bar-home-container:hover {
+ background-color: #264361;
+ transition: 0.5s;
 }
 
 .nav-home-icon {
@@ -49,13 +61,13 @@
 .nav-messages-icon {
     height: 22px;
     width: 22px;
-    padding-top: 16px;
+    padding-top: 6px;
 }
 
 .nav-link-messages-span {
     color: white;
     font-size: 22px;
-    margin-top: 14px;
+    margin-top: 4px;
     margin-left: 12px;
     font-weight: 500;
 }
@@ -69,7 +81,7 @@
     color: white;
     text-decoration: none;
     display: flex;
-    width: 110px;
+    /* width: 130px; */
     font-size: 22px;
     margin-top: 4px;
 }
@@ -95,13 +107,13 @@
 .nav-user-icon {
     width: 28px;
     height: 28px;
-    padding-top: 12px;
+    padding-top: 4px;
 }
 
 .nav-link-users-span {
     color: white;
     font-size: 22px;
-    margin-top: 16px;
+    margin-top: 6px;
     margin-left: 12px;
     font-weight: 500;
 }

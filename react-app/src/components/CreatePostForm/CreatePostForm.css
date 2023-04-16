@@ -12,7 +12,7 @@ input::file-selector-button:hover {
 
 .create-a-post-form-container {
     margin-left: 12vw;
-    margin-top: 8vh;
+    /* margin-top: 8vh; */
 }
 
 .aws-loading-container {
@@ -63,6 +63,8 @@ input::file-selector-button:hover {
 }
 
 .create-post-preview-image {
+  margin-top: 40px;
   height: 300px;
   width: 300px;
+  border-radius: 14px;
 }

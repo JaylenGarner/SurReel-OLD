@@ -114,7 +114,7 @@ const SignUpForm = () => {
       <br></br>
         <span >Already have an account?</span>
         <NavLink to={`/login`} className='login-form-nav-link'>
-        <span> Login</span>
+        <span>Login</span>
         </NavLink>
     </form>
     </div>
