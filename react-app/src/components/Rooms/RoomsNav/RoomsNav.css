@@ -1,6 +1,6 @@
 .dm-nav-username-container {
     text-align: center;
-    border-bottom: 0.1px solid gray;
+    border-bottom: 0.1px solid white;
     display: flex;
     justify-content: center;
 }
@@ -22,12 +22,14 @@
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
-    border-bottom: 0.01px solid gray;
+    border-bottom: 0.01px solid white;
     overflow: hidden;
+    transition: 1s;
 }
 
 .dm-nav-chat-button-div:hover {
-    background-color: rgb(34, 28, 28);
+    background-color: #264361;
+    transition: 0.5s;
     cursor: pointer;
 }
 

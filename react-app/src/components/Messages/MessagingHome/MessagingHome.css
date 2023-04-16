@@ -1,6 +1,5 @@
 .message-page-container {
     margin-left: 40px;
-    background-color: #262626;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -20,7 +19,9 @@
     grid-template-rows: 1;
     width: 60vw;
     height: 85vh;
-    background-color: black;
+    background-color: #113254;
+    border: 1px solid white;
+    border-radius: 12px;
     margin-left: 10vw;
 }
 
@@ -28,7 +29,7 @@
     grid-column: 1;
     height: 85vh;
     width: 18vw;
-    border-right: 0.1px solid gray;
+    border-right: 0.1px solid white;
     /* padding: 0px; */
     /* left: 0; */
 }

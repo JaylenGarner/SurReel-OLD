@@ -1,5 +1,5 @@
 .dm-user-selection-header-container {
-    border-bottom: 0.01px solid gray;
+    border-bottom: 0.01px solid white;
     margin-bottom: 20px;
 }
 
@@ -48,15 +48,22 @@
 }
 
 .user-selection-submit-button {
-    text-align: center;
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
     width: 200px;
     height: 40px;
     border-radius: 10px;
     border: none;
     color: white;
-    background-color: #4193EF;
+    background-color: #264361;
+    font-size: 16px;
+    transition: 0.5s;
 }
 
 .user-selection-submit-button:hover {
-    background-color: #3975EA;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+    box-shadow: inset;
 }

@@ -146,14 +146,13 @@ function HomeFeed() {
                    >Likes</span>
                  <Modal
                isOpen={modalIsOpen}
-
                style={{
                  content: {
                    width: '400px',
                    height: '400px',
                    top: '18%',
                    left: '42%',
-                   backgroundColor: '#262626',
+                   backgroundColor: '#113253',
                    color: 'white',
                  }
                }}

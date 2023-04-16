@@ -65,7 +65,7 @@
 .profile-following-modal-header-container {
     display: flex;
     justify-content: center;
-    border-bottom: 0.01px solid #363636;
+    border-bottom: 0.01px solid white;
     padding-bottom: 16px;
 }
 

@@ -14,30 +14,26 @@
     display: flex;
     bottom: 8vh;
     position: absolute;
-    /* border-top: 1px solid gray; */
-    /* width: 42vw;
-    justify-content: flex-end;
-    margin-right: 20px; */
  }
 
  .leave-conversation {
     font-size: 18px;
     font-weight: bold;
-    color: #4193EF;
-    /* margin-top: 5px; */
-    /* padding-top: 8px; */
+    color: white;
+    transition: 0.5s;
 }
 
 .leave-conversation:hover {
   cursor: pointer;
-   color: #3975EA;
+  transition: 0.5s;
+   color: #bdbfc1;
 }
 
 .message-feed-interaction-container {
     display: flex;
     bottom: 8vh;
     position: absolute;
-    border-top: 0.01px solid gray;
+    border-top: 0.01px solid white;
     width: 42vw;
     height: 36px;
     align-items: center;
@@ -49,9 +45,9 @@
     /* margin-top: 2.7vh; */
     margin-left: 1.2vw;
     width: 25vw;
-    background-color: black;
+    background-color: #113254;
     color: white;
-    border: 1px solid gray;
+    border: none
 }
 
 .send-message-submit {

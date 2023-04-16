@@ -21,7 +21,7 @@
 .message-sent-by-me {
     display: flex;
     text-align: right;
-    background: #262626;
+    background: #264361;
     max-width: fit-content;
     border-radius: 100px;
     padding: 10px;
@@ -57,9 +57,8 @@
     /* margin-left: 15px; */
     margin-top: 5px;
     margin-bottom: 5px;
-    background: #000000;
+    background: #0C2139;
     max-width: fit-content;
-    border: solid 1px #363636;
     border-radius: 100px;
     padding: 10px;
 }

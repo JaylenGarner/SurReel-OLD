@@ -17,10 +17,12 @@
     width: 70px;
     border-radius: 100px;
     margin-bottom: 5px;
+    transition: 0.5s;
 }
 
 .user-list-image:hover {
     border: 2px solid white;
+    transition: 0.5s;
 }
 
 .users-list-username {

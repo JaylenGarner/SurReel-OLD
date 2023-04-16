@@ -88,7 +88,7 @@
     align-items: flex-start;
     padding-top: 15px;
     padding-bottom: 25px;
-    border-bottom: .01px solid #363636
+    border-bottom: .01px solid white
 }
 
 .like-button {
@@ -108,11 +108,14 @@
 .like-button svg {
     font-size: 22px;
     color: red;
+    transition: 0.5s;
 }
 
 .like-button-empty svg {
     font-size: 22px;
     color: white;
+    transition: 0.5s;
+
 }
 
 .home-page-feed-likes-span {
@@ -152,7 +155,7 @@
 .view-all-comments {
     padding-top: 8px;
     text-decoration: none;
-    color: gray;
+    color: white;
     font-style: italic;
     font-size: 16px;
 }
