@@ -71,12 +71,13 @@ const LoginForm = () => {
       </div>
         <button type='submit' className='login-button'>Login</button>
         <br></br>
-        <span className='dont-have-an-account'>Don't have an account?</span>
-        <NavLink to={`/sign-up`} className='login-form-nav-link'>
-        <span> Sign up</span>
-        </NavLink>
+        <button className='login-button' onClick={onDemoLogin}>Demo Login</button>
         <br></br>
-          <button className='demo-login-button' onClick={onDemoLogin}>Demo Login</button>
+        <br></br>
+        <span className='dont-have-an-account'>Don't have an account? </span>
+        <NavLink to={`/sign-up`} className='login-form-nav-link'>
+        <span>Sign up</span>
+        </NavLink>
     </form>
     </div>
     </div>

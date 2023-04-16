@@ -2,18 +2,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1050%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M0%2c456.834C83.222%2c444.149%2c135.64%2c365.362%2c199.713%2c310.759C254.77%2c263.84%2c306.504%2c217.914%2c349.026%2c159.395C401.088%2c87.747%2c472.273%2c20.201%2c475.165%2c-68.318C478.178%2c-160.523%2c429.27%2c-250.14%2c364.557%2c-315.89C301.708%2c-379.746%2c210.091%2c-397.544%2c124.635%2c-424.467C37.43%2c-451.941%2c-49.67%2c-492.352%2c-139.371%2c-474.653C-232.667%2c-456.245%2c-319.832%2c-402.525%2c-375.887%2c-325.708C-430.061%2c-251.469%2c-425.575%2c-154.032%2c-439.612%2c-63.207C-453.814%2c28.685%2c-496.411%2c124.487%2c-458.595%2c209.433C-420.716%2c294.521%2c-325.058%2c334.029%2c-243.087%2c378.251C-166.591%2c419.519%2c-85.926%2c469.931%2c0%2c456.834' fill='%230b2239'%3e%3c/path%3e%3cpath d='M1440 1166.6979999999999C1562.658 1176.306 1703.021 1195.354 1798.261 1117.4650000000001 1893.042 1039.951 1881.7559999999999 894.941 1916.024 777.393 1944.891 678.372 2000.1390000000001 583.65 1983.558 481.848 1967.101 380.80600000000004 1881.558 311.488 1826.122 225.42399999999998 1759.871 122.57 1743.269-38.58299999999997 1625.959-73.31799999999998 1508.708-108.03499999999997 1407.68 19.360000000000014 1295.6390000000001 68.35000000000002 1200.355 110.01299999999998 1087.974 117.488 1016.601 193.123 944.02 270.038 928.935 380.127 904.363 482.98699999999997 877.399 595.861 826.649 712.9259999999999 866.38 821.963 906.888 933.133 1014.6669999999999 1003.078 1116.0819999999999 1064.026 1215.172 1123.577 1324.745 1157.67 1440 1166.6979999999999' fill='%23113255'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1050'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  background-size: cover;
 }
 
 .login-form-page-container {
     /* display: flex; */
     text-align: center;
-    margin-top: 10vh;
-    border: 1px solid #363636;
+    border: 1px solid white;
     width: fit-content;
     padding-bottom: 50px;
     padding-top: 20px;
     padding-left: 50px;
     padding-right: 50px;
+    font-size: 20px;
+    border-radius: 12px;
     /* margin-left: 55px; */
 }
 
@@ -28,58 +32,48 @@
 }
 
 .login-button {
-    margin-top: 20px;
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
     width: 200px;
     height: 40px;
     border-radius: 10px;
     border: none;
     color: white;
-    background-color: #4193EF;
-    margin-bottom: 20px;
+    background-color: #264361;
+    font-size: 16px;
+    transition: 0.5s;
 }
 
 .login-button:hover {
-    margin-top: 20px;
-    width: 200px;
-    height: 40px;
-    border-radius: 10px;
-    border: none;
-    color: white;
-    background-color: #3975EA;
-    margin-bottom: 20px;
+    /* color: ; */
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+    box-shadow: inset;
 }
 
 .login-form-nav-link {
-    color: #5791E8;
+    color: #6cb4fb;
     text-decoration: none;
-    font-weight: 500;
+    transition: 0.5s;
 }
 
 .login-form-nav-link:hover {
-    color: #3975EA;
+    color: #ffffff;
+    transition: 0.5s;
 }
 
 input {
     height: 20px;
     width: 260px;
+    height: 30px;
     border-radius: 5px;
+    font-size: 18px;
 }
 
 .sign-up-error {
     font-size: 16px;
     font-weight: bold;
     padding-bottom: 10px;
-}
-
-.demo-login-button {
-    background: none;
-    color: #4193EF;
-    border: none;
-    padding-top: 20px;
-    font-size: 16px;
-}
-
-.demo-login-button:hover {
-    color: #3975EA;
-    cursor: pointer;
 }

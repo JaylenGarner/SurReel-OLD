@@ -111,6 +111,7 @@ const SignUpForm = () => {
       </div>
       <button type='submit' className='login-button'>Sign Up</button>
       <br></br>
+      <br></br>
         <span >Already have an account?</span>
         <NavLink to={`/login`} className='login-form-nav-link'>
         <span> Login</span>
