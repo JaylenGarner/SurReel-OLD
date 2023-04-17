@@ -17,36 +17,46 @@
     position: absolute;
     right: 150px;
     background: none;
-    color: #4193EF;
-    border: none;
-    font-size: 14px;
     font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #264361;
+    font-size: 16px;
+    transition: 0.5s;
 }
 
 .delete-post-button {
     position: absolute;
-    right: 40px;
+    right: 35px;
     background: none;
-    color: #4193EF;
-    border: none;
     font-size: 14px;
     font-weight: bold;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #264361;
+    font-size: 16px;
+    transition: 0.5s;
 }
 
 .edit-caption-button:hover {
-    position: absolute;
-    right: 150px;
-    background: none;
-    color: white;
-    border: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+    box-shadow: inset;
 }
 
 .delete-post-button:hover {
-    position: absolute;
-    right: 40px;
-    background: none;
-    color: white;
-    border: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+    box-shadow: inset;
 }
 
 .post-page-content {
@@ -134,16 +144,24 @@
 }
 
 .edit-post-cancel-button {
-    background: none;
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
+    width: 146px;
+    height: 42px;
+    border-radius: 10px;
     border: none;
+    color: white;
+    background-color: #264361;
     font-size: 16px;
-    font-weight: bold;
-    color: rgb(255, 19, 19);
+    transition: 0.5s;
 }
 
 .edit-post-cancel-button:hover {
     cursor: pointer;
-    color: rgb(223, 9, 9);
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+    box-shadow: inset;
 }
 
 .post-page-interaction-grid {

@@ -3,14 +3,14 @@ from app.models import db, Comment, environment, SCHEMA
 
 def seed_comments():
     comment1 = Comment(
-        user_id = 1,
-        post_id = 2,
-        body = 'Nice!!'
+        user_id = 2,
+        post_id = 1,
+        body = 'What a view'
     )
     comment2 = Comment(
-        user_id = 2,
-        post_id = 3,
-        body = 'Cool!!'
+        user_id = 3,
+        post_id = 5,
+        body = 'Cute dog!'
     )
     comment3 = Comment(
         user_id = 3,
@@ -18,9 +18,9 @@ def seed_comments():
         body = 'Love it!!'
     )
     comment4 = Comment(
-        user_id = 2,
-        post_id = 1,
-        body = 'Snazzy!!'
+        user_id = 3,
+        post_id = 7,
+        body = 'Take me with you!!!'
     )
 
     db.session.add(comment1)

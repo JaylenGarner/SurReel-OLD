@@ -2,32 +2,51 @@ from app.models import db, Post, environment, SCHEMA
 
 
 def seed_posts():
-    new_york = Post(
+    moab = Post(
         owner_id = 1,
-        caption='The big apple',
-        media='https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmV3JTIweW9ya3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
+        caption='Moab 🏜️',
+        media='https://surreel-app-images.s3.amazonaws.com/seed-images/moab.jpg'
     )
     newport = Post(
         owner_id = 2,
-        caption='Newport RI',
+        caption='Newport vibes 🏖️',
         media='https://images.unsplash.com/photo-1582068385698-557043f8ed3d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bmV3cG9ydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
     )
-    cat_pic = Post(
+    la = Post(
         owner_id = 3,
-        caption='My cat Whiskers',
-        media='https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
+        caption='LA',
+        media='https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGxvcyUyMGFuZ2VsZXMlMjBoaWdod2F5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
     )
-    cat_pic2 = Post(
+    nature = Post(
         owner_id = 3,
-        caption='My cat Whiskers too',
-        media='https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
+        caption='The great outdoors',
+        media='https://i.giphy.com/media/12qHWnTUBzLWXS/giphy.webp'
+    )
+    peeps = Post(
+        owner_id = 1,
+        caption='Watch Hill with Peeps 🐶 🌅',
+        media='https://surreel-app-images.s3.amazonaws.com/seed-images/sunset.jpg'
+    )
+    concert = Post(
+        owner_id = 1,
+        caption='The Weeknd in NYC',
+        media='https://surreel-app-images.s3.amazonaws.com/seed-images/concert.jpg'
+    )
+    plane = Post(
+        owner_id = 2,
+        caption='🛫',
+        media='https://images.unsplash.com/photo-1572204443441-3859041b6c88?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGxhbmUlMjB3aW5kb3d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60'
     )
 
 
-    db.session.add(new_york)
+    db.session.add(moab)
     db.session.add(newport)
-    db.session.add(cat_pic)
-    db.session.add(cat_pic2)
+    db.session.add(la)
+    db.session.add(nature)
+    db.session.add(peeps)
+    db.session.add(concert)
+    db.session.add(plane)
+
     db.session.commit()
 
 

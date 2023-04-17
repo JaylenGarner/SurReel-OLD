@@ -121,11 +121,11 @@ function PostPage() {
               style={{
                 content: {
                   width: '400px',
-                  height: '200px',
+                  height: '260px',
                   top: '25%',
                   left: '40%',
                   marginRight: '-50%',
-                  backgroundColor: '#262626',
+                  backgroundColor: '#113253',
                   color: 'white',
                 }
               }}
@@ -144,7 +144,7 @@ function PostPage() {
                   height: '400px',
                   top: '18%',
                   left: '42%',
-                  backgroundColor: '#262626',
+                  backgroundColor: '#113253',
                   color: 'white',
                 }
               }}

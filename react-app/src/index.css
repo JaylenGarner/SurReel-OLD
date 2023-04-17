@@ -15,14 +15,28 @@ body,html {
 }
 
 .github-logo {
-  padding-top: 2px;
   width: 45px;
   height: 45px;
-  top: 0px;
-  left: 110px;
+  top: 2px;
+  left: 52px;
   position: fixed;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+  border-radius: 5px;
+}
+
+.linkedin-logo {
+  width: 45px;
+  height: 45px;
+  top: 2px;
+  left: 105px;
+  position: fixed;
+  border-radius: 5px;
+}
+
+.angellist-logo {
+  width: 45px;
+  height: 45px;
+  top: 2px;
+  left: 158px;
+  position: fixed;
+  border-radius: 5px;
 }

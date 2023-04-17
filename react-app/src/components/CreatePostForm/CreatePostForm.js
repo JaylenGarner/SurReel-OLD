@@ -77,7 +77,7 @@ const CreatePostForm = () => {
     <div className="create-a-post-form-container">
       <div className="login-page-container">
         <div className="login-form-page-container">
-          <h1 style={{ marginBottom: '30px', fontSize: '40px', fontFamily: 'cursive' }}>Create a Post</h1>
+          <h1 className='create-post-heading'>Create a Post</h1>
           <form onSubmit={handleSubmit}>
             <div className="login-form-input-area">
             <input

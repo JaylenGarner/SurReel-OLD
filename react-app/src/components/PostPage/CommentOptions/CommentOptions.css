@@ -1,0 +1,21 @@
+.edit-comment-form-header {
+    font-size: 26px;
+}
+
+.edit-post-form-change-button {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #264361;
+    transition: 0.5s;
+}
+
+.edit-post-form-change-button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+    box-shadow: inset;
+}

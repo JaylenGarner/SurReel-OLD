@@ -3,28 +3,29 @@ from app.models import db, Message, environment, SCHEMA
 
 def seed_messages():
     message1 = Message(
-        user_id = 1,
+        user_id = 2,
         message_server_id = 1,
-        body='Suhhh dude',
-        # media='https://i.kym-cdn.com/entries/icons/original/000/019/616/41584.jpg'
+        body="We've been trying to reach you regarding your vehicle's extended warrantee",
     )
     message2 = Message(
-        user_id = 2,
-        message_server_id = 2,
-        body='You owe us... big time',
-        # media='https://media.istockphoto.com/id/174879501/photo/irs-building-in-washington.jpg?s=612x612&w=0&k=20&c=4P9dxBYrG0VpPM4uy36OwFu38RpGVAP9dgDIZhiLq7c='
+        user_id = 1,
+        message_server_id = 1,
+        body="no",
     )
     message3 = Message(
         user_id = 3,
         message_server_id = 3,
-        body='I kinda look like Kid Rock',
-        # media='https://images.unsplash.com/photo-1571933052606-a7fce275801f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fG9sZCUyMGNvd2JveXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+        body="Hey how've you been?",
     )
     message4 = Message(
         user_id = 1,
         message_server_id = 3,
-        body='I kinda look like Kid Rock too',
-        # media='https://images.unsplash.com/photo-1571933052606-a7fce275801f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fG9sZCUyMGNvd2JveXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+        body='Not too shabby',
+    )
+    message5 = Message(
+        user_id = 3,
+        message_server_id = 3,
+        body='Nice',
     )
 
 
@@ -32,7 +33,7 @@ def seed_messages():
     db.session.add(message2)
     db.session.add(message3)
     db.session.add(message4)
-
+    db.session.add(message5)
     db.session.commit()
 
 

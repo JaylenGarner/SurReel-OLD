@@ -68,3 +68,9 @@ input::file-selector-button:hover {
   width: 300px;
   border-radius: 14px;
 }
+
+.create-post-heading {
+  margin-bottom: 30px;
+  font-size: 40px;
+  font-family: 'Pacifico', cursive;
+}

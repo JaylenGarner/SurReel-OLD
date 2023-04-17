@@ -3,14 +3,14 @@ from app.models import db, User, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password', image='https://images.unsplash.com/photo-1594904351111-a072f80b1a71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Y29kZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60')
+    jaylen = User(
+        username='Jaylen', email='demo@aa.io', password='password', image='https://surreel-app-images.s3.amazonaws.com/seed-images/jaylen.JPG')
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', image='https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGRvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60')
+        username='Marnie', email='marnie@aa.io', password='password', image='https://images.unsplash.com/photo-1488716820095-cbe80883c496?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', image='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60')
+        username='Bobbie', email='bobbie@aa.io', password='password', image='https://images.unsplash.com/photo-1493863641943-9b68992a8d07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1758&q=80')
 
-    db.session.add(demo)
+    db.session.add(jaylen)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.commit()

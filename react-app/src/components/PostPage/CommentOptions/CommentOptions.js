@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { deleteCommentThunk, editCommentThunk } from '../../../store/comments';
+import './CommentOptions.css'
+
 
 const CommentOptions = ({currentComment, closeModal}) => {
   const {postId} = useParams();
@@ -23,7 +25,7 @@ const CommentOptions = ({currentComment, closeModal}) => {
 
   return (
     <form onSubmit={handleSubmit} className='edit-server-form-container'>
-        <h1 className='edit-post-form-header'>Edit your comment</h1>
+        <h1 className='edit-comment-form-header'>Edit your comment</h1>
       <div>
         <input
           className='edit-form-image-input'

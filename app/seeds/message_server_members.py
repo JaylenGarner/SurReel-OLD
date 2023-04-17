@@ -4,7 +4,7 @@ from app.models import db, MessageServerMember, environment, SCHEMA
 def seed_message_server_members():
     message_serv_mem1 = MessageServerMember(
         user_id='1',
-        message_server_id='2'
+        message_server_id='1'
     )
     message_serv_mem2 = MessageServerMember(
         user_id='2',

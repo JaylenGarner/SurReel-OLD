@@ -76,7 +76,7 @@ const Profile = () => {
                   height: '400px',
                   top: '18%',
                   left: '42%',
-                  backgroundColor: '#262626',
+                  backgroundColor: '#113253',
                   color: 'white',
                 }
               }}
@@ -99,7 +99,7 @@ const Profile = () => {
                   height: '400px',
                   top: '18%',
                   left: '42%',
-                  backgroundColor: '#262626',
+                  backgroundColor: '#113253',
                   color: 'white',
                 }
               }}

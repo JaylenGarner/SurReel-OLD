@@ -4,9 +4,19 @@ background: none;
 border: none;
 font-size: 16px;
 font-weight: bold;
+border-radius: 10px;
+border: none;
+color: white;
+background-color: #264361;
+font-size: 16px;
+transition: 0.5s;
+padding: 10px;
 }
 
 .nav-bar-logout-button:hover {
-    color: #3975EA;
     cursor: pointer;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+    box-shadow: inset;
 }

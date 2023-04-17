@@ -38,14 +38,21 @@
 }
 
 .delete-comment-button {
-    background: none;
+    margin-top: 5px;
+    padding: 12px;
+    border-radius: 10px;
     border: none;
-    color: red;
+    color: white;
+    background-color: #264361;
+    transition: 0.5s;
     font-size: 16px;
     font-weight: bold;
+    width: 161px;
 }
 
 .delete-comment-button:hover {
     cursor: pointer;
-    color: white;
+    background-color: rgb(237, 61, 61);
+    transition: 0.5s;
+    box-shadow: inset;
 }
