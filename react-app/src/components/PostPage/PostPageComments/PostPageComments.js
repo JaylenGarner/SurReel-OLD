@@ -48,7 +48,9 @@ function PostPageComments() {
                                     <NavLink to={`/users/${comment.user.id}/profile`} className='post-page-owner-username'>{comment.user.username}</NavLink>
                                     <span className='post-page-caption'>{comment.body}</span>
                                 </div>
+                                {comment.user.id == user.id &&
                                 <button className="dropdown-button" onClick={() => openModal(comment)}>•••</button>
+                                }
                             </div>
                         );
 
