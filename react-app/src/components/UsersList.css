@@ -21,8 +21,9 @@
 }
 
 .user-list-image:hover {
-    border: 2px solid white;
+    /* border: 1px solid white; */
     transition: 0.5s;
+    filter: opacity(50%);
 }
 
 .users-list-username {
@@ -34,4 +35,6 @@
 
 .users-list-username:hover {
     color: rgb(212, 195, 195);
+    transition: 0.5s;
+    filter: opacity(50%);
 }

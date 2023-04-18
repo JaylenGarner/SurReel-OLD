@@ -17,11 +17,6 @@ def seed_posts():
         caption='LA',
         media='https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGxvcyUyMGFuZ2VsZXMlMjBoaWdod2F5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
     )
-    nature = Post(
-        owner_id = 3,
-        caption='The great outdoors',
-        media='https://i.giphy.com/media/12qHWnTUBzLWXS/giphy.webp'
-    )
     peeps = Post(
         owner_id = 1,
         caption='Watch Hill with Peeps 🐶 🌅',
@@ -42,7 +37,6 @@ def seed_posts():
     db.session.add(moab)
     db.session.add(newport)
     db.session.add(la)
-    db.session.add(nature)
     db.session.add(peeps)
     db.session.add(concert)
     db.session.add(plane)

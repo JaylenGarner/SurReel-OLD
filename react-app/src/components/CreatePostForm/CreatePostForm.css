@@ -1,14 +1,25 @@
 input::file-selector-button {
-    background: none;
-    color: #4193EF;
+    border-radius: 8px;
+    transition: 0.5s;
     border: none;
+    color: white;
+    background-color: #264361;
+    transition: 0.5s;
+    border: none;
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-right: 10px;
 }
 
 input::file-selector-button:hover {
-    cursor: pointer;
-    color: #3975EA;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  transition: 0.5s;
+  box-shadow: inset;
 }
-
 
 .create-a-post-form-container {
     margin-left: 12vw;

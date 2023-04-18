@@ -17,16 +17,21 @@
  }
 
  .leave-conversation {
-    font-size: 18px;
-    font-weight: bold;
+    border-radius: 10px;
+    border: none;
     color: white;
+    background-color: #264361;
+    font-size: 18px;
     transition: 0.5s;
+    padding: 6px 12px 6px 12px;
 }
 
 .leave-conversation:hover {
-  cursor: pointer;
-  transition: 0.5s;
-   color: #bdbfc1;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+    box-shadow: inset;
 }
 
 .message-feed-interaction-container {

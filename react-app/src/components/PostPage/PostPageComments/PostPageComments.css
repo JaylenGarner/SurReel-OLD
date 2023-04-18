@@ -30,6 +30,7 @@
 .primary-comment-container {
     display: flex;
     justify-content: space-between;
+    transition: 0.5s;
 }
 
 .delete-comment-button-container {

@@ -7,7 +7,7 @@ message_servers_routes = Blueprint('message_servers', __name__)
 
 
 # Get message servers that I am a member or owner of
-@message_servers_routes.route('')
+@message_servers_routes.route('/')
 @login_required
 def get_my_message_servers():
 
@@ -91,36 +91,6 @@ def delete_message_server(id):
     return {'msg': "The chat has been deleted"}
 
     # return {"msg": "You are not authorized to delete this chat"}
-
-
-@message_servers_routes.route('<int:id>/leave', methods=['DELETE'])
-@login_required
-def leave_message_server(id):
-
-    # Need to fix error handling, if you are not a member of a server, the request crashes
-
-    message_server = MessageServer.query.get(id)
-
-    if message_server == None:
-        return {'msg': "A message server with that ID does not exist"}
-
-    message_server_member = MessageServerMember.query.filter(and_(MessageServerMember.user_id == current_user.id,
-    MessageServerMember.message_server_id == id)).first()
-
-    if message_server_member is not None:
-        db.session.delete(message_server_member)
-        db.session.commit()
-
-        members = message_server.to_dict()['members']
-
-        if len(members) == 0:
-            db.session.delete(message_server)
-            db.session.commit()
-
-        return {'msg': "You have left the chat"}
-
-    return {"You are not a member of this chat"}
-
 
 
 @message_servers_routes.route('/<int:id>/message', methods=['POST'])

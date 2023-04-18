@@ -18,6 +18,14 @@
 .profile-post-media {
     height: 282px;
     width: 282px;
+    transition: 0.5s;
+}
+
+.profile-post-media:hover {
+    height: 282px;
+    width: 282px;
+    filter: brightness(60%);
+    transition: 0.5s;
 }
 
 .profile-user-has-not-posted {
