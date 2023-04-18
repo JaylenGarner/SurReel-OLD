@@ -2,6 +2,8 @@
 
 By _[Jaylen Garner](https://github.com/JaylenGarner)_
 
+SurReel is a dynamic platform for visual storytelling. It lets you explore captivating content and connect with like-minded individuals through an immersive home feed and interactive live chat features. Join SurReel today and start sharing your unique perspective with the world!
+
 ## Index
 
 - [API Documentation](https://github.com/JaylenGarner/SurReel/wiki/API-Routes)
@@ -24,51 +26,78 @@ By _[Jaylen Garner](https://github.com/JaylenGarner)_
 ## Overview
 
 ### Login/Signup
-SurReel is an Instagram clone. When a user first accesses the site, they are brought to the login page. On the login page, they are also presented with the option to navigate to the sign up page, as well as the option to sign in as the 'Demo' user. Attempting to access any page on the site without login/signup will redirect them to login.
+SurReel is an Instagram clone that immediately directs users to the login page upon accessing the site. From there, users can choose to sign up or sign in, with the added option to sign in as a "Demo" user. Any attempt to access site pages without a login will redirect users to the login page.
 
-![imgonline-com-ua-twotoone-nS3QGu7CJNeU](https://user-images.githubusercontent.com/93837049/218271834-b108cfe4-a913-4a2b-80bb-9a4a0b96bb21.jpg)
+![image](https://user-images.githubusercontent.com/93837049/232918402-9f97503c-071f-4052-9285-04db031a876a.png)
+
 
 ### Feed
-When logging into the site, the user is greeted with their feed. The feed will contain the posts of other users that the current user follows. If the user is not following anyone, they are presented with the following message and a button that navigates them to a page that displays all of the application's users: "There are no posts in your feed, get started by following other users"
+When logging into the site, the user is greeted with their feed, which displays posts from the users they follow. If the user is not following anyone, they will be presented with the following message "There are no posts in your feed, get started by following other users" and a button that navigates them to a page that displays all of the application's users.
 
-<img width="1113" alt="Screenshot 2023-02-11 at 12 23 33 PM" src="https://user-images.githubusercontent.com/93837049/218272084-e6c7b8a9-6ed7-4dd7-b8c9-a8d30c8ee563.png">
+<img width="1129" alt="Screenshot 2023-04-18 at 6 11 16 PM" src="https://user-images.githubusercontent.com/93837049/232918554-ba733613-3355-4fd2-a619-94ff218bf7e6.png">
 
-The user can like and unlike posts in the feed by clicking on the heart icon beneath a post's image. If they select 'Likes' under a post's image, a modal will overlay the page and list the relevant users.
+Users on SurReel can like and unlike posts on their feed by simply clicking on the heart icon located beneath a post's image. If a user selects 'Likes' under a post's image, a modal will appear overlaying the page, listing the relevant users.
 
-<img width="492" alt="Screenshot 2023-02-11 at 1 13 53 PM" src="https://user-images.githubusercontent.com/93837049/218274506-69961d5b-bb5d-45f0-9edc-e6af1bcd1b7f.png">
+In addition, users can also leave comments on posts and view a post's page by selecting its 'view all comments' button.
 
 ### Navigation Bar
 
-In the navbar there are links to the user's home feed, a form to create a post, a view of all of the user's direct messaging chats, and a list of of the application's current users.
+SurReel's navbar features several links, including the user's home feed, a form to create a post, a view of all direct messaging chats, and a list of the application's current users. The option to log out is also present in the navbar.
+
+To navigate to their own profile, users can simply select their profile picture.
 
 ### Profile
 
-If you click on a user's username or profile picture in most area's of the application, you will be redirected to that user's profile. While visiting a user's profile, you can see a display of all of their posts. Above the user's posts, there is an area that shows that user's total number of posts, followers, and following. A follow button is also present, and the functionality will change depending on the current user's relationship with the user.
-- If neither user follows eachother: The button will display 'Follow'
+Clicking on a user's username or profile picture on most areas of SurReel will redirect you to their profile. On their profile, you can view all of the user's posts, and above their posts, you will see their total number of posts, followers, and following. Additionally, a follow button is present, and its functionality will change depending on the current user's relationship with the user:
+
+- If neither user follows each other: The button will display 'Follow'
 - If the user is following the current user, but the current user is not following the user: The button will display 'Follow back'
 - If the current user follows the user: The button will display 'Unfollow'
 
-<img width="1245" alt="Screenshot 2023-02-11 at 12 54 01 PM" src="https://user-images.githubusercontent.com/93837049/218273315-6ab8fcf2-a08a-4bec-a1cd-2672fb0d8288.png">
+<img width="1275" alt="Screenshot 2023-04-18 at 6 12 35 PM" src="https://user-images.githubusercontent.com/93837049/232918775-33e55cf7-6dd8-44fc-8f63-8f4184bb6cca.png">
 
-If you click on either 'followers' or 'following', a modal will overlay the page and list the relevant users.
+If you select either 'followers' or 'following', a modal will appear overlaying the page, listing the relevant users.
 
-![imgonline-com-ua-twotoone-839SyaSB6Cg86KiC](https://user-images.githubusercontent.com/93837049/218273906-27efa4fe-275b-4606-a86f-47908aa98b97.jpg)
-
-If you select any of the displayed posts, you will be redirected to that post's page. 
+Lastly, selecting any displayed post will redirect you to the post's page. 
 
 ### Post Page
 
-This page will display the image at a much larger size, show the caption, allow the user to like the post, and allow the user to view all of the post's likes.
+When selecting a post, SurReel will redirect you to a new page displaying the image at a much larger size, along with its caption and comments. Here, you can like, unlike, comment on the post, and view all of its likes.
 
-<img width="1080" alt="Screenshot 2023-02-11 at 1 23 27 PM" src="https://user-images.githubusercontent.com/93837049/218274843-db8bc61b-5cff-416b-b022-83fdc5a55f4f.png">
+If a user wants to edit or delete their comment, they can select the '...' button located next to the comment.
 
+In addition, the owner of the post can edit or delete it by selecting the corresponding buttons labeled as such.
+
+<img width="1158" alt="Screenshot 2023-04-18 at 6 14 14 PM" src="https://user-images.githubusercontent.com/93837049/232919194-4bfc4459-0be1-430a-aa5b-7ac9cde976a9.png">
 
 ### Create a Post
 
-When the user selects 'Create a Post' in the nav bar, they will be redirected to a form that allows them to create a post. The form allows the user to select an image file from their system, as well as set a caption. Upon submission the user will see 'Loading...' until the image uplaods to the S3 bucket, once complete the user will be redirected to their home feed.
+Selecting 'Create a Post' in the navbar will redirect the user to a form where they can create a new post. The form allows the user to select an image file from their system and set a caption. As soon as an image is selected, a preview of the post will be displayed beneath the form.
 
-<img width="1031" alt="Screenshot 2023-02-11 at 1 35 00 PM" src="https://user-images.githubusercontent.com/93837049/218275241-4b386363-17b5-42c1-9394-8da7a51836e5.png">
+<img width="425" alt="Screenshot 2023-04-18 at 6 21 25 PM" src="https://user-images.githubusercontent.com/93837049/232919340-5053e203-8d82-4b41-be4e-182903cdb85d.png">
 
+After the user submits the post, they will see an animation indicating that the image is uploading to the S3 bucket. Once the upload is complete, the user will be redirected to their profile.
 
+### Messages
 
+The direct messaging area displays a user's existing conversations, allowing them to easily browse and select the one they want to participate in. Once selected, the user will be redirected to the conversation's chat room where they can send and receive messages.
 
+If a user selects the draft icon, they will be redirected to the create chat room page, where they can create a new conversation.
+
+### Create Chat Room
+
+On this page, the user will see a checklist displaying all of the application's users, allowing them to select who they want to start a conversation with.
+
+### Chat Room
+
+Here, the user can view a feed of all messages that have been created in the room in real-time with web sockets.
+
+In addition to viewing messages, the user can also send a message to the chat room or delete the conversation.
+
+<img width="885" alt="Screenshot 2023-04-18 at 6 23 17 PM" src="https://user-images.githubusercontent.com/93837049/232921510-989d7744-d598-4294-b8d5-d1da9e4edcee.png">
+
+### Users
+
+All of the application's other users are displayed on this page. If a user selects a specific user, they will be redirected to that user's profile.
+
+<img width="227" alt="Screenshot 2023-04-18 at 6 23 34 PM" src="https://user-images.githubusercontent.com/93837049/232921649-2a4eccf0-50db-42d8-a157-1c5847ef92e8.png">
