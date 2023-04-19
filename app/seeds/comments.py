@@ -19,7 +19,7 @@ def seed_comments():
     )
     comment4 = Comment(
         user_id = 3,
-        post_id = 7,
+        post_id = 6,
         body = 'Take me with you!!!'
     )
 
