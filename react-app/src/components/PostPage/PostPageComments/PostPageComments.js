@@ -40,7 +40,7 @@ function PostPageComments() {
                 {Object.values(comments).map((comment) => {
                     if (comment.post_id == postId) {
                         return (
-                            <div key={comment.id} className='primary-comment-container'>
+                            <div key={comment.id} className='primary-comment-container fade-in'>
                                 <div className='post-page-comment-container'>
                                     <NavLink to={`/users/${comment.user.id}/profile`}>
                                         <img src={comment.user.image} className='post-page-user-image'></img>
@@ -74,7 +74,7 @@ function PostPageComments() {
                         }}
                     >
                         <CommentOptions currentComment={selectedComment} closeModal={closeModal}/>
-                        <div className='delete-comment-button-container'>
+                        <div className='delete-comment-button-container fade-in'>
                         <button onClick={handleDelete} className='delete-comment-button'>Delete Comment</button>
                         </div>
                     </Modal>

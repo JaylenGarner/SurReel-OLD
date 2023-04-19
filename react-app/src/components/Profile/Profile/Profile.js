@@ -53,7 +53,7 @@ const Profile = () => {
   }
 
   return (
-    <div className='profile-container'>
+    <div className='profile-container fade-in'>
         <div className='profile-info-area'>
           <div className='profile-user-image-container'>
             <img src={user.image} className='profile-user-image'></img>

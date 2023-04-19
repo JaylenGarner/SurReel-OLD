@@ -74,7 +74,7 @@ const CreatePostForm = () => {
   };
 
   return (
-    <div className="create-a-post-form-container">
+    <div className="create-a-post-form-container fade-in">
       <div className="login-page-container">
         <div className="login-form-page-container">
           <h1 className='create-post-heading'>Create a Post</h1>
@@ -102,7 +102,7 @@ const CreatePostForm = () => {
             <button type="submit" className="login-button">
               Create Post
             </button>
-            {imagePreview && !imageLoading && <img src={imagePreview} alt="Selected image preview" className='create-post-preview-image'/>}
+            {imagePreview && !imageLoading && <img src={imagePreview} alt="Selected image preview" className='create-post-preview-image grow'/>}
             </div>
             {imageLoading && (
               <div className="aws-loading-container">

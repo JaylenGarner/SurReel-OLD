@@ -88,7 +88,7 @@ const RoomPage = () => {
           <div className="dm-nav-container">
             <RoomsNav />
           </div>
-          <div className="dm-page-messages-feed-container">
+          <div className="dm-page-messages-feed-container fade-in">
             <MessageFeed messages={messages} />
             <div className="message-feed-interaction-container">
               <input

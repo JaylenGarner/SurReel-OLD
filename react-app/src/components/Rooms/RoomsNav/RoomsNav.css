@@ -24,7 +24,7 @@
     text-align: center;
     border-bottom: 0.01px solid white;
     overflow: hidden;
-    transition: 1s;
+    transition: 2s;
 }
 
 .dm-nav-chat-button-div:hover {

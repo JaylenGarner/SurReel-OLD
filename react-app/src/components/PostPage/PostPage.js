@@ -86,7 +86,7 @@ function PostPage() {
     const post = posts[postId]
 
     return (
-    <div className='post-page-grid'>
+    <div className='post-page-grid fade-in'>
       <img className='post-page-image' src={post.media}></img>
       <div className='post-page-content'>
         <div className='post-page-owner-info'>
@@ -149,10 +149,10 @@ function PostPage() {
                 }
               }}
               >
-                <div className='profile-following-modal-header-container'>
+                <div className='profile-following-modal-header-container fade-in'>
                   <span className='profile-following-modal-header-text'>Likes</span>
                 </div>
-                <button onClick={() => setLikesModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
+                <button onClick={() => setLikesModalIsOpen(false)} className='profile-following-modal-close-button fade-in'>X</button>
                 <LikesModalContent setModalIsOpen={setLikesModalIsOpen} postId={post.id}/>
              </Modal>
             </div>

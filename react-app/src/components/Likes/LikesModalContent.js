@@ -20,7 +20,7 @@ const LikesModalContent = ({setModalIsOpen, postId}) => {
 
           if (like.post_id == postId) {
             return (
-              <div className='followers-modal-user-container' key={like.id}>
+              <div className='followers-modal-user-container fade-in' key={like.id} >
                 <NavLink  className='followers-modal-nav-link' to={`/users/${like.user.id}/profile`} onClick={() => setModalIsOpen(false)}>
                   <img className='followers-modal-user-image' src={like.user.image}></img>
                 </NavLink>

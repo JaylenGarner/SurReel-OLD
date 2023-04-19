@@ -125,7 +125,7 @@ function HomeFeed() {
       )
     } else {
       return (
-        <div className='home-page-feed-container'>
+        <div className='home-page-feed-container fade-in'>
          {posts && feedPosts.map((post) => {
              return <div key={post.id} className='home-feed-post-container'>
                  <div className='home-feed-post-owner-info-container'>
@@ -160,7 +160,7 @@ function HomeFeed() {
                  <div className='profile-following-modal-header-container'>
                    <span className='profile-following-modal-header-text'>Likes</span>
                  </div>
-                 <button onClick={() => setModalIsOpen(false)} className='profile-following-modal-close-button'>X</button>
+                 <button onClick={() => setModalIsOpen(false)} className='profile-following-modal-close-button fade-in'>X</button>
                  <LikesModalContent setModalIsOpen={setModalIsOpen} postId={currentPost}/>
               </Modal>
                <div>

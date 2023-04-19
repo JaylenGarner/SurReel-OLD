@@ -17,7 +17,7 @@ const CreateRoomPage = () => {
             <div className='dm-nav-container'>
                 <RoomsNav />
             </div>
-            <div className='dm-page-messages-feed-container'>
+            <div className='dm-page-messages-feed-container fade-in'>
                 <CreateRoomForm />
             </div>
         </div>

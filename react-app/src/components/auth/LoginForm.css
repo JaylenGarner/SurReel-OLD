@@ -18,6 +18,7 @@
     padding-right: 50px;
     font-size: 20px;
     border-radius: 12px;
+    transition: 1s;
     /* margin-left: 55px; */
 }
 

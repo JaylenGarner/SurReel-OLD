@@ -24,7 +24,7 @@ const CommentOptions = ({currentComment, closeModal}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='edit-server-form-container'>
+    <form onSubmit={handleSubmit} className='edit-server-form-container fade-in'>
         <h1 className='edit-comment-form-header'>Edit your comment</h1>
       <div>
         <input

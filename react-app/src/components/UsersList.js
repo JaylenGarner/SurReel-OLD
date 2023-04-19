@@ -26,7 +26,7 @@ function UsersList() {
   });
 
   return (
-    <div style={{'margin-left': '240px'}}>
+    <div style={{'margin-left': '240px'}} className='fade-in'>
       <h1 className='user-list-heading'>All Users</h1>
       {userComponents}
     </div>

@@ -15,7 +15,7 @@ const MessagingHome = () => {
                 <div className='dm-nav-container'>
                     <RoomsNav />
                 </div>
-                <div className='dm-home-page-messages-feed-container'>
+                <div className='dm-home-page-messages-feed-container fade-in'>
                     <h1 className='messages-home-your-messages'>Your messages</h1>
                     <span className='messages-home-sub-heading'>Send private messages to a friend or a group</span>
                 </div>
