@@ -116,7 +116,7 @@ function HomeFeed() {
 
     if (!feedPosts.length) {
 
-      return (<div >
+      return (<div className='fade-in'>
         <h1 className='no-posts-in-your-feed'>There are no posts in your feed, get started by following other users</h1>
         <div className='find-users-button-container'>
           <button className='find-users-button' onClick={() => history.push('/users')}>Find Users</button>
