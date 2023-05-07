@@ -2,7 +2,7 @@
 
 By _[Jaylen Garner](https://github.com/JaylenGarner)_
 
-SurReel is a dynamic platform for visual storytelling. It lets you explore captivating content and connect with like-minded individuals through an immersive home feed and interactive live chat features. Join SurReel today and start sharing your unique perspective with the world!
+SurReel is a dynamic platform for visual storytelling. It lets you explore captivating content and connect with like-minded individuals through an immersive home feed and interactive live chat features. Join [SurReel](https://surreel.onrender.com) today and start sharing your unique perspective with the world!
 
 ## Index
 
